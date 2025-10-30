@@ -9,6 +9,12 @@ This project uses git submodules, so in order to download it, you'll have to clo
 git clone --recursive https://github.com/lufinkey/iSSB
 ```
 
+## Credits & Attribution
+
+This Android revamp is based on the original open-source iSSB project by
+[lufinkey](https://github.com/lufinkey/iSSB) — the real GOAT. Massive respect for
+the years of work that made this possible.
+
 ## Screenshots
 
 ### Character Select
