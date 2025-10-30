@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iSSB - Stage Select</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .stage-select-header {
+            text-align: center;
+            padding: 16px;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .stage-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            padding: 16px;
+            overflow-y: auto;
+            align-content: start;
+        }
+        
+        .stage-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 3px solid transparent;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .stage-card:hover,
+        .stage-card:focus {
+            border-color: var(--color-primary);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(242, 13, 51, 0.6);
+        }
+        
+        .stage-card.selected {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 30px rgba(242, 13, 51, 0.8);
+            background: rgba(242, 13, 51, 0.2);
+        }
+        
+        .stage-preview {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #444 0%, #222 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+        
+        .stage-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+        }
+        
+        .stage-info {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            text-align: center;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            margin: 12px;
+            flex-shrink: 0;
+            gap: 12px;
+        }
+        
+        .btn-fight {
+            flex: 1;
+            padding: 16px 32px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .btn-fight:hover:not(:disabled) {
+            background: #ff1a47;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(242, 13, 51, 0.8);
+        }
+        
+        .btn-fight:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stage-select-header">
+            Select Stage
+        </div>
+        
+        <div class="stage-grid" id="stage-grid">
+            <!-- Stages will be loaded here -->
+        </div>
+        
+        <div class="footer">
+            <button class="btn btn-secondary" onclick="goBack()" style="padding: 12px 24px;">← Back</button>
+            <button class="btn-fight" id="fight-btn" onclick="startFight()" disabled>FIGHT!</button>
+        </div>
+    </div>
+    
+    <script>
+        let selectedStage = null;
+        
+        const stages = [
+            { id: 0, name: 'Fractal Stage', icon: '🌀', size: 'Medium', hazards: 'None' },
+            { id: 1, name: 'Hillside Battleground', icon: '⛰️', size: 'Large', hazards: 'Low' },
+            { id: 2, name: 'Battlefield Brawl', icon: '⚔️', size: 'Medium', hazards: 'None' },
+            { id: 3, name: 'Final Destination', icon: '🌟', size: 'Large', hazards: 'None' },
+            { id: 4, name: 'Hyrule Temple', icon: '🏛️', size: 'Huge', hazards: 'Medium' },
+            { id: 5, name: 'Corneria', icon: '🚀', size: 'Large', hazards: 'High' }
+        ];
+        
+        function loadStages() {
+            const grid = document.getElementById('stage-grid');
+            grid.innerHTML = '';
+            
+            stages.forEach(stage => {
+                const card = document.createElement('div');
+                card.className = 'stage-card';
+                card.setAttribute('data-stage-id', stage.id);
+                card.setAttribute('tabindex', '0');
+                card.onclick = () => selectStage(stage.id);
+                
+                card.innerHTML = `
+                    <div class="stage-preview">${stage.icon}</div>
+                    <div class="stage-name">${stage.name}</div>
+                    <div class="stage-info">
+                        Size: ${stage.size} | Hazards: ${stage.hazards}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        function selectStage(stageId) {
+            selectedStage = stageId;
+            
+            // Update visual selection
+            document.querySelectorAll('.stage-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-stage-id="${stageId}"]`).classList.add('selected');
+            
+            // Enable fight button
+            const fightBtn = document.getElementById('fight-btn');
+            fightBtn.disabled = false;
+            fightBtn.style.animation = 'pulse 1s infinite';
+            
+            // Save stage selection
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.selectStage(stageId);
+            }
+            
+            console.log('Selected stage:', stageId, stages.find(s => s.id === stageId).name);
+        }
+        
+        function startFight() {
+            if (selectedStage !== null) {
+                console.log('Starting fight on stage:', selectedStage);
+                // Stop menu music and clear state when starting game
+                const menuMusic = document.getElementById('menuMusic');
+                if (menuMusic) {
+                    menuMusic.pause();
+                    localStorage.removeItem('menuMusicState');
+                }
+                if (typeof MenuBridge !== 'undefined') {
+                    MenuBridge.startGame();
+                } else {
+                    alert('Starting fight on ' + stages.find(s => s.id === selectedStage).name);
+                }
+            }
+        }
+        
+        function goBack() {
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.navigateTo('character_select');
+            } else {
+                window.location.href = 'character_select.html';
+            }
+        }
+        
+        // Keyboard navigation
+        let selectedIndex = 0;
+        const stageCards = () => document.querySelectorAll('.stage-card');
+        
+        document.addEventListener('keydown', (e) => {
+            const cards = stageCards();
+            if (cards.length === 0) return;
+            
+            if (e.key === 'ArrowRight' || e.key === 'd') {
+                selectedIndex = Math.min(selectedIndex + 1, cards.length - 1);
+                cards[selectedIndex].focus();
+                e.preventDefault();
+            } else if (e.key === 'ArrowLeft' || e.key === 'a') {
+                selectedIndex = Math.max(selectedIndex - 1, 0);
+                cards[selectedIndex].focus();
+                e.preventDefault();
+            } else if (e.key === 'ArrowDown' || e.key === 's') {
+                selectedIndex = Math.min(selectedIndex + 2, cards.length - 1);
+                cards[selectedIndex].focus();
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp' || e.key === 'w') {
+                selectedIndex = Math.max(selectedIndex - 2, 0);
+                cards[selectedIndex].focus();
+                e.preventDefault();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                if (selectedStage !== null) {
+                    startFight();
+                } else {
+                    cards[selectedIndex].click();
+                }
+                e.preventDefault();
+            }
+        });
+        
+        // Initialize
+        loadStages();
+        
+        // Auto-select first stage
+        setTimeout(() => {
+            if (stages.length > 0) {
+                selectStage(stages[0].id);
+            }
+        }, 100);
+    </script>
+    
+    <!-- Menu Music -->
+    <audio id="menuMusic" loop>
+        <source src="menu_music.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        // Persistent menu music across all menu pages
+        const menuMusic = document.getElementById('menuMusic');
+        if (menuMusic) {
+            // Get saved music state from localStorage
+            const savedMusicState = localStorage.getItem('menuMusicState');
+            let musicWasPlaying = false;
+            let savedCurrentTime = 0;
+            let savedVolume = 0.7;
+            
+            if (savedMusicState) {
+                try {
+                    const state = JSON.parse(savedMusicState);
+                    musicWasPlaying = state.playing === true;
+                    savedCurrentTime = state.currentTime || 0;
+                    savedVolume = state.volume || 0.7;
+                } catch (e) {
+                    console.log('Failed to parse saved music state:', e);
+                }
+            }
+            
+            // Set volume from saved state
+            menuMusic.volume = savedVolume;
+            
+            // If music was playing, restore position and continue
+            if (musicWasPlaying && savedCurrentTime > 0) {
+                menuMusic.currentTime = savedCurrentTime;
+            }
+            
+            // Save music state periodically
+            function saveMusicState() {
+                const state = {
+                    playing: !menuMusic.paused,
+                    currentTime: menuMusic.currentTime,
+                    volume: menuMusic.volume
+                };
+                localStorage.setItem('menuMusicState', JSON.stringify(state));
+            }
+            
+            // Save state every second
+            setInterval(saveMusicState, 1000);
+            
+            // Save state when music ends/pauses
+            menuMusic.addEventListener('pause', saveMusicState);
+            menuMusic.addEventListener('ended', saveMusicState);
+            menuMusic.addEventListener('timeupdate', () => {
+                if (!menuMusic.paused) {
+                    saveMusicState();
+                }
+            });
+            
+            // Try to play music on page load
+            function playMenuMusic() {
+                if (!musicWasPlaying) {
+                    menuMusic.play().catch(e => {
+                        console.log('Autoplay blocked, will play on user interaction');
+                    });
+                } else {
+                    menuMusic.play().catch(e => {
+                        console.log('Resume blocked, will play on user interaction');
+                    });
+                }
+            }
+            
+            document.addEventListener('click', () => {
+                if (menuMusic.paused) {
+                    menuMusic.play().catch(e => console.log('Music play failed:', e));
+                }
+            }, { once: true });
+            
+            playMenuMusic();
+        }
+    </script>
+</body>
+</html>
+

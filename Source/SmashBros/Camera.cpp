@@ -416,6 +416,15 @@ namespace SmashBros
 	RectangleF Camera::getFocusRect(ArrayList<int> players)
 	{
 		RectangleF rect;
+		// Safety: if stage isn't ready yet, return a sane default
+		if(Global::currentStage==null)
+		{
+			rect.x = -150;
+			rect.y = -150;
+			rect.width = 300;
+			rect.height = 300;
+			return rect;
+		}
 		
 		Vector2f ws;
 		Vector2f hs;
@@ -477,10 +486,19 @@ namespace SmashBros
 		
 		if(rect.width <=1 || rect.height<=1)
 		{
+			// Default to a centered box around the stage origin
 			rect.width = 300;
 			rect.height = 300;
-			rect.x = Global::currentStage->x - rect.width/2;
-			rect.y = Global::currentStage->y - rect.height/2;
+			if(Global::currentStage!=null)
+			{
+				rect.x = Global::currentStage->x - rect.width/2;
+				rect.y = Global::currentStage->y - rect.height/2;
+			}
+			else
+			{
+				rect.x = -150;
+				rect.y = -150;
+			}
 		}
 		
 		return rect;

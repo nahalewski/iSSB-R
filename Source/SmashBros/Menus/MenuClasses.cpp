@@ -804,6 +804,11 @@ namespace SmashBros
 		hapticFeedbackLabel->setScale(2);
 		hapticFeedbackToggle = new ToggleButton(390,220,true);
 		hapticFeedbackToggle->setScale(1.6f);
+
+		displayControlsLabel = new MenuBarSmall(200,280,"Display Controls");
+		displayControlsLabel->setScale(2);
+		displayControlsToggle = new ToggleButton(390,280,true);
+		displayControlsToggle->setScale(1.6f);
 		
 		button_a = new Actor(820, 450);
         button_a->addAnimation(new Animation("normal", 1, "Images/Game/Controls/button_a.png"));
@@ -902,6 +907,7 @@ namespace SmashBros
 	void ControlOptions::Initialize()
 	{
 		hapticFeedbackToggle->setToggle(Preferences::hasHapticFeedback());
+		displayControlsToggle->setToggle(Preferences::displayTouchControlsOn());
 	}
 	
 	void ControlOptions::LoadContent()
@@ -943,6 +949,8 @@ namespace SmashBros
 		
 		hapticFeedbackLabel->Update(gameTime);
 		hapticFeedbackToggle->Update(gameTime);
+		displayControlsLabel->Update(gameTime);
+		displayControlsToggle->Update(gameTime);
 		
 		joystickArea->Update(gameTime);
 		joystick->Update(gameTime);
@@ -1148,6 +1156,7 @@ namespace SmashBros
 		
 		Controls::setJoystickActive(joystickEnabled);
 		Preferences::setHapticFeedback(hapticFeedbackToggle->getToggle());
+		Preferences::setDisplayTouchControls(displayControlsToggle->getToggle());
 	}
 
 	void ControlOptions::Draw(Graphics2D&g, long gameTime)
@@ -1158,6 +1167,8 @@ namespace SmashBros
 		toggles->Draw(g, gameTime);
 		hapticFeedbackLabel->Draw(g, gameTime);
 		hapticFeedbackToggle->Draw(g, gameTime);
+		displayControlsLabel->Draw(g, gameTime);
+		displayControlsToggle->Draw(g, gameTime);
 		
 		button_a->Draw(g, gameTime);
 		button_b->Draw(g, gameTime);

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iSSB - Main Menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .bg-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #1a0a0f 0%, #2d1520 50%, #1a0a0f 100%);
+            z-index: -1;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            color: white;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 16px 8px;
+        }
+        
+        .sidebar-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .sidebar-btn:hover, .sidebar-btn:focus {
+            background: var(--color-primary);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    
+    <div class="container">
+        <header class="header">
+            <span>Connect to the Internet to get the latest information.</span>
+            <span id="time" style="font-weight: bold; font-size: 1.2rem;">--:--</span>
+        </header>
+        
+        <div class="main-menu" style="margin-right: 60px;">
+            <div class="menu-tile smash" onclick="navigateTo('character_select')" tabindex="0">
+                <span>Smash</span>
+            </div>
+            <div class="menu-tile games" onclick="alert('Games & More - Coming Soon!')" tabindex="0">
+                <span>Games & More</span>
+            </div>
+            <div class="menu-tile spirits" onclick="alert('Training - Coming Soon!')" tabindex="0">
+                <span>Training</span>
+            </div>
+            <div class="menu-tile-split">
+                <div class="menu-tile vault" onclick="alert('Vault - Coming Soon!')" tabindex="0">
+                    <span>Vault</span>
+                </div>
+                <div class="menu-tile online" onclick="navigateTo('multiplayer')" tabindex="0">
+                    <span>Online</span>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            Go online and battle with people from around the world!
+        </footer>
+    </div>
+    
+    <aside class="sidebar">
+        <button class="sidebar-btn" onclick="alert('Home')" title="Home">🏠</button>
+        <button class="sidebar-btn" onclick="alert('Tutorial')" title="Tutorial">✋</button>
+        <button class="sidebar-btn" onclick="navigateTo('character_select')" title="Quick Play">🎮</button>
+        <button class="sidebar-btn" onclick="alert('Messages')" title="Messages">📧</button>
+        <button class="sidebar-btn" onclick="navigateTo('settings')" title="Settings">⚙️</button>
+        <button class="sidebar-btn" onclick="alert('Help')" title="Help">❓</button>
+    </aside>
+    
+    <!-- Menu Music -->
+    <audio id="menuMusic" loop>
+        <source src="menu_music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Persistent menu music across all menu pages
+        const menuMusic = document.getElementById('menuMusic');
+        
+        // Get saved music state from localStorage
+        const savedMusicState = localStorage.getItem('menuMusicState');
+        let musicWasPlaying = false;
+        let savedCurrentTime = 0;
+        let savedVolume = 0.7;
+        
+        if (savedMusicState) {
+            try {
+                const state = JSON.parse(savedMusicState);
+                musicWasPlaying = state.playing === true;
+                savedCurrentTime = state.currentTime || 0;
+                savedVolume = state.volume || 0.7;
+            } catch (e) {
+                console.log('Failed to parse saved music state:', e);
+            }
+        }
+        
+        // Set volume from saved state
+        menuMusic.volume = savedVolume;
+        
+        // If music was playing, restore position and continue
+        if (musicWasPlaying && savedCurrentTime > 0) {
+            menuMusic.currentTime = savedCurrentTime;
+        }
+        
+        // Save music state periodically
+        function saveMusicState() {
+            const state = {
+                playing: !menuMusic.paused,
+                currentTime: menuMusic.currentTime,
+                volume: menuMusic.volume
+            };
+            localStorage.setItem('menuMusicState', JSON.stringify(state));
+        }
+        
+        // Save state every second
+        setInterval(saveMusicState, 1000);
+        
+        // Save state when music ends/pauses
+        menuMusic.addEventListener('pause', saveMusicState);
+        menuMusic.addEventListener('ended', saveMusicState);
+        menuMusic.addEventListener('timeupdate', () => {
+            // Save more frequently during playback
+            if (!menuMusic.paused) {
+                saveMusicState();
+            }
+        });
+        
+        // Try to play music on page load (may be blocked by browser autoplay policy)
+        function playMenuMusic() {
+            // Only start playing if it wasn't already playing (avoid restart)
+            if (!musicWasPlaying) {
+                menuMusic.play().catch(e => {
+                    console.log('Autoplay blocked, will play on user interaction');
+                });
+            } else {
+                // Continue playing from saved position
+                menuMusic.play().catch(e => {
+                    console.log('Resume blocked, will play on user interaction');
+                });
+            }
+        }
+        
+        // Play music on any user interaction
+        document.addEventListener('click', () => {
+            if (menuMusic.paused) {
+                menuMusic.play().catch(e => console.log('Music play failed:', e));
+            }
+        }, { once: true });
+        
+        // Try autoplay
+        playMenuMusic();
+        
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('time').textContent = hours + ':' + minutes;
+        }
+        updateTime();
+        setInterval(updateTime, 60000);
+        
+        // Navigation function
+        function navigateTo(menu) {
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.navigateTo(menu);
+            } else {
+                console.log('Navigate to:', menu);
+                window.location.href = menu + '.html';
+            }
+        }
+        
+        // Gamepad support
+        let selectedIndex = 0;
+        const tiles = document.querySelectorAll('.menu-tile, .sidebar-btn');
+        
+        function updateSelection(direction) {
+            tiles[selectedIndex].style.outline = '';
+            selectedIndex = (selectedIndex + direction + tiles.length) % tiles.length;
+            tiles[selectedIndex].style.outline = '4px solid white';
+            tiles[selectedIndex].focus();
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown' || e.key === 's') {
+                updateSelection(1);
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp' || e.key === 'w') {
+                updateSelection(-1);
+                e.preventDefault();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                tiles[selectedIndex].click();
+                e.preventDefault();
+            }
+        });
+        
+        // Initialize selection
+        if (tiles.length > 0) {
+            tiles[0].style.outline = '4px solid white';
+            tiles[0].focus();
+        }
+    </script>
+</body>
+</html>
+

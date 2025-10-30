@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iSSB - Multiplayer</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #000051 100%);
+            overflow: hidden;
+        }
+        
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+        }
+        
+        .header h1 {
+            flex: 1;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffd600;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .icon-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .panels-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .panel {
+            background: #212121;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .panel > div:last-child {
+            overflow-y: auto;
+        }
+        
+        .panel h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .player-slot {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .player-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d500f9, #aa00ff);
+        }
+        
+        .player-info {
+            flex: 1;
+        }
+        
+        .player-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d500f9;
+        }
+        
+        .game-lobby {
+            background: rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .game-lobby:hover {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .game-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .game-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .panels-container {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <button class="icon-btn" onclick="goBack()">⬅️</button>
+            <h1>BLUETOOTH BATTLEDOME</h1>
+            <button class="icon-btn" onclick="alert('Help')">❓</button>
+        </header>
+        
+        <div class="panels-container">
+            <!-- Host Panel -->
+            <div class="panel">
+                <h2>Host a Game</h2>
+                
+                <div id="host-slots">
+                    <div class="player-slot">
+                        <div class="player-avatar" style="background: linear-gradient(135deg, #f44336, #d32f2f);"></div>
+                        <div class="player-info">
+                            <div style="font-weight: bold;">You (Host)</div>
+                        </div>
+                        <div class="player-status" style="color: #d500f9;">
+                            <div class="status-dot"></div>
+                            <span>Ready</span>
+                        </div>
+                    </div>
+                    
+                    <div class="player-slot" style="opacity: 0.6;">
+                        <div class="player-avatar" style="background: #424242; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">+</div>
+                        <div class="player-info">
+                            <div style="color: rgba(255,255,255,0.6);">Open Slot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="player-slot" style="opacity: 0.6;">
+                        <div class="player-avatar" style="background: #424242; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">+</div>
+                        <div class="player-info">
+                            <div style="color: rgba(255,255,255,0.6);">Open Slot</div>
+                        </div>
+                    </div>
+                    
+                    <div class="player-slot" style="opacity: 0.6;">
+                        <div class="player-avatar" style="background: #424242; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">+</div>
+                        <div class="player-info">
+                            <div style="color: rgba(255,255,255,0.6);">Open Slot</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="startMatch()" style="width: 100%; margin-top: 16px; font-size: 1.2rem; padding: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #ffd600; color: #000;">
+                    <span style="font-size: 1.5rem;">⚔️</span>
+                    <span>Start Match</span>
+                </button>
+            </div>
+            
+            <!-- Join Panel -->
+            <div class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0;">Join a Game</h2>
+                    <button class="btn" onclick="scanForGames()" style="background: rgba(0,229,255,0.2); color: #00e5ff; padding: 8px 16px; display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.2rem;">🔄</span>
+                        <span>Scan</span>
+                    </button>
+                </div>
+                
+                <div id="game-list">
+                    <div class="game-lobby" onclick="joinLobby(0)">
+                        <div class="game-title">ZeldaFan's Lobby</div>
+                        <div class="game-info">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>📶</span>
+                                <span>Strong</span>
+                            </div>
+                            <span>·</span>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>👥</span>
+                                <span>2/4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-lobby" onclick="joinLobby(1)">
+                        <div class="game-title">MarioPro's Game</div>
+                        <div class="game-info">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>📶</span>
+                                <span>Good</span>
+                            </div>
+                            <span>·</span>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>👥</span>
+                                <span>3/4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-lobby" onclick="joinLobby(2)">
+                        <div class="game-title">Pikachu_Power</div>
+                        <div class="game-info">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>📶</span>
+                                <span>Weak</span>
+                            </div>
+                            <span>·</span>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span>👥</span>
+                                <span>1/4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function goBack() {
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.navigateTo('main_menu');
+            } else {
+                window.location.href = 'main_menu.html';
+            }
+        }
+        
+        function startMatch() {
+            alert('Starting multiplayer match...');
+            // TODO: Integrate with P2P system
+        }
+        
+        function scanForGames() {
+            alert('Scanning for nearby games...');
+            // TODO: Integrate with Bluetooth discovery
+        }
+        
+        function joinLobby(lobbyId) {
+            alert('Joining lobby ' + lobbyId);
+            // TODO: Integrate with P2P connection
+        }
+    </script>
+    
+    <!-- Menu Music -->
+    <audio id="menuMusic" loop>
+        <source src="menu_music.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        // Persistent menu music across all menu pages
+        const menuMusic = document.getElementById('menuMusic');
+        if (menuMusic) {
+            // Get saved music state from localStorage
+            const savedMusicState = localStorage.getItem('menuMusicState');
+            let musicWasPlaying = false;
+            let savedCurrentTime = 0;
+            let savedVolume = 0.7;
+            
+            if (savedMusicState) {
+                try {
+                    const state = JSON.parse(savedMusicState);
+                    musicWasPlaying = state.playing === true;
+                    savedCurrentTime = state.currentTime || 0;
+                    savedVolume = state.volume || 0.7;
+                } catch (e) {
+                    console.log('Failed to parse saved music state:', e);
+                }
+            }
+            
+            // Set volume from saved state
+            menuMusic.volume = savedVolume;
+            
+            // If music was playing, restore position and continue
+            if (musicWasPlaying && savedCurrentTime > 0) {
+                menuMusic.currentTime = savedCurrentTime;
+            }
+            
+            // Save music state periodically
+            function saveMusicState() {
+                const state = {
+                    playing: !menuMusic.paused,
+                    currentTime: menuMusic.currentTime,
+                    volume: menuMusic.volume
+                };
+                localStorage.setItem('menuMusicState', JSON.stringify(state));
+            }
+            
+            // Save state every second
+            setInterval(saveMusicState, 1000);
+            
+            // Save state when music ends/pauses
+            menuMusic.addEventListener('pause', saveMusicState);
+            menuMusic.addEventListener('ended', saveMusicState);
+            menuMusic.addEventListener('timeupdate', () => {
+                if (!menuMusic.paused) {
+                    saveMusicState();
+                }
+            });
+            
+            // Try to play music on page load
+            function playMenuMusic() {
+                if (!musicWasPlaying) {
+                    menuMusic.play().catch(e => {
+                        console.log('Autoplay blocked, will play on user interaction');
+                    });
+                } else {
+                    menuMusic.play().catch(e => {
+                        console.log('Resume blocked, will play on user interaction');
+                    });
+                }
+            }
+            
+            document.addEventListener('click', () => {
+                if (menuMusic.paused) {
+                    menuMusic.play().catch(e => console.log('Music play failed:', e));
+                }
+            }, { once: true });
+            
+            playMenuMusic();
+        }
+    </script>
+</body>
+</html>
+

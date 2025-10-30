@@ -14,6 +14,7 @@ namespace SmashBros
 
 		static bool highfps;
 		static bool hapticFeedback;
+		static bool displayTouchControls;
 		
 		static PrefManager prefMgr;
 
@@ -36,10 +37,15 @@ namespace SmashBros
 		static void setHighFPS(bool toggle);
 		static void setHapticFeedback(bool hapticEnabled);
 		static bool hasHapticFeedback();
+		static void setDisplayTouchControls(bool enabled);
+		static bool displayTouchControlsOn();
 		static bool menuMusicOn();
 		static bool menuSoundFXOn();
 		static bool ingameMusicOn();
 		static bool highFPS();
+
+		// Apply settings from WebView (Android SharedPreferences)
+		static void applyWebSettings();
 	};
 }
 

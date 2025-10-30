@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iSSB - Settings</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            overflow: hidden;
+        }
+        
+        .settings-container {
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .settings-header {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 51px;
+            height: 31px;
+            background: var(--color-ui-hover);
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background: var(--color-primary);
+        }
+        
+        .toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 27px;
+            height: 27px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+        
+        .toggle-switch.active::before {
+            transform: translateX(20px);
+        }
+        
+        select {
+            background: var(--color-ui-hover);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .counter-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-ui-hover);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .counter-btn:hover {
+            background: var(--color-primary);
+        }
+        
+        .counter-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 32px;
+            text-align: center;
+        }
+        
+        .volume-slider {
+            width: 200px;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--color-ui-hover);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .volume-value {
+            min-width: 40px;
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-container">
+        <aside class="sidebar">
+            <div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">⚙️</div>
+                    <div>
+                        <h1 style="font-weight: bold; font-size: 1rem;">SMASH SETTINGS</h1>
+                        <p style="color: var(--color-text-secondary); font-size: 0.9rem;">Version 1.0</p>
+                    </div>
+                </div>
+                <nav>
+                    <a href="#" class="active" onclick="loadSection('game')">
+                        <span style="font-size: 1.5rem;">🎮</span>
+                        <p>Game Rules</p>
+                    </a>
+                    <a href="#" onclick="loadSection('audio')">
+                        <span style="font-size: 1.5rem;">🔊</span>
+                        <p>Audio</p>
+                    </a>
+                    <a href="#" onclick="loadSection('controls')">
+                        <span style="font-size: 1.5rem;">🎮</span>
+                        <p>Controls</p>
+                    </a>
+                    <a href="#" onclick="loadSection('system')">
+                        <span style="font-size: 1.5rem;">⚙️</span>
+                        <p>System</p>
+                    </a>
+                </nav>
+            </div>
+            <div>
+                <a href="#" onclick="goBack()">
+                    <span style="font-size: 1.5rem;">⬅️</span>
+                    <p>Back to Main Menu</p>
+                </a>
+            </div>
+        </aside>
+        
+        <main class="settings-content" id="settings-content">
+            <h2 class="settings-header" id="section-header">Game Rules</h2>
+            
+            <div class="settings-list" id="settings-list">
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">⏱️</div>
+                    <p>Game Mode</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn btn-secondary" id="mode-stock" onclick="setGameMode('stock')">Stock</button>
+                    <button class="btn btn-primary" id="mode-time" onclick="setGameMode('time')">Time</button>
+                    <button class="btn btn-secondary" id="mode-stamina" onclick="setGameMode('stamina')">Stamina</button>
+                </div>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🏆</div>
+                    <p>Item Frequency</p>
+                </div>
+                <select id="item-frequency" onchange="updateSetting('itemFrequency', this.value)">
+                    <option value="0">None</option>
+                    <option value="1">Low</option>
+                    <option value="2" selected>Medium</option>
+                    <option value="3">High</option>
+                </select>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">#️⃣</div>
+                    <p>Stock Count</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button class="counter-btn" onclick="adjustStocks(-1)">-</button>
+                    <span class="counter-value" id="stock-count">3</span>
+                    <button class="counter-btn" onclick="adjustStocks(1)">+</button>
+                </div>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">⚠️</div>
+                    <p>Stage Hazards</p>
+                </div>
+                <div class="toggle-switch active" id="hazards-toggle" onclick="toggleSwitch('hazards')"></div>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🔥</div>
+                    <p>Final Smash Meter</p>
+                </div>
+                <div class="toggle-switch" id="final-smash-toggle" onclick="toggleSwitch('finalSmash')"></div>
+            </div>
+            
+            <div class="setting-item">
+                <div class="setting-label">
+                    <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">👆</div>
+                    <p>Touch Controls</p>
+                </div>
+                <div class="toggle-switch" id="touch-controls-toggle" onclick="toggleSwitch('touchControls')"></div>
+            </div>
+            </div>
+            
+            <div style="display: flex; justify-content: flex-end; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                <button class="btn btn-secondary" onclick="resetSettings()">Reset to Default</button>
+                <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        // Load settings from SharedPreferences
+        let settings = {};
+        function loadSettings() {
+            if (typeof MenuBridge !== 'undefined' && MenuBridge.getSettings) {
+                try {
+                    const settingsJson = MenuBridge.getSettings();
+                    const loaded = JSON.parse(settingsJson);
+                    settings = {
+                        gameMode: loaded.gameMode || 'time',
+                        itemFrequency: parseInt(loaded.itemFrequency) || 2,
+                        stockCount: parseInt(loaded.stockCount) || 3,
+                        stageHazards: loaded.stageHazards === 'true' || loaded.stageHazards === true,
+                        finalSmashMeter: loaded.finalSmashMeter === 'true' || loaded.finalSmashMeter === true,
+                        touchControls: loaded.touchControls === 'true' || loaded.touchControls === true,
+                        menuMusic: loaded.menuMusic === 'true' || loaded.menuMusic === true || loaded.menuMusic === undefined,
+                        musicVolume: parseInt(loaded.musicVolume) || 70,
+                        soundEffects: loaded.soundEffects === 'true' || loaded.soundEffects === true || loaded.soundEffects === undefined,
+                        ingameMusic: loaded.ingameMusic === 'true' || loaded.ingameMusic === true || loaded.ingameMusic === undefined
+                    };
+                } catch (e) {
+                    console.log('Failed to load settings:', e);
+                    // Use defaults
+                    settings = {
+                        gameMode: 'time',
+                        itemFrequency: 2,
+                        stockCount: 3,
+                        stageHazards: true,
+                        finalSmashMeter: false,
+                        touchControls: false,
+                        menuMusic: true,
+                        musicVolume: 70,
+                        soundEffects: true,
+                        ingameMusic: true
+                    };
+                }
+            } else {
+                // Defaults if MenuBridge not available
+                settings = {
+                    gameMode: 'time',
+                    itemFrequency: 2,
+                    stockCount: 3,
+                    stageHazards: true,
+                    finalSmashMeter: false,
+                    touchControls: false,
+                    menuMusic: true,
+                    musicVolume: 70,
+                    soundEffects: true,
+                    ingameMusic: true
+                };
+            }
+        }
+        
+        // Load settings on page load
+        loadSettings();
+        
+        function setGameMode(mode) {
+            settings.gameMode = mode;
+            document.querySelectorAll('[id^="mode-"]').forEach(btn => {
+                btn.className = 'btn btn-secondary';
+            });
+            document.getElementById('mode-' + mode).className = 'btn btn-primary';
+            updateSetting('gameMode', mode);
+        }
+        
+        function adjustStocks(delta) {
+            settings.stockCount = Math.max(1, Math.min(9, settings.stockCount + delta));
+            document.getElementById('stock-count').textContent = settings.stockCount;
+            updateSetting('stockCount', settings.stockCount);
+        }
+        
+        function toggleSwitch(id) {
+            const toggle = document.getElementById(id + '-toggle');
+            toggle.classList.toggle('active');
+            const isActive = toggle.classList.contains('active');
+            
+            if (id === 'hazards') {
+                settings.stageHazards = isActive;
+                updateSetting('stageHazards', isActive);
+            } else if (id === 'finalSmash') {
+                settings.finalSmashMeter = isActive;
+                updateSetting('finalSmashMeter', isActive);
+            } else if (id === 'touchControls') {
+                settings.touchControls = isActive;
+                updateSetting('touchControls', isActive);
+            } else if (id === 'menuMusic') {
+                settings.menuMusic = isActive;
+                const menuMusic = document.getElementById('menuMusic');
+                if (menuMusic) {
+                    if (isActive) {
+                        menuMusic.play().catch(e => console.log('Music play failed:', e));
+                    } else {
+                        menuMusic.pause();
+                    }
+                }
+                updateSetting('menuMusic', isActive);
+            } else if (id === 'soundEffects') {
+                settings.soundEffects = isActive;
+                updateSetting('soundEffects', isActive);
+            } else if (id === 'ingameMusic') {
+                settings.ingameMusic = isActive;
+                updateSetting('ingameMusic', isActive);
+            }
+        }
+        
+        function updateSetting(key, value) {
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.updateSetting(key, String(value));
+            }
+            console.log('Setting updated:', key, '=', value);
+        }
+        
+        function loadSection(section) {
+            // Update active nav item
+            document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+            event.target.closest('a').classList.add('active');
+            
+            const header = document.getElementById('section-header');
+            const list = document.getElementById('settings-list');
+            
+            if (section === 'audio') {
+                header.textContent = 'Audio';
+                const currentVolume = settings.musicVolume || 70;
+                const menuMusic = document.getElementById('menuMusic');
+                const currentMusicVolume = menuMusic ? Math.round(menuMusic.volume * 100) : currentVolume;
+                list.innerHTML = `
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🔊</div>
+                            <p>Menu Music</p>
+                        </div>
+                        <div class="toggle-switch ${settings.menuMusic ? 'active' : ''}" id="menu-music-toggle" onclick="toggleSwitch('menuMusic')"></div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🎵</div>
+                            <p>Music Volume</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+                            <input type="range" class="volume-slider" id="music-volume" min="0" max="100" value="${currentMusicVolume}" oninput="updateMusicVolume(this.value)">
+                            <span class="volume-value" id="music-volume-value">${currentMusicVolume}%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🔔</div>
+                            <p>Sound Effects</p>
+                        </div>
+                        <div class="toggle-switch active" id="sound-effects-toggle" onclick="toggleSwitch('soundEffects')"></div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🎮</div>
+                            <p>In-Game Music</p>
+                        </div>
+                        <div class="toggle-switch active" id="ingame-music-toggle" onclick="toggleSwitch('ingameMusic')"></div>
+                    </div>
+                `;
+            } else if (section === 'game') {
+                header.textContent = 'Game Rules';
+                list.innerHTML = `
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">⏱️</div>
+                            <p>Game Mode</p>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="btn btn-secondary" id="mode-stock" onclick="setGameMode('stock')">Stock</button>
+                            <button class="btn btn-primary" id="mode-time" onclick="setGameMode('time')">Time</button>
+                            <button class="btn btn-secondary" id="mode-stamina" onclick="setGameMode('stamina')">Stamina</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🏆</div>
+                            <p>Item Frequency</p>
+                        </div>
+                        <select id="item-frequency" onchange="updateSetting('itemFrequency', this.value)">
+                            <option value="0">None</option>
+                            <option value="1">Low</option>
+                            <option value="2" selected>Medium</option>
+                            <option value="3">High</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">#️⃣</div>
+                            <p>Stock Count</p>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <button class="counter-btn" onclick="adjustStocks(-1)">-</button>
+                            <span class="counter-value" id="stock-count">3</span>
+                            <button class="counter-btn" onclick="adjustStocks(1)">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">⚠️</div>
+                            <p>Stage Hazards</p>
+                        </div>
+                        <div class="toggle-switch active" id="hazards-toggle" onclick="toggleSwitch('hazards')"></div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">🔥</div>
+                            <p>Final Smash Meter</p>
+                        </div>
+                        <div class="toggle-switch" id="final-smash-toggle" onclick="toggleSwitch('finalSmash')"></div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <div style="background: var(--color-ui-hover); padding: 10px; border-radius: 8px; font-size: 1.5rem;">👆</div>
+                            <p>Touch Controls</p>
+                        </div>
+                        <div class="toggle-switch" id="touch-controls-toggle" onclick="toggleSwitch('touchControls')"></div>
+                    </div>
+                `;
+            } else {
+                header.textContent = section.charAt(0).toUpperCase() + section.slice(1);
+                list.innerHTML = '<p style="color: var(--color-text-secondary);">This section is coming soon!</p>';
+            }
+        }
+        
+        function updateMusicVolume(value) {
+            const volume = parseInt(value) / 100;
+            const menuMusic = document.getElementById('menuMusic');
+            if (menuMusic) {
+                menuMusic.volume = volume;
+                // Update localStorage music state with new volume
+                const savedMusicState = localStorage.getItem('menuMusicState');
+                if (savedMusicState) {
+                    try {
+                        const state = JSON.parse(savedMusicState);
+                        state.volume = volume;
+                        localStorage.setItem('menuMusicState', JSON.stringify(state));
+                    } catch (e) {
+                        console.log('Failed to update music state:', e);
+                    }
+                }
+            }
+            document.getElementById('music-volume-value').textContent = value + '%';
+            updateSetting('musicVolume', value);
+        }
+        
+        function resetSettings() {
+            settings = {
+                gameMode: 'time',
+                itemFrequency: 2,
+                stockCount: 3,
+                stageHazards: true,
+                finalSmashMeter: false,
+                touchControls: false
+            };
+            
+            // Update UI
+            setGameMode('time');
+            document.getElementById('item-frequency').value = '2';
+            document.getElementById('stock-count').textContent = '3';
+            document.getElementById('hazards-toggle').classList.add('active');
+            document.getElementById('final-smash-toggle').classList.remove('active');
+            document.getElementById('touch-controls-toggle').classList.remove('active');
+        }
+        
+        function saveSettings() {
+            alert('Settings saved!');
+        }
+        
+        function goBack() {
+            if (typeof MenuBridge !== 'undefined') {
+                MenuBridge.navigateTo('main_menu');
+            } else {
+                window.location.href = 'main_menu.html';
+            }
+        }
+    </script>
+    
+    <!-- Menu Music -->
+    <audio id="menuMusic" loop>
+        <source src="menu_music.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        // Persistent menu music across all menu pages
+        const menuMusic = document.getElementById('menuMusic');
+        if (menuMusic) {
+            // Get saved music state from localStorage
+            const savedMusicState = localStorage.getItem('menuMusicState');
+            let musicWasPlaying = false;
+            let savedCurrentTime = 0;
+            let savedVolume = 0.7;
+            
+            if (savedMusicState) {
+                try {
+                    const state = JSON.parse(savedMusicState);
+                    musicWasPlaying = state.playing === true;
+                    savedCurrentTime = state.currentTime || 0;
+                    savedVolume = state.volume || 0.7;
+                } catch (e) {
+                    console.log('Failed to parse saved music state:', e);
+                }
+            }
+            
+            // Set volume from saved state
+            menuMusic.volume = savedVolume;
+            
+            // If music was playing, restore position and continue
+            if (musicWasPlaying && savedCurrentTime > 0) {
+                menuMusic.currentTime = savedCurrentTime;
+            }
+            
+            // Save music state periodically
+            function saveMusicState() {
+                const state = {
+                    playing: !menuMusic.paused,
+                    currentTime: menuMusic.currentTime,
+                    volume: menuMusic.volume
+                };
+                localStorage.setItem('menuMusicState', JSON.stringify(state));
+            }
+            
+            // Save state every second
+            setInterval(saveMusicState, 1000);
+            
+            // Save state when music ends/pauses
+            menuMusic.addEventListener('pause', saveMusicState);
+            menuMusic.addEventListener('ended', saveMusicState);
+            menuMusic.addEventListener('timeupdate', () => {
+                if (!menuMusic.paused) {
+                    saveMusicState();
+                }
+            });
+            
+            // Try to play music on page load
+            function playMenuMusic() {
+                if (!musicWasPlaying) {
+                    menuMusic.play().catch(e => {
+                        console.log('Autoplay blocked, will play on user interaction');
+                    });
+                } else {
+                    menuMusic.play().catch(e => {
+                        console.log('Resume blocked, will play on user interaction');
+                    });
+                }
+            }
+            
+            document.addEventListener('click', () => {
+                if (menuMusic.paused) {
+                    menuMusic.play().catch(e => console.log('Music play failed:', e));
+                }
+            }, { once: true });
+            
+            playMenuMusic();
+        }
+    </script>
+</body>
+</html>
+

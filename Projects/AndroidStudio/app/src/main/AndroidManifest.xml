@@ -2,24 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 	<uses-permission android:name="android.permission.VIBRATE" />
 
-	<application
+            <application
 		android:allowBackup="true"
-		android:icon="@mipmap/ic_launcher"
+                android:icon="@mipmap/ic_launcher"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
 		android:hardwareAccelerated="true"
 		android:theme="@style/Theme.ISSB">
-		<activity
-			android:name=".MainActivity"
+		
+		<!-- Menu Activity - Launcher (WebView-based menus) -->
+                <activity
+                    android:name="com.brokenphysics.issb.MenuActivity"
 			android:screenOrientation="landscape"
 			android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|uiMode"
-			android:exported="true">
+			android:exported="true"
+			android:hardwareAccelerated="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
+		</activity>
+		
+		<!-- Game Activity - SDL2-based gameplay -->
+                <activity
+                    android:name="com.brokenphysics.issb.MainActivity"
+			android:screenOrientation="landscape"
+			android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|uiMode"
+			android:exported="false"
+			android:hardwareAccelerated="true">
 		</activity>
 	</application>
 

@@ -13,7 +13,7 @@ namespace SmashBros
 	bool Controls::ControllerButtonStates[20];
 	bool Controls::PrevControllerButtonStates[20];
 	Controls::ControlHUD*Controls::touchControls = null;
-	bool Controls::touchEnabled = true;
+	bool Controls::touchEnabled = false;  // OFF by default - toggle in settings
 	bool Controls::joystickEnabled = true;
 	byte Controls::touchPlayer = 1;
 	const float Controls::ControlHUD::farDist = 12100;
@@ -2310,7 +2310,10 @@ namespace SmashBros
 	
 	void Controls::Draw(Graphics2D&g, long gameTime)
 	{
+	if (Preferences::displayTouchControlsOn())
+	{
 		touchControls->Draw(g, gameTime);
+	}
 	}
 	
 	void Controls::buzzForButton() {

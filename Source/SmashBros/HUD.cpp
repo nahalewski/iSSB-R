@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Controls.h"
 #include "P2PDataManager.h"
+#include "AndroidBridge.h"
 
 namespace SmashBros
 {
@@ -1198,7 +1199,13 @@ namespace SmashBros
 			{
 				exitButton->setColor(Color::WHITE);
 				Game::Resume();
-				Game::Exit();
+				
+				// On Android, return to WebView character select menu
+				#ifdef __ANDROID__
+					AndroidBridge::returnToCharacterSelect();
+				#else
+					Game::Exit();
+				#endif
 			}
 			exitButton->Draw(g, gameTime);
 		}

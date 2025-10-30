@@ -8,8 +8,8 @@ android {
 
 	namespace "com.brokenphysics.issb"
 
-	defaultConfig {
-		applicationId "com.brokenphysics.issb"
+        defaultConfig {
+            applicationId "com.brokenphysics.issbr"
 		minSdkVersion 21
 		targetSdkVersion 35
 		versionCode 1

@@ -6,6 +6,7 @@
 #include "../Preferences.h"
 #include "../Menus/Menus.h"
 #include "../P2PDataManager.h"
+#include "../../GameEngine/AssetManager.h"
 
 namespace SmashBros
 {
@@ -29,9 +30,22 @@ namespace SmashBros
 	
 	void GameScreen::LoadContent()
 	{
-		Global::createHUD();
+	    AssetManager::loadFont("Fonts/arial.ttf");
+		// Ensure players and stage are initialized before HUD/camera
+		if(Global::currentStage==null || Global::getPlayerActor(1)==null || Global::getPlayerActor(2)==null)
+		{
+			Console::WriteLine("GameScreen: Bootstrapping game from selections");
+			Global::LoadGame();
+		}
+		if(Global::hud==null)
+		{
+			Global::createHUD();
+		}
 		Game::showBackground(false);
-		Camera::Update();
+		if(Global::currentStage!=null)
+		{
+			Camera::Update();
+		}
 		sendFrame = true;
 		if(Preferences::ingameMusicOn())
 		{

@@ -2,6 +2,8 @@
 #include "Preferences.h"
 #include "../Game.h"
 #include "Controls.h"
+#include "AndroidBridge.h"
+#include "Global.h"
 
 namespace SmashBros
 {
@@ -11,6 +13,7 @@ namespace SmashBros
 	
 	bool Preferences::highfps = true;
 	bool Preferences::hapticFeedback = true;
+	bool Preferences::displayTouchControls = true;
 	
 	const String Preferences::version = "2.21-3";
 	
@@ -31,6 +34,7 @@ namespace SmashBros
 		prefMgr.addValue("ingameMusic",ingameMusic);
 		prefMgr.addValue("highfps",highfps);
 		prefMgr.addValue("hapticFeedback", hapticFeedback);
+		prefMgr.addValue("controls_display", displayTouchControls);
 		
 		prefMgr.addValue("controls_joystick",    Controls::joystickEnabled);
 		
@@ -88,6 +92,7 @@ namespace SmashBros
 		ingameMusic = prefMgr.getBooleanValue("ingameMusic");
 		highfps = prefMgr.getBooleanValue("highfps");
 		hapticFeedback = prefMgr.getBooleanValue("hapticFeedback");
+		displayTouchControls = prefMgr.getBooleanValue("controls_display");
 		
 		Controls::joystickEnabled = prefMgr.getBooleanValue("controls_joystick");
 		
@@ -152,6 +157,7 @@ namespace SmashBros
 		prefMgr.setValue("ingameMusic",ingameMusic);
 		prefMgr.setValue("highfps",highfps);
 		prefMgr.setValue("hapticFeedback", hapticFeedback);
+		prefMgr.setValue("controls_display", displayTouchControls);
 		
 		prefMgr.setValue("controls_joystick",    Controls::joystickEnabled);
 		
@@ -238,6 +244,14 @@ namespace SmashBros
 	bool Preferences::hasHapticFeedback() {
 		return hapticFeedback;
 	}
+
+void Preferences::setDisplayTouchControls(bool enabled) {
+	displayTouchControls = enabled;
+}
+
+bool Preferences::displayTouchControlsOn() {
+	return displayTouchControls;
+}
 	
 	bool Preferences::menuMusicOn()
 	{
@@ -258,4 +272,48 @@ namespace SmashBros
 	{
 		return highfps;
 	}
+
+void Preferences::applyWebSettings()
+{
+#ifdef __ANDROID__
+    // Map WebView settings to engine globals
+    int mode = AndroidBridge::getGameMode();
+    Global::gameMode = mode; // 1=time, 2=stock
+    int stock = AndroidBridge::getStockCount();
+    Global::stockAmount = stock;
+    // item frequency and hazards not fully wired in engine rules here; keep for future
+    bool hazards = AndroidBridge::getStageHazards();
+    (void)hazards;
+    bool smashMeter = AndroidBridge::getFinalSmashMeter();
+    (void)smashMeter;
+    
+    // Apply audio settings from WebView menus
+    bool webMenuMusic = AndroidBridge::getMenuMusicSetting();
+    bool webMenuSoundFx = AndroidBridge::getMenuSoundFxSetting();
+    bool webInGameMusic = AndroidBridge::getInGameMusicSetting();
+    
+    // Update Preferences if they differ from WebView settings
+    if(menuMusic != webMenuMusic)
+    {
+        menuMusic = webMenuMusic;
+        Console::WriteLine((String)"Menu music set to: " + (webMenuMusic ? "ON" : "OFF"));
+    }
+    if(menuSoundFx != webMenuSoundFx)
+    {
+        menuSoundFx = webMenuSoundFx;
+        Console::WriteLine((String)"Menu sound effects set to: " + (webMenuSoundFx ? "ON" : "OFF"));
+    }
+    if(ingameMusic != webInGameMusic)
+    {
+        ingameMusic = webInGameMusic;
+        Console::WriteLine((String)"In-game music set to: " + (webInGameMusic ? "ON" : "OFF"));
+    }
+    
+    // Save updated preferences back to PrefManager
+    prefMgr.setValue("menuMusic", menuMusic);
+    prefMgr.setValue("menuSoundFx", menuSoundFx);
+    prefMgr.setValue("ingameMusic", ingameMusic);
+    prefMgr.save("com.brokenphysics.iSSB.prefs");
+#endif
+}
 }

@@ -370,6 +370,105 @@ public class MainActivity extends SDLActivity implements InputManager.InputDevic
         }
     }
     
+    // Settings from WebView → C++
+    public static int getGameMode() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return 1; // time as default
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            String mode = prefs.getString("gameMode", "time");
+            if ("stock".equalsIgnoreCase(mode)) return 2; // Global::MODE_STOCK
+            else return 1; // Global::MODE_TIME_LIMIT
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get gameMode: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    public static int getItemFrequency() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return 2;
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Integer.parseInt(prefs.getString("itemFrequency", "2"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get itemFrequency: " + e.getMessage());
+            return 2;
+        }
+    }
+
+    public static int getStockCount() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return 3;
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Integer.parseInt(prefs.getString("stockCount", "3"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get stockCount: " + e.getMessage());
+            return 3;
+        }
+    }
+
+    public static boolean getStageHazards() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return true;
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Boolean.parseBoolean(prefs.getString("stageHazards", "true"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get stageHazards: " + e.getMessage());
+            return true;
+        }
+    }
+
+    public static boolean getFinalSmashMeter() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return false;
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Boolean.parseBoolean(prefs.getString("finalSmashMeter", "false"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get finalSmashMeter: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    // Audio settings from WebView → C++
+    public static boolean getMenuMusicSetting() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return true; // Default ON
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Boolean.parseBoolean(prefs.getString("menuMusic", "true"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get menuMusic: " + e.getMessage());
+            return true; // Default ON
+        }
+    }
+    
+    public static boolean getMenuSoundFxSetting() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return true; // Default ON
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Boolean.parseBoolean(prefs.getString("soundEffects", "true"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get soundEffects: " + e.getMessage());
+            return true; // Default ON
+        }
+    }
+    
+    public static boolean getInGameMusicSetting() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return true; // Default ON
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            return Boolean.parseBoolean(prefs.getString("ingameMusic", "true"));
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get ingameMusic: " + e.getMessage());
+            return true; // Default ON
+        }
+    }
     public static void returnToCharacterSelect() {
         try {
             // Get the current activity instance

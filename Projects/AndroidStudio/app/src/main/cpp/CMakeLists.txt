@@ -49,14 +49,16 @@ file(
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-			iSSBLib
-			# Sets the library as a shared library.
-			SHARED
+		iSSBLib
+		# Sets the library as a shared library.
+		SHARED
 
-			# Provides a relative path to your source file(s).
-			native-lib.cpp
-			${ISSB_SOURCES}
-			${SDL_P2P_SOURCES})
+		# Provides a relative path to your source file(s).
+		native-lib.cpp
+		../../../../../../Source/SmashBros/AndroidBridge.cpp
+		../../../../../../Source/SmashBros/Game/Characters/PaperMario.cpp
+		${ISSB_SOURCES}
+		${SDL_P2P_SOURCES})
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

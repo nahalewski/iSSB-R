@@ -7,6 +7,8 @@
 #include "Game/Characters/Fox.h"
 #include "Game/Characters/Pikachu.h"
 #include "Game/Characters/Link.h"
+#include "Game/Characters/PaperMario.h"
+#include "Game/Characters/Samus.h"
 
 #include "Game/Stages/FractalStage.h"
 #include "Game/Stages/HillsideBattleground.h"
@@ -41,10 +43,16 @@ namespace SmashBros
 			case Global::CHAR_PIKACHU:
 			return "pikachu.png";
 			
-			case Global::CHAR_LINK:
-			return "link.png";
-			
-			default:
+		case Global::CHAR_LINK:
+		return "link.png";
+		
+			case Global::CHAR_PAPERMARIO:
+			return "papermario.png";
+
+			case Global::CHAR_SAMUS:
+			return "samus.png";
+		
+		default:
 			if(charNo <= Global::totalCharacters)
 			{
 				return "random.png";
@@ -82,13 +90,19 @@ namespace SmashBros
 			case Global::CHAR_FOX:
 			return "Fox";
 			
-			case Global::CHAR_PIKACHU:
-			return "Pikachu";
-			
-			case Global::CHAR_LINK:
-			return "Link";
-		}
+		case Global::CHAR_PIKACHU:
+		return "Pikachu";
+		
+		case Global::CHAR_LINK:
+		return "Link";
+		
+			case Global::CHAR_PAPERMARIO:
+			return "Paper Mario";
+
+			case Global::CHAR_SAMUS:
+			return "Samus";
 	}
+}
 	
 	String CharacterLoader::getIconPath(int charNo)
 	{
@@ -131,11 +145,22 @@ namespace SmashBros
 			p->charNo = Global::CHAR_PIKACHU;
 			break;
 			
-			case Global::CHAR_LINK:
-			p = new Link(x1,y1,playerNo,team);
-			p->charNo = Global::CHAR_LINK;
-		}
-		return p;
+		case Global::CHAR_LINK:
+		p = new Link(x1,y1,playerNo,team);
+		p->charNo = Global::CHAR_LINK;
+		break;
+		
+		case Global::CHAR_PAPERMARIO:
+		p = new PaperMario(x1,y1,playerNo,team);
+		p->charNo = Global::CHAR_PAPERMARIO;
+		break;
+
+		case Global::CHAR_SAMUS:
+		p = new Samus(x1,y1,playerNo,team);
+		p->charNo = Global::CHAR_SAMUS;
+		break;
+	}
+	return p;
 	}
 	
 	ArrayList<Animation*> CharacterLoader::getWinnersScreenAnimations(int charNo)
@@ -184,13 +209,23 @@ namespace SmashBros
 			winhold_rows = 10;
 			break;
 			
-			case Global::CHAR_LINK:
-			win_fps = 8;
-			win_rows = 4;
-			break;
-		}
+		case Global::CHAR_LINK:
+		win_fps = 8;
+		win_rows = 4;
+		break;
 		
-		String charFolder = getFolder(charNo);
+		case Global::CHAR_PAPERMARIO:
+		win_fps = 8;
+		win_rows = 8;
+		break;
+
+		case Global::CHAR_SAMUS:
+		win_fps = 8;
+		win_rows = 6;
+		break;
+	}
+	
+	String charFolder = getFolder(charNo);
 		
 		ArrayList<Animation*> animations;
 		

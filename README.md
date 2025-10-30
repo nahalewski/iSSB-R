@@ -15,6 +15,9 @@ This Android revamp is based on the original open-source iSSB project by
 [lufinkey](https://github.com/lufinkey/iSSB) — the real GOAT. Massive respect for
 the years of work that made this possible.
 
+Additional credits:
+- Samus assets and reference build inspiration courtesy of MadridPawmot (Alekemon). Thank you for the Samus work and sharing it with the community.
+
 ## Screenshots
 
 ### Character Select
