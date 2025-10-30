@@ -29,11 +29,23 @@ This project has been in development for **several years**, evolving from a desk
 
 **Recent Updates:**
 - ✅ Modern WebView-based menu system
-- ✅ Full gamepad/controller support
+- ✅ Full controller support (Nintendo Pro, PS4, PS5, Xbox) - [See details](CONTROLLER_SUPPORT.md)
 - ✅ True fullscreen rendering on Android devices
 - ✅ Adaptive UI scaling for all screen sizes
 - ✅ Character select, stage select, and settings menus
 - ✅ Bluetooth multiplayer support
 - ✅ Paper Mario character integration
+
+## Controller Support
+
+iSSB supports a wide range of gaming controllers on Android:
+- 🎮 **Nintendo Pro Controller** - Full support via Bluetooth or USB
+- 🎮 **PlayStation 5 DualSense** - Full support with rumble
+- 🎮 **PlayStation 4 DualShock 4** - Full support
+- 🎮 **Xbox Series X/S Controller** - Full support
+- 🎮 **Xbox One Controller** - Full support
+- 🎮 **Xbox 360 Controller** - USB support
+
+See [CONTROLLER_SUPPORT.md](CONTROLLER_SUPPORT.md) for detailed button mappings and troubleshooting.
 
 The game features a custom C++ engine built on SDL2, with hand-crafted character animations, attack systems, and stage mechanics developed over multiple years of iteration.

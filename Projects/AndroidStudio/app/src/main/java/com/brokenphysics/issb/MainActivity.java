@@ -180,30 +180,77 @@ public class MainActivity extends SDLActivity implements InputManager.InputDevic
 				|| (sources & InputDevice.SOURCE_DPAD) == InputDevice.SOURCE_DPAD;
 	}
 
+	/**
+	 * Detect specific controller type and return friendly name
+	 */
+	private String getControllerType(InputDevice device) {
+		String deviceName = device.getName().toLowerCase();
+		int vendorId = device.getVendorId();
+		int productId = device.getProductId();
+		
+		// Nintendo Pro Controller
+		if (deviceName.contains("pro controller") || 
+		    (vendorId == 0x057E && (productId == 0x2009 || productId == 0x2017))) {
+			return "Nintendo Pro Controller";
+		}
+		
+		// PS5 DualSense
+		if (deviceName.contains("dualsense") || 
+		    deviceName.contains("ps5") ||
+		    (vendorId == 0x054C && productId == 0x0CE6)) {
+			return "PS5 DualSense Controller";
+		}
+		
+		// PS4 DualShock 4
+		if (deviceName.contains("dualshock") || 
+		    deviceName.contains("ps4") ||
+		    deviceName.contains("wireless controller") ||
+		    (vendorId == 0x054C && (productId == 0x05C4 || productId == 0x09CC))) {
+			return "PS4 DualShock 4 Controller";
+		}
+		
+		// Xbox Controllers (One, Series X/S, 360)
+		if (deviceName.contains("xbox") || 
+		    deviceName.contains("x-box") ||
+		    (vendorId == 0x045E && (productId == 0x02D1 || productId == 0x02DD || 
+		                             productId == 0x0B12 || productId == 0x0B13 ||
+		                             productId == 0x028E || productId == 0x02EA))) {
+			if (deviceName.contains("series") || productId == 0x0B12 || productId == 0x0B13) {
+				return "Xbox Series X/S Controller";
+			} else if (deviceName.contains("one") || productId == 0x02DD || productId == 0x02D1) {
+				return "Xbox One Controller";
+			} else {
+				return "Xbox 360 Controller";
+			}
+		}
+		
+		// Generic fallback
+		return device.getName();
+	}
+
 	@Override
 	public void onInputDeviceAdded(int deviceId) {
 		InputDevice device = inputManager.getInputDevice(deviceId);
 		if (device != null && isGamepadDevice(device)) {
-			String deviceName = device.getName();
-			android.util.Log.d(TAG, "Controller connected: " + deviceName + " (ID: " + deviceId + ")");
+			String controllerType = getControllerType(device);
+			android.util.Log.d(TAG, "Controller connected: " + controllerType + 
+			                   " (Vendor: 0x" + Integer.toHexString(device.getVendorId()) + 
+			                   ", Product: 0x" + Integer.toHexString(device.getProductId()) + ")");
 			
 			runOnUiThread(() -> {
-				Toast.makeText(this, "Controller connected: " + deviceName, Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "✓ " + controllerType + " connected", Toast.LENGTH_LONG).show();
 			});
 		}
 	}
 
 	@Override
 	public void onInputDeviceRemoved(int deviceId) {
-		InputDevice device = inputManager.getInputDevice(deviceId);
-		if (device != null && isGamepadDevice(device)) {
-			String deviceName = device.getName();
-			android.util.Log.d(TAG, "Controller disconnected: " + deviceName + " (ID: " + deviceId + ")");
-			
-			runOnUiThread(() -> {
-				Toast.makeText(this, "Controller disconnected: " + deviceName, Toast.LENGTH_SHORT).show();
-			});
-		}
+		// Note: device will be null here since it's already removed, so we can't get the type
+		android.util.Log.d(TAG, "Controller disconnected (ID: " + deviceId + ")");
+		
+		runOnUiThread(() -> {
+			Toast.makeText(this, "✗ Controller disconnected", Toast.LENGTH_SHORT).show();
+		});
 	}
 
 	@Override
@@ -216,11 +263,136 @@ public class MainActivity extends SDLActivity implements InputManager.InputDevic
 		}
 	}
 
-	@Override
-	protected void onDestroy() {
-		if (inputManager != null) {
-			inputManager.unregisterInputDeviceListener(this);
-		}
-		super.onDestroy();
-	}
+    @Override
+    protected void onDestroy() {
+        if (inputManager != null) {
+            inputManager.unregisterInputDeviceListener(this);
+        }
+        super.onDestroy();
+    }
+    
+    /**
+     * JNI methods callable from C++ to get menu data
+     */
+    public static int getP1Character() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return -1;
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_GameData", MODE_PRIVATE);
+            return prefs.getInt("p1_character", -1);
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get P1 character: " + e.getMessage());
+            return -1;
+        }
+    }
+    
+    public static int getP2Character() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return -1;
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_GameData", MODE_PRIVATE);
+            return prefs.getInt("p2_character", -1);
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get P2 character: " + e.getMessage());
+            return -1;
+        }
+    }
+    
+    public static boolean shouldSkipMenus() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) {
+                android.util.Log.e(TAG, "shouldSkipMenus: context is null");
+                return false;
+            }
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_GameData", MODE_PRIVATE);
+            boolean skip = prefs.getBoolean("skip_cpp_menus", false);
+            
+            android.util.Log.d(TAG, "shouldSkipMenus: " + skip);
+            
+            // DON'T clear the flag yet - let the game clear it after successful load
+            
+            return skip;
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to check skip menus: " + e.getMessage());
+            return false;
+        }
+    }
+    
+    public static void clearCharacterSelections() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return;
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_GameData", MODE_PRIVATE);
+            android.content.SharedPreferences.Editor editor = prefs.edit();
+            // Clear the skip menus flag so we don't auto-launch again
+            editor.putBoolean("skip_cpp_menus", false);
+            // Don't clear character selections - keep them for replay
+            editor.apply();
+            
+            android.util.Log.d(TAG, "Cleared skip_cpp_menus flag");
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to clear selections: " + e.getMessage());
+        }
+    }
+    
+    public static boolean getTouchControlsSetting() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return false;
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_Settings", MODE_PRIVATE);
+            boolean touchEnabled = prefs.getString("touchControls", "false").equals("true");
+            android.util.Log.d(TAG, "Touch controls setting: " + touchEnabled);
+            return touchEnabled;
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get touch controls setting: " + e.getMessage());
+            return false; // Default OFF
+        }
+    }
+    
+    public static int getSelectedStage() {
+        try {
+            android.content.Context context = org.libsdl.app.SDLActivity.getContext();
+            if (context == null) return 0; // Default to first stage
+            
+            android.content.SharedPreferences prefs = context.getSharedPreferences("iSSB_GameData", MODE_PRIVATE);
+            int stage = prefs.getInt("selected_stage", 0);
+            android.util.Log.d(TAG, "Selected stage: " + stage);
+            return stage;
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to get selected stage: " + e.getMessage());
+            return 0; // Default to first stage
+        }
+    }
+    
+    public static void returnToCharacterSelect() {
+        try {
+            // Get the current activity instance
+            final MainActivity activity = (MainActivity) mSingleton;
+            if (activity != null) {
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        android.util.Log.d(TAG, "Returning to character select menu");
+                        
+                        // Launch MenuActivity with character select
+                        android.content.Intent intent = new android.content.Intent(activity, MenuActivity.class);
+                        intent.putExtra("menu", "character_select");
+                        intent.addFlags(android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        activity.startActivity(intent);
+                        
+                        // Finish the game activity
+                        activity.finish();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            android.util.Log.e(TAG, "Failed to return to character select: " + e.getMessage());
+        }
+    }
 }
