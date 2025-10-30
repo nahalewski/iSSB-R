@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<!-- 
+		Centralized menu styles for iSSB
+		These styles are designed to scale adaptively across different screen sizes.
+		Reference these styles in your menu layouts or C++ code.
+	-->
+	
+	<!-- Menu screen base style -->
+	<style name="MenuScreen">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">@color/menu_background</item>
+	</style>
+	
+	<!-- Menu button styles -->
+	<style name="MenuButton" parent="Widget.MaterialComponents.Button">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">@dimen/menu_button_height</item>
+		<item name="android:minWidth">@dimen/menu_button_min_width</item>
+		<item name="android:minHeight">@dimen/menu_button_min_height</item>
+		<item name="android:paddingStart">@dimen/menu_button_padding_horizontal</item>
+		<item name="android:paddingEnd">@dimen/menu_button_padding_horizontal</item>
+		<item name="android:paddingTop">@dimen/menu_button_padding_vertical</item>
+		<item name="android:paddingBottom">@dimen/menu_button_padding_vertical</item>
+		<item name="android:textSize">@dimen/menu_button_text_size</item>
+		<item name="android:textColor">@color/menu_text_primary</item>
+		<item name="backgroundTint">@color/menu_button_normal</item>
+	</style>
+	
+	<style name="MenuButton.Pressed">
+		<item name="backgroundTint">@color/menu_button_pressed</item>
+	</style>
+	
+	<!-- Menu item/text styles -->
+	<style name="MenuItem">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">@dimen/menu_item_text_size</item>
+		<item name="android:textColor">@color/menu_text_primary</item>
+		<item name="android:padding">@dimen/menu_item_padding</item>
+	</style>
+	
+	<style name="MenuItem.Secondary">
+		<item name="android:textColor">@color/menu_text_secondary</item>
+		<item name="android:textSize">@dimen/menu_item_text_size_secondary</item>
+	</style>
+	
+	<!-- Character select screen styles -->
+	<style name="CharacterSelect">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:padding">@dimen/character_select_padding</item>
+	</style>
+	
+	<!-- Stage select screen styles -->
+	<style name="StageSelect">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:padding">@dimen/stage_select_padding</item>
+	</style>
+	
+	<!-- Pause menu styles -->
+	<style name="PauseMenu">
+		<item name="android:layout_width">@dimen/pause_menu_width</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">@dimen/pause_menu_padding</item>
+		<item name="android:background">@color/menu_background</item>
+	</style>
+	
+	<!-- Instructions for custom theme integration:
+		1. Place your custom theme assets in:
+		   - res/drawable/ (for drawable resources)
+		   - res/drawable-[density]/ (for density-specific drawables)
+		   - res/drawable-[size]/ (for size-specific drawables)
+		   
+		2. Update colors.xml with your custom color values
+		   
+		3. Update themes.xml to reference your custom colors
+		   
+		4. If using custom drawables, reference them in styles.xml
+		   For example: <item name="android:background">@drawable/custom_menu_background</item>
+	-->
+</resources>
+

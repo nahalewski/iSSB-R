@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- 
+		Adaptive UI dimensions for iSSB
+		All measurements use dp (density-independent pixels) for proper scaling across devices.
+		These dimensions can be referenced in XML layouts or converted to pixels in C++ code.
+	-->
+	
+	<!-- Menu screen spacing -->
+	<dimen name="menu_screen_margin">16dp</dimen>
+	<dimen name="menu_screen_padding">24dp</dimen>
+	<dimen name="menu_screen_spacing">16dp</dimen>
+	
+	<!-- Menu button dimensions -->
+	<dimen name="menu_button_height">56dp</dimen>
+	<dimen name="menu_button_min_width">120dp</dimen>
+	<dimen name="menu_button_min_height">48dp</dimen>
+	<dimen name="menu_button_padding_horizontal">24dp</dimen>
+	<dimen name="menu_button_padding_vertical">12dp</dimen>
+	<dimen name="menu_button_margin">8dp</dimen>
+	<dimen name="menu_button_spacing">12dp</dimen>
+	<dimen name="menu_button_text_size">16sp</dimen>
+	
+	<!-- Menu item/text dimensions -->
+	<dimen name="menu_item_text_size">18sp</dimen>
+	<dimen name="menu_item_text_size_secondary">14sp</dimen>
+	<dimen name="menu_item_padding">12dp</dimen>
+	<dimen name="menu_item_margin">8dp</dimen>
+	<dimen name="menu_item_spacing">16dp</dimen>
+	
+	<!-- Character select screen dimensions -->
+	<dimen name="character_select_padding">16dp</dimen>
+	<dimen name="character_select_item_size">80dp</dimen>
+	<dimen name="character_select_item_margin">8dp</dimen>
+	<dimen name="character_select_item_spacing">12dp</dimen>
+	<dimen name="character_select_grid_spacing">16dp</dimen>
+	
+	<!-- Stage select screen dimensions -->
+	<dimen name="stage_select_padding">16dp</dimen>
+	<dimen name="stage_select_item_width">160dp</dimen>
+	<dimen name="stage_select_item_height">120dp</dimen>
+	<dimen name="stage_select_item_margin">8dp</dimen>
+	<dimen name="stage_select_item_spacing">12dp</dimen>
+	<dimen name="stage_select_grid_spacing">16dp</dimen>
+	
+	<!-- Pause menu dimensions -->
+	<dimen name="pause_menu_width">280dp</dimen>
+	<dimen name="pause_menu_padding">24dp</dimen>
+	<dimen name="pause_menu_item_spacing">16dp</dimen>
+	
+	<!-- Title screen dimensions -->
+	<dimen name="title_screen_logo_margin_top">48dp</dimen>
+	<dimen name="title_screen_logo_margin_bottom">32dp</dimen>
+	<dimen name="title_screen_button_margin">16dp</dimen>
+	<dimen name="title_screen_button_spacing">12dp</dimen>
+	
+	<!-- HUD dimensions (if Android overlays are used) -->
+	<dimen name="hud_margin">8dp</dimen>
+	<dimen name="hud_text_size">14sp</dimen>
+	<dimen name="hud_icon_size">24dp</dimen>
+	
+	<!-- 
+		Screen size qualifiers:
+		- For tablets (sw600dp+), create values-sw600dp/dimens.xml with larger values
+		- For large tablets (sw720dp+), create values-sw720dp/dimens.xml with even larger values
+		- For small screens, these default values will be used
+		
+		Example for tablets (values-sw600dp/dimens.xml):
+		<dimen name="menu_button_height">64dp</dimen>
+		<dimen name="menu_button_text_size">18sp</dimen>
+		<dimen name="menu_screen_padding">32dp</dimen>
+	-->
+	
+	<!-- 
+		Note for C++ menu integration:
+		To use these dimensions in C++ code, you can:
+		1. Read them via JNI: Resources.getDimensionPixelSize()
+		2. Convert dp to pixels: dp * (densityDpi / 160.0f)
+		3. Scale menu elements proportionally based on screen density
+		
+		Key C++ menu files that may benefit from these dimensions:
+		- Source/SmashBros/Menus/Menus.cpp
+		- Source/SmashBros/Menus/CharSelectScreen.cpp
+		- Source/SmashBros/Menus/StageSelectScreen.cpp
+		- Source/SmashBros/Menus/MenuPieces/*.cpp
+	-->
+</resources>
+

@@ -10,7 +10,8 @@ namespace SmashBros
 	Game::Game()
 	{
 		//Constructor
-		View::setSize(900,600);
+		// Don't set a fixed size here - let it use the actual device resolution
+		// View::setSize(900,600);
 		firstUpdate = true;
 		drawnOnce = false;
 	}
@@ -49,7 +50,9 @@ namespace SmashBros
 		SDL_FreeSurface(surface);*/
 
 		//Initialize things
-		scaleToWindow(true,900,600);
+		// Enable scaling with 900x600 logical resolution
+		// View will be modified to stretch to fill screen without letterboxing
+		scaleToWindow(true, 900, 600);
 
 		AssetManager::loadImage("Images/icon.png");
 		setLoadScreen("Images/loading.png");

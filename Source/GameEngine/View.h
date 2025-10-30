@@ -20,6 +20,8 @@ namespace GameEngine
 		static int scaleHeight;
 		
 		static float multScale;
+		static float scaleX;
+		static float scaleY;
 		static float letterBoxW;
 		static float letterBoxH;
 		

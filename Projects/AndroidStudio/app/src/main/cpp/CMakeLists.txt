@@ -5,6 +5,10 @@ cmake_minimum_required(VERSION 3.10.2)
 
 project("issb")
 
+# Set C standard to C99 to support modern C features
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
 # Add flags
 add_definitions(-DSMASHBROS_P2P_DISABLE -DSMASHBROS_SCRIPT_DISABLE)
 option(SUPPORT_OGG "Support loading OGG Vorbis music via Tremor" ON)
@@ -17,6 +21,15 @@ add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_mixer" "${CMAKE_BINARY_DIR}/SDL2_
 #add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_ttf/external/freetype-2.9.1" "${CMAKE_BINARY_DIR}/freetype")
 add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_ttf" "${CMAKE_BINARY_DIR}/SDL2_ttf")
 include_directories("${ISSB_EXTERNAL_DIR}/SDL/SDL_p2p/include")
+
+# Remove conflicting C99 flags from SDL2 targets
+# SDL2 adds -Werror=declaration-after-statement which conflicts with C99
+if(TARGET SDL2)
+    target_compile_options(SDL2 PRIVATE -Wno-error=declaration-after-statement)
+endif()
+if(TARGET SDL2static)
+    target_compile_options(SDL2static PRIVATE -Wno-error=declaration-after-statement)
+endif()
 
 # find iSSB source files
 file(

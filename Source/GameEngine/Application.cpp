@@ -652,7 +652,8 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((currentMouseX/View::multScale) - View::letterBoxW*(1/View::multScale));
+			// Use scaleX for X coordinate transformation (no letterboxing)
+			return (int)(currentMouseX / View::scaleX);
 		}
 		else
 		{
@@ -664,7 +665,8 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((prevMouseX/View::multScale) - View::letterBoxW*(1/View::multScale));
+			// Use scaleX for X coordinate transformation (no letterboxing)
+			return (int)(prevMouseX / View::scaleX);
 		}
 		else
 		{
@@ -676,7 +678,8 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((currentMouseY/View::multScale) - View::letterBoxH*(1/View::multScale));
+			// Use scaleY for Y coordinate transformation (no letterboxing)
+			return (int)(currentMouseY / View::scaleY);
 		}
 		else
 		{
@@ -688,7 +691,8 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((prevMouseY/View::multScale) - View::letterBoxH*(1/View::multScale));
+			// Use scaleY for Y coordinate transformation (no letterboxing)
+			return (int)(prevMouseY / View::scaleY);
 		}
 		else
 		{
@@ -705,7 +709,8 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->x/View::multScale) - View::letterBoxW*(1/View::multScale));
+			// Use scaleX for X coordinate transformation (no letterboxing)
+			return (int)(point->x / View::scaleX);
 		}
 		else
 		{
@@ -722,7 +727,8 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->x/View::multScale) - View::letterBoxW*(1/View::multScale));
+			// Use scaleX for X coordinate transformation (no letterboxing)
+			return (int)(point->x / View::scaleX);
 		}
 		else
 		{
@@ -739,7 +745,8 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->y/View::multScale) - View::letterBoxH*(1/View::multScale));
+			// Use scaleY for Y coordinate transformation (no letterboxing)
+			return (int)(point->y / View::scaleY);
 		}
 		else
 		{
@@ -756,7 +763,8 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->y/View::multScale) - View::letterBoxH*(1/View::multScale));
+			// Use scaleY for Y coordinate transformation (no letterboxing)
+			return (int)(point->y / View::scaleY);
 		}
 		else
 		{
@@ -797,8 +805,9 @@ namespace GameEngine
 			for(int i=0; i<currentTouchPoints.size(); i++)
 			{
 				TouchPoint point = currentTouchPoints.get(i);
-				point.x = (float)((point.x/View::multScale) - View::letterBoxW*(1/View::multScale));
-				point.y = (float)((point.y/View::multScale) - View::letterBoxH*(1/View::multScale));
+				// Use scaleX and scaleY for coordinate transformation (no letterboxing)
+				point.x = point.x / View::scaleX;
+				point.y = point.y / View::scaleY;
 				points.add(point);
 			}
 			return points;
@@ -819,8 +828,9 @@ namespace GameEngine
 			for(int i=0; i<prevTouchPoints.size(); i++)
 			{
 				TouchPoint point = prevTouchPoints.get(i);
-				point.x = (float)((point.x/View::multScale) - View::letterBoxW*(1/View::multScale));
-				point.y = (float)((point.y/View::multScale) - View::letterBoxH*(1/View::multScale));
+				// Use scaleX and scaleY for coordinate transformation (no letterboxing)
+				point.x = point.x / View::scaleX;
+				point.y = point.y / View::scaleY;
 				points.add(point);
 			}
 			return points;
