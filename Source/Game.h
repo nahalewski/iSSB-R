@@ -10,6 +10,10 @@ namespace SmashBros
 		private:
 			bool firstUpdate;
 			bool drawnOnce;
+			float padCursorX, padCursorY;
+			bool padCursorVisible, padPointerDown, padWaitRelease;
+			unsigned int padCursorTime;
+			String padScreen;
 		public:
 			Game();
 			virtual ~Game();

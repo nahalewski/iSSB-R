@@ -18,7 +18,6 @@ namespace SmashBros
 	
 	bool Preferences::debuglog = false;
 	
-	String Preferences::versionMessage = (String)"Hey all. I know I haven't updated this app in a while. If you'd like to see this app updated, please donate via Venmo in the \"Options\" > \"Other\" menu";
 	
 	PrefManager Preferences::prefMgr = PrefManager();
 	

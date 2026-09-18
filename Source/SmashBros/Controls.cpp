@@ -1,3 +1,4 @@
+#include "../GameEngine/Input/Gamepad.h"
 
 #include "Controls.h"
 #include "Global.h"
@@ -2112,6 +2113,8 @@ namespace SmashBros
 	
 	bool Controls::controlsDown()
 	{
+		for(int player=1;player<=4;player++)for(int action=0;action<8;action++)
+			if(GameEngine::Gamepad::get().action(player,action))return true;
 		if(joystickEnabled)
 		{
 			if(touchControls->joystickDown[touchPlayer])
@@ -2155,48 +2158,54 @@ namespace SmashBros
 		return false;
 	}
 	
-	void Controls::CheckKeysDown()
+	bool Controls::actionPressed(byte player, byte action, bool previous)
+    {
+        return (previous ? Game::getPrevKeyPressed(controls[player][action]) : Game::getKeyPressed(controls[player][action]))
+            || GameEngine::Gamepad::get().action(player,action,previous);
+    }
+
+    void Controls::CheckKeysDown()
 	{
 		for(byte i=1; i<=Global::possPlayers; i++)
 		{
 			if(Global::characters[i]!=null && !Global::characters[i]->isCPU() && Global::characters[i]->isAlive())
 			{
-				if(Game::getKeyPressed(controls[i][BUTTON_UP]) && !Game::getPrevKeyPressed(controls[i][BUTTON_UP]))
+				if(actionPressed(i,BUTTON_UP) && !actionPressed(i,BUTTON_UP,true))
 				{
 					buttonUp(i,DOWN);
 				}
 
-				if(Game::getKeyPressed(controls[i][BUTTON_DOWN]) && !Game::getPrevKeyPressed(controls[i][BUTTON_DOWN]))
+				if(actionPressed(i,BUTTON_DOWN) && !actionPressed(i,BUTTON_DOWN,true))
 				{
 					buttonDown(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_LEFT]) && !Game::getPrevKeyPressed(controls[i][BUTTON_LEFT]))
+				if(actionPressed(i,BUTTON_LEFT) && !actionPressed(i,BUTTON_LEFT,true))
 				{
 					buttonLeft(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_RIGHT]) && !Game::getPrevKeyPressed(controls[i][BUTTON_RIGHT]))
+				if(actionPressed(i,BUTTON_RIGHT) && !actionPressed(i,BUTTON_RIGHT,true))
 				{
 					buttonRight(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_JUMP]) && !Game::getPrevKeyPressed(controls[i][BUTTON_JUMP]))
+				if(actionPressed(i,BUTTON_JUMP) && !actionPressed(i,BUTTON_JUMP,true))
 				{
 					buttonX(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_STANDARD]) && !Game::getPrevKeyPressed(controls[i][BUTTON_STANDARD]))
+				if(actionPressed(i,BUTTON_STANDARD) && !actionPressed(i,BUTTON_STANDARD,true))
 				{
 					buttonA(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_SPECIAL]) && !Game::getPrevKeyPressed(controls[i][BUTTON_SPECIAL]))
+				if(actionPressed(i,BUTTON_SPECIAL) && !actionPressed(i,BUTTON_SPECIAL,true))
 				{
 					buttonB(i,DOWN);
 				}
 				
-				if(Game::getKeyPressed(controls[i][BUTTON_GRAB]) && !Game::getPrevKeyPressed(controls[i][BUTTON_GRAB]))
+				if(actionPressed(i,BUTTON_GRAB) && !actionPressed(i,BUTTON_GRAB,true))
 				{
 					buttonZ(i,DOWN);
 				}
@@ -2210,90 +2219,90 @@ namespace SmashBros
 		{
 			if(Global::characters[i]!=null && !Global::characters[i]->isCPU() && Global::characters[i]->isAlive())
 			{
-				if(!Game::getKeyPressed(controls[i][BUTTON_UP]) && Game::getPrevKeyPressed(controls[i][BUTTON_UP]))
+				if(!actionPressed(i,BUTTON_UP) && actionPressed(i,BUTTON_UP,true))
 				{
 					buttonUp(i,UP);
-					if(Game::getKeyPressed(controls[i][BUTTON_LEFT]))
+					if(actionPressed(i,BUTTON_LEFT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_LEFT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_RIGHT]))
+					else if(actionPressed(i,BUTTON_RIGHT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_RIGHT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_DOWN]))
+					else if(actionPressed(i,BUTTON_DOWN))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_DOWN;
 					}
 				}
 			 
-				if(!Game::getKeyPressed(controls[i][BUTTON_DOWN]) && Game::getPrevKeyPressed(controls[i][BUTTON_DOWN]))
+				if(!actionPressed(i,BUTTON_DOWN) && actionPressed(i,BUTTON_DOWN,true))
 				{
 					buttonDown(i,UP);
-					if(Game::getKeyPressed(controls[i][BUTTON_LEFT]))
+					if(actionPressed(i,BUTTON_LEFT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_LEFT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_RIGHT]))
+					else if(actionPressed(i,BUTTON_RIGHT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_RIGHT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_UP]))
+					else if(actionPressed(i,BUTTON_UP))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_UP;
 					}
 				}
 
-				if(!Game::getKeyPressed(controls[i][BUTTON_LEFT]) && Game::getPrevKeyPressed(controls[i][BUTTON_LEFT]))
+				if(!actionPressed(i,BUTTON_LEFT) && actionPressed(i,BUTTON_LEFT,true))
 				{
 					buttonLeft(i,UP);
-					if(Game::getKeyPressed(controls[i][BUTTON_RIGHT]))
+					if(actionPressed(i,BUTTON_RIGHT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_RIGHT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_UP]))
+					else if(actionPressed(i,BUTTON_UP))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_UP;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_DOWN]))
+					else if(actionPressed(i,BUTTON_DOWN))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_DOWN;
 					}
 				}
 			 
-				if(!Game::getKeyPressed(controls[i][BUTTON_RIGHT]) && Game::getPrevKeyPressed(controls[i][BUTTON_RIGHT]))
+				if(!actionPressed(i,BUTTON_RIGHT) && actionPressed(i,BUTTON_RIGHT,true))
 				{
 					buttonRight(i,UP);
-					if(Game::getKeyPressed(controls[i][BUTTON_LEFT]))
+					if(actionPressed(i,BUTTON_LEFT))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_LEFT;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_UP]))
+					else if(actionPressed(i,BUTTON_UP))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_UP;
 					}
-					else if(Game::getKeyPressed(controls[i][BUTTON_DOWN]))
+					else if(actionPressed(i,BUTTON_DOWN))
 					{
 						Global::characters[i]->buttondir=BUTTONDIR_DOWN;
 					}
 				}
 				
-				if(!Game::getKeyPressed(controls[i][BUTTON_JUMP]) && Game::getPrevKeyPressed(controls[i][BUTTON_JUMP]))
+				if(!actionPressed(i,BUTTON_JUMP) && actionPressed(i,BUTTON_JUMP,true))
 				{
 					buttonX(i,UP);
 				}
 			 
-				if(!Game::getKeyPressed(controls[i][BUTTON_STANDARD]) && Game::getPrevKeyPressed(controls[i][BUTTON_STANDARD]))
+				if(!actionPressed(i,BUTTON_STANDARD) && actionPressed(i,BUTTON_STANDARD,true))
 				{
 					buttonA(i,UP);
 				}
 			 
-				if(!Game::getKeyPressed(controls[i][BUTTON_SPECIAL]) && Game::getPrevKeyPressed(controls[i][BUTTON_SPECIAL]))
+				if(!actionPressed(i,BUTTON_SPECIAL) && actionPressed(i,BUTTON_SPECIAL,true))
 				{
 					buttonB(i,UP);
 				}
 			 
-				if(!Game::getKeyPressed(controls[i][BUTTON_GRAB]) && Game::getPrevKeyPressed(controls[i][BUTTON_GRAB]))
+				if(!actionPressed(i,BUTTON_GRAB) && actionPressed(i,BUTTON_GRAB,true))
 				{
 					buttonZ(i,UP);
 				}
@@ -2312,13 +2321,13 @@ namespace SmashBros
 	{
 		touchControls->Draw(g, gameTime);
 	}
-	
+
 	void Controls::buzzForButton() {
 		if(Preferences::hasHapticFeedback()) {
 			HapticFeedback::buzz(10, 0.4);
 		}
 	}
-	
+
 	void Controls::buzzForJoystick() {
 		if(Preferences::hasHapticFeedback()) {
 			HapticFeedback::buzz(10, 0.4);

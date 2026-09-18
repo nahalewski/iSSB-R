@@ -21,7 +21,6 @@ namespace SmashBros
 		static const String version;
 		
 		static bool newVersion;
-		static String versionMessage;
 		
 		static bool debuglog;
 		

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "smash",
+    "source": "sources/smash.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-326cf076-3276-4146-ac64-9b8dce9d6915.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. Nearly square red primary SMASH menu tile, vivid vermilion red flat graphic field, huge black stylized circle with intersecting vertical and horizontal cutouts in upper right, energetic black and white diagonal cuts at edges. Leave lower left 35 percent quiet red for large title overlay. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  },
+  {
+    "name": "solo",
+    "source": "sources/solo.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-c8394f49-34bf-499e-859b-cdb4473b61a1.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. Wide landscape blue SOLO training menu tile, vivid cyan and royal blue flat graphic field, large black stylized athletic fighter silhouette and target rings on right. Leave left half blue and uncluttered for title overlay. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  },
+  {
+    "name": "options",
+    "source": "sources/options.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-81bdb7a3-679f-4728-b825-8c4c6fc33799.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. Wide landscape orange OPTIONS menu tile, bright golden yellow and amber flat graphic field, oversized black gear silhouette on right. Leave left half uncluttered orange for title overlay. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  },
+  {
+    "name": "bluetooth",
+    "source": "sources/bluetooth.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-4cfedce5-f76a-4638-ba01-b6c9c8f1e644.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. Very wide landscape purple LOCAL WIRELESS menu tile, rich purple flat graphic field, bold black paired wireless controller pictogram on far right. Leave left two thirds uncluttered purple for title overlay. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  },
+  {
+    "name": "submenus",
+    "source": "sources/submenus.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-ec0baa81-4323-41d8-826e-c6975732e2e9.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. A production UI atlas with EXACTLY 2 columns and 4 rows of equal-sized rectangular tiles, filling entire canvas with no gaps or margins. Each tile ratio 2:1. Overall canvas square. Row1: left red Brawl art with black fist emblem on right, right golden Rules art with black checklist icon on right. Row2: left cyan Training art with black target icon on right, right blue Controls art with black gamepad on right. Row3: left violet Sound art with black speaker on right, right teal Display art with black monitor on right. Row4: left orange Other art with black three dots on right, right white Back art with black left arrow on right. Every tile leave LEFT HALF empty plain color for labels. NO TEXT AT ALL. All boundaries align to exact halfway width and quarter heights. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  },
+  {
+    "name": "background",
+    "source": "sources/background.png",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a3f7e53c-de1b-4c0b-832d-69417fefebb2.png",
+    "prompt": "Generate a polished HD game UI asset for iSSB, closely inspired by the bold graphic menu art direction of Super Smash Bros. Ultimate on Nintendo Switch. Flat graphic vector-like razor-sharp edges, assertive diagonal geometry, saturated colors, black pictograms, clean high contrast, no bevels, no gradients, no realistic rendering. A minimalist light gray and white background for a fighting game menu. Entire image mostly near-white with very faint large diagonal geometric panels crossing it, subtle halftone only in lower left and upper right corners, fine pale gray diagonal speed lines, no contrasty elements near center. No text, icons, panels, buttons, borders. Landscape 3:2. Fill the complete canvas edge to edge. Opaque background. No lettering, watermark, Nintendo wordmark or console branding. High resolution, 2048 pixels preferred."
+  }
+]

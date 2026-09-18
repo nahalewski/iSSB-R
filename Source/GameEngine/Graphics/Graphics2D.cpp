@@ -20,12 +20,8 @@ namespace GameEngine
 		setColor(Color::BLACK);
 		setImageMask(Color::WHITE);
 		font = defaultFont;
-		SDL_Rect rect;
-		rect.x = 0;
-		rect.y = 0;
-		rect.w = View::getWidth();
-		rect.h = View::getHeight();
-		SDL_RenderSetViewport(renderer, &rect);
+		// Full drawable viewport; logical window dimensions can be smaller on Retina.
+		SDL_RenderSetViewport(renderer, NULL);
 	}
 	
 	void Graphics2D::updateStringCache()
@@ -524,8 +520,8 @@ namespace GameEngine
 		SDL_Rect srcrect;
 		srcrect.x = 0;
 		srcrect.y = 0;
-		srcrect.w = width;
-		srcrect.h = height;
+		srcrect.w = width * img->getTextureDensity();
+		srcrect.h = height * img->getTextureDensity();
 		
 		Vector2f vect = getRotationCoords((x1+tx)*ScaleX, (y1+ty)*ScaleY);
 		x1 = vect.x;
@@ -559,8 +555,8 @@ namespace GameEngine
 		SDL_Rect srcrect;
 		srcrect.x = 0;
 		srcrect.y = 0;
-		srcrect.w = (int)width;
-		srcrect.h = (int)height;
+		srcrect.w = (int)(width * img->getTextureDensity());
+		srcrect.h = (int)(height * img->getTextureDensity());
 		
 		Vector2f vect = getRotationCoords((x1+tx)*ScaleX,(y1+ty)*ScaleY);
 		x1 = vect.x;
@@ -648,10 +644,11 @@ namespace GameEngine
 		}
 		
 		SDL_Rect srcrect;
-		srcrect.x = (int)sx1;
-		srcrect.y = (int)sy1;
-		srcrect.w = (int)(sx2 - sx1);
-		srcrect.h = (int)(sy2 - sy1);
+		const int density = (int)img->getTextureDensity();
+		srcrect.x = sx1 * density;
+		srcrect.y = sy1 * density;
+		srcrect.w = (sx2 - sx1) * density;
+		srcrect.h = (sy2 - sy1) * density;
 		
 		SDL_SetTextureColorMod(texture, imageColor.r, imageColor.g, imageColor.b);
 		SDL_SetTextureAlphaMod(texture, alpha);

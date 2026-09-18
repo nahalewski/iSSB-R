@@ -1,3 +1,4 @@
+#include "../../GameEngine/Input/Gamepad.h"
 
 #include "GameScreen.h"
 #include "../Global.h"
@@ -133,7 +134,7 @@ namespace SmashBros
 		}
 		if(Global::currentStage!=null)
 		{
-			if(Game::getKeyPressed(Keys::ENTER) && !prevEnterPressed)
+			if((Game::getKeyPressed(Keys::ENTER) || GameEngine::Gamepad::get().any(SDL_CONTROLLER_BUTTON_START)) && !prevEnterPressed)
 			{
 				if(Game::Suspended())
 				{
@@ -147,7 +148,7 @@ namespace SmashBros
 				}
 				prevEnterPressed = true;
 			}
-			else if(!Game::getKeyPressed(Keys::ENTER))
+			else if(!(Game::getKeyPressed(Keys::ENTER) || GameEngine::Gamepad::get().any(SDL_CONTROLLER_BUTTON_START)))
 			{
 				prevEnterPressed = false;
 			}

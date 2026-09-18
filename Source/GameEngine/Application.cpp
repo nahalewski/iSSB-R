@@ -1,3 +1,4 @@
+#include "Input/Gamepad.h"
 
 #include "Application.h"
 #include "AssetManager.h"
@@ -157,7 +158,7 @@ namespace GameEngine
 	void Application::onSuspend() {}
 	void Application::onResume() {}
 	
-#define GameEngine_SDL_Subsystems SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_JOYSTICK | SDL_INIT_EVENTS | SDL_INIT_HAPTIC
+#define GameEngine_SDL_Subsystems SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER | SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER | SDL_INIT_EVENTS | SDL_INIT_HAPTIC
 	
 	bool Application::Run(unsigned char orient, bool statusbar)
 	{
@@ -262,11 +263,12 @@ namespace GameEngine
 				
 				if(borderless)
 				{
-					window = SDL_CreateWindow(NULL, windowX, windowY, View::windowWidth, View::windowHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_BORDERLESS | SDL_WINDOW_SHOWN);
+					SDL_SetHint(SDL_HINT_ORIENTATIONS, orient==ORIENTATION_LANDSCAPE ? "LandscapeLeft LandscapeRight" : "Portrait PortraitUpsideDown");
+					window = SDL_CreateWindow(NULL, windowX, windowY, View::windowWidth, View::windowHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_BORDERLESS | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
 				}
 				else
 				{
-					window = SDL_CreateWindow(NULL, windowX, windowY, View::windowWidth, View::windowHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+					window = SDL_CreateWindow(NULL, windowX, windowY, View::windowWidth, View::windowHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
 				}
 			}
 			
@@ -288,18 +290,20 @@ namespace GameEngine
 			
 			if(orientation == ORIENTATION_PORTRAIT)
 			{
-				SDL_SetHintWithPriority("SDL_HINT_ORIENTATIONS", "Portrait PortraitUpsideDown", SDL_HINT_OVERRIDE);
+				SDL_SetHintWithPriority(SDL_HINT_ORIENTATIONS, "Portrait PortraitUpsideDown", SDL_HINT_OVERRIDE);
 			}
 			else if(orientation == ORIENTATION_LANDSCAPE)
 			{
-				SDL_SetHintWithPriority("SDL_HINT_ORIENTATIONS", "LandscapeLeft LandscapeRight", SDL_HINT_OVERRIDE);
+				SDL_SetHintWithPriority(SDL_HINT_ORIENTATIONS, "LandscapeLeft LandscapeRight", SDL_HINT_OVERRIDE);
 			}
 			
 			SDL_SetEventFilter(ApplicationEventHandler, this);
 			
 			game = this;
 			
-			this->Initialize();
+			SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
+            SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt");
+            this->Initialize();
 			
 			graphics = new Graphics2D();
 			graphics->renderer = renderer;
@@ -509,19 +513,28 @@ namespace GameEngine
 		
 	void Application::updateEvents()
 	{
-		SDL_Event event;
+		if(window && renderer) {
+            int w,h,pw,ph;
+            SDL_GetWindowSize(window,&w,&h);
+            if(w>0 && h>0 && SDL_GetRendererOutputSize(renderer,&pw,&ph)==0 && pw>0 && ph>0) {
+                windowResized(w,h);
+                SDL_RenderSetScale(renderer,(float)pw/w,(float)ph/h);
+                if(graphics) { graphics->reset(); View::Update(*graphics); }
+            }
+        }
+        SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
 			switch(event.type)
 			{
-				case SDL_WINDOWEVENT_CLOSE:
 				case SDL_QUIT:
 				if(event.type == SDL_QUIT) {
 					Console::WriteLine("Received Event SDL_QUIT");
 				} else {
 					Console::WriteLine("Received Event SDL_WINDOWEVENT_CLOSE");
 				}
-				this->UnloadContent();
+				Gamepad::get().close();
+                this->UnloadContent();
 				graphics->renderer = NULL;
 				SDL_DestroyRenderer(renderer);
 				renderer = NULL;
@@ -542,8 +555,10 @@ namespace GameEngine
 				Mix_ResumeMusic();
 				break;
 
-				case SDL_WINDOWEVENT_RESIZED:
-				windowResized(event.window.data1, event.window.data2);
+				case SDL_WINDOWEVENT:
+				if(event.window.event == SDL_WINDOWEVENT_CLOSE) { SDL_Event quitEvent = {}; quitEvent.type=SDL_QUIT; SDL_PushEvent(&quitEvent); }
+				else if(event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED || event.window.event == SDL_WINDOWEVENT_RESIZED)
+					windowResized(event.window.data1, event.window.data2);
 				break;
 				
 				case SDL_KEYDOWN:
@@ -579,10 +594,29 @@ namespace GameEngine
 				break;
 			}
         }
-		SDL_JoystickUpdate();
+		if(!closing)Gamepad::get().poll(!minimizing && window && (SDL_GetWindowFlags(window) & SDL_WINDOW_INPUT_FOCUS));
 	}
 	
-	void Application::Exit()
+	void Application::controllerPointer(float x, float y, bool down)
+    {
+        static bool held=false;
+        const long id=-2147483000L;
+        float px=x*View::multScale+View::letterBoxW;
+        float py=y*View::multScale+View::letterBoxH;
+        if(hasMultitouch()) {
+            if(down && !held)addTouchPoint(id,px,py);
+            else if(down)updateTouchPoint(id,px,py);
+            else if(held)removeTouchPoint(id,px,py);
+            updateTouchPoints(currentTouchPoints,touchPoints);
+        } else {
+            mouseMoved((int)px,(int)py);
+            currentMouseX=mouseX;currentMouseY=mouseY;
+            currentMouseState[Mouse::LEFTCLICK]=down;
+        }
+        held=down;
+    }
+
+    void Application::Exit()
 	{
 		exiting = true;
 	}
@@ -1006,6 +1040,7 @@ namespace GameEngine
 
 	void Application::windowResized(int width, int height)
 	{
+		if(width<=0 || height<=0)return;
 		View::oldWidth = View::windowWidth;
 		View::oldHeight = View::windowHeight;
 		View::windowWidth = width;

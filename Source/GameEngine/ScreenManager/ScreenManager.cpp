@@ -8,6 +8,7 @@ namespace GameEngine
 	ArrayList<Screen*> ScreenManager::screens = ArrayList<Screen*>();
 	int ScreenManager::totalScreens = 0;
 	int ScreenManager::currentScreen = -1;
+	String ScreenManager::currentName() { return currentScreen>=0 ? screens.get(currentScreen)->name : String(""); }
 
 	void ScreenManager::Add(Screen*s)
 	{

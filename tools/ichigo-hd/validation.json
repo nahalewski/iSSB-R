@@ -1,0 +1,488 @@
+﻿[
+    {
+        "file":  "stand.png",
+        "frames":  4,
+        "fps":  6,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "walk.png",
+        "frames":  4,
+        "fps":  6,
+        "logicalWidth":  96,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "run.png",
+        "frames":  2,
+        "fps":  15,
+        "logicalWidth":  90,
+        "logicalHeight":  180,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "jump.png",
+        "frames":  6,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "jump2.png",
+        "frames":  6,
+        "fps":  14,
+        "logicalWidth":  90,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "land.png",
+        "frames":  3,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "fall.png",
+        "frames":  1,
+        "fps":  30,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hang.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "crouch.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "grab.png",
+        "frames":  3,
+        "fps":  8,
+        "logicalWidth":  126,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "grabbed.png",
+        "frames":  1,
+        "fps":  30,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hold.png",
+        "frames":  1,
+        "fps":  30,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "release.png",
+        "frames":  2,
+        "fps":  10,
+        "logicalWidth":  90,
+        "logicalHeight":  180,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "toss.png",
+        "frames":  3,
+        "fps":  10,
+        "logicalWidth":  90,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "toss_up.png",
+        "frames":  5,
+        "fps":  17,
+        "logicalWidth":  130,
+        "logicalHeight":  450,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "toss_down.png",
+        "frames":  3,
+        "fps":  10,
+        "logicalWidth":  100,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "grab_attack.png",
+        "frames":  3,
+        "fps":  10,
+        "logicalWidth":  114,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "grab_attack_swing.png",
+        "frames":  4,
+        "fps":  12,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "melee_weapon.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  90,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "melee_weapon_up.png",
+        "frames":  5,
+        "fps":  12,
+        "logicalWidth":  90,
+        "logicalHeight":  451,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "melee_weapon_down.png",
+        "frames":  3,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  270,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hurt_minor.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hurt_fly.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hurt_flip.png",
+        "frames":  4,
+        "fps":  10,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hurt_spin.png",
+        "frames":  4,
+        "fps":  12,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "hurt_spin_up.png",
+        "frames":  4,
+        "fps":  12,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack.png",
+        "frames":  5,
+        "fps":  14,
+        "logicalWidth":  140,
+        "logicalHeight":  450,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack_finish.png",
+        "frames":  1,
+        "fps":  14,
+        "logicalWidth":  140,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack2.png",
+        "frames":  6,
+        "fps":  14,
+        "logicalWidth":  92,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack3.png",
+        "frames":  6,
+        "fps":  14,
+        "logicalWidth":  124,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack_side.png",
+        "frames":  6,
+        "fps":  12,
+        "logicalWidth":  124,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack_up.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  140,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "standard_attack_down.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  128,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "air_attack.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  140,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "air_attack_side.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  114,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "air_attack_up.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  120,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "air_attack_down.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  112,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_attack.png",
+        "frames":  6,
+        "fps":  10,
+        "logicalWidth":  112,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_attack_side.png",
+        "frames":  6,
+        "fps":  18,
+        "logicalWidth":  90,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_attack_up.png",
+        "frames":  10,
+        "fps":  12,
+        "logicalWidth":  140,
+        "logicalHeight":  900,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_prep_down.png",
+        "frames":  2,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  180,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_drop_down.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  90,
+        "logicalHeight":  90,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "special_attack_down.png",
+        "frames":  4,
+        "fps":  4,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "smash_charge.png",
+        "frames":  4,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  456,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "smash_attack.png",
+        "frames":  6,
+        "fps":  12,
+        "logicalWidth":  120,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "smash_attack_up.png",
+        "frames":  4,
+        "fps":  12,
+        "logicalWidth":  120,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "smash_attack_down.png",
+        "frames":  6,
+        "fps":  12,
+        "logicalWidth":  108,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "finalsmash_stand.png",
+        "frames":  4,
+        "fps":  6,
+        "logicalWidth":  90,
+        "logicalHeight":  360,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "finalsmash_run.png",
+        "frames":  8,
+        "fps":  8,
+        "logicalWidth":  90,
+        "logicalHeight":  720,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "finalsmash_shoot.png",
+        "frames":  9,
+        "fps":  14,
+        "logicalWidth":  128,
+        "logicalHeight":  810,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "finalsmash_change.png",
+        "frames":  6,
+        "fps":  9,
+        "logicalWidth":  120,
+        "logicalHeight":  540,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "win.png",
+        "frames":  5,
+        "fps":  6,
+        "logicalWidth":  72,
+        "logicalHeight":  370,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "win_hold.png",
+        "frames":  1,
+        "fps":  1,
+        "logicalWidth":  72,
+        "logicalHeight":  74,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    },
+    {
+        "file":  "lose.png",
+        "frames":  4,
+        "fps":  8,
+        "logicalWidth":  72,
+        "logicalHeight":  296,
+        "density":  4,
+        "collisionMask":  "matches Git original"
+    }
+]
