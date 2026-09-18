@@ -1,3 +1,4 @@
+#include "../../GameEngine/Input/Gamepad.h"
 
 #include "GameScreen.h"
 #include "../Global.h"
@@ -6,7 +7,6 @@
 #include "../Preferences.h"
 #include "../Menus/Menus.h"
 #include "../P2PDataManager.h"
-#include "../../GameEngine/AssetManager.h"
 
 namespace SmashBros
 {
@@ -30,22 +30,9 @@ namespace SmashBros
 	
 	void GameScreen::LoadContent()
 	{
-	    AssetManager::loadFont("Fonts/arial.ttf");
-		// Ensure players and stage are initialized before HUD/camera
-		if(Global::currentStage==null || Global::getPlayerActor(1)==null || Global::getPlayerActor(2)==null)
-		{
-			Console::WriteLine("GameScreen: Bootstrapping game from selections");
-			Global::LoadGame();
-		}
-		if(Global::hud==null)
-		{
-			Global::createHUD();
-		}
+		Global::createHUD();
 		Game::showBackground(false);
-		if(Global::currentStage!=null)
-		{
-			Camera::Update();
-		}
+		Camera::Update();
 		sendFrame = true;
 		if(Preferences::ingameMusicOn())
 		{
@@ -147,7 +134,7 @@ namespace SmashBros
 		}
 		if(Global::currentStage!=null)
 		{
-			if(Game::getKeyPressed(Keys::ENTER) && !prevEnterPressed)
+			if((Game::getKeyPressed(Keys::ENTER) || GameEngine::Gamepad::get().any(SDL_CONTROLLER_BUTTON_START)) && !prevEnterPressed)
 			{
 				if(Game::Suspended())
 				{
@@ -161,7 +148,7 @@ namespace SmashBros
 				}
 				prevEnterPressed = true;
 			}
-			else if(!Game::getKeyPressed(Keys::ENTER))
+			else if(!(Game::getKeyPressed(Keys::ENTER) || GameEngine::Gamepad::get().any(SDL_CONTROLLER_BUTTON_START)))
 			{
 				prevEnterPressed = false;
 			}

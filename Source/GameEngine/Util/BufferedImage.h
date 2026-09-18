@@ -19,6 +19,7 @@ namespace GameEngine
 		SDL_Texture*texture;
 		std::vector<bool> pixels;
 		unsigned int width,height;
+		unsigned int textureDensity;
 		BufferedImage(const SDL_Texture*texture);
 		
 	public:
@@ -30,6 +31,7 @@ namespace GameEngine
 		
 		unsigned int getWidth() const;
 		unsigned int getHeight() const;
+		unsigned int getTextureDensity() const;
 		
 		bool pixelAtPoint(unsigned int index) const;
 		bool pixelAtPoint(unsigned int x,unsigned int y) const;

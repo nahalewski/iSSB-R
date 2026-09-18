@@ -4,7 +4,6 @@
 #include "../Application.h"
 #include "../Output/Console.h"
 #include "../Util/ArrayList.h"
-#include "../AssetManager.h"
 
 namespace GameEngine
 {
@@ -376,26 +375,17 @@ namespace GameEngine
 		this->height = (int)(height);
 	}
 		
-    TextActor::TextActor(const String& s, Font*f, const Color&c)
+	TextActor::TextActor(const String& s, Font*f, const Color&c)
 	{
 		alignment = ALIGN_BOTTOMLEFT;
 		text = s;
-        font = f;
-        if(font==NULL)
-        {
-            font = AssetManager::getFont("Fonts/arial.ttf", Font::PLAIN, 16);
-            if(font==NULL)
-            {
-                AssetManager::loadFont("Fonts/arial.ttf");
-                font = AssetManager::getFont("Fonts/arial.ttf", Font::PLAIN, 16);
-            }
-        }
+		font = f;
 		color = c;
 		x=0;
 		y=0;
 		
-        fontSize = font->getSize();
-        fontStyle = font->getStyle();
+		fontSize = font->getSize();
+		fontStyle = font->getStyle();
 		
 		originalText = text;
 		actorType = 3;
@@ -419,26 +409,17 @@ namespace GameEngine
 		updateSize();
 	}
 	
-    TextActor::TextActor(float x1, float y1, const String& s, Font*f, const Color&c)
+	TextActor::TextActor(float x1, float y1, const String& s, Font*f, const Color&c)
 	{
 		alignment = ALIGN_BOTTOMLEFT;
 		text = s;
-        font = f;
-        if(font==NULL)
-        {
-            font = AssetManager::getFont("Fonts/arial.ttf", Font::PLAIN, 16);
-            if(font==NULL)
-            {
-                AssetManager::loadFont("Fonts/arial.ttf");
-                font = AssetManager::getFont("Fonts/arial.ttf", Font::PLAIN, 16);
-            }
-        }
+		font = f;
 		color = c;
 		x=x1;
 		y=y1;
 		
-        fontSize = font->getSize();
-        fontStyle = font->getStyle();
+		fontSize = font->getSize();
+		fontStyle = font->getStyle();
 		
 		originalText = text;
 		actorType = 3;

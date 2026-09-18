@@ -127,19 +127,8 @@ namespace GameEngine
 				return Fonts.get(i);
 			}
 		}
-    Console::WriteLine((String)"Error: font " + fontName + (String)" does not exist! Attempting load.");
-    if(loadFont(fontName))
-    {
-        total = FontNames.size();
-        for(int i=0; i<total; i++)
-        {
-            if(fontName.equals(FontNames.get(i)))
-            {
-                return Fonts.get(i);
-            }
-        }
-    }
-    return NULL;
+		Console::WriteLine((String)"Error: font " + fontName + (String)" does not exist!");
+		return NULL;
 	}
 	
 	Font*AssetManager::getFont(const String&fontName, int style, unsigned int size)
@@ -155,19 +144,8 @@ namespace GameEngine
 				return font;
 			}
 		}
-    Console::WriteLine((String)"Error: font " + fontName + (String)" does not exist! Attempting load.");
-    if(loadFont(fontName, style, size))
-    {
-        total = FontNames.size();
-        for(int i=0; i<total; i++)
-        {
-            if(fontName.equals(FontNames.get(i)))
-            {
-                return Fonts.get(i);
-            }
-        }
-    }
-    return NULL;
+		Console::WriteLine((String)"Error: font " + fontName + (String)" does not exist!");
+		return NULL;
 	}
 	
 	void AssetManager::unloadFont(const String&fontName)

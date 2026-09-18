@@ -130,6 +130,8 @@ namespace GameEngine
 		static int showMessage(const String&title, const String&message, const ArrayList<String>&options);
 		
 		static int getLastKey();
+		// Logical coordinates; supplies a touch on mobile and a mouse on desktop.
+		static void controllerPointer(float x, float y, bool down);
 		static bool getKeyPressed(int key);
 		static bool getPrevKeyPressed(int key);
 		

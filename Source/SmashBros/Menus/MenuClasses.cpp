@@ -99,18 +99,15 @@ namespace SmashBros
 
 	void MainMenu::Initialize()
 	{
-		addItem(260, 180, "Images/Menus/Buttons/Group/group.png", "Images/Menus/Buttons/Group/group_selected.png", "GroupMenu");
-		setItemScale(0,1.15f);
+		addItem(250, 320, "Images/Menus/Buttons/Group/group.png", "Images/Menus/Buttons/Group/group_selected.png", "GroupMenu");
 		setItemSound(0, Menus::soundMgr->getSound("select menu item"));
-		addItem(630, 215, "Images/Menus/Buttons/Solo/solo.png", "Images/Menus/Buttons/Solo/solo_selected.png", "SoloMenu");
-		setItemScale(1,1.15f);
+		addItem(665, 210, "Images/Menus/Buttons/Solo/solo.png", "Images/Menus/Buttons/Solo/solo_selected.png", "SoloMenu");
 		setItemSound(1, Menus::soundMgr->getSound("select menu item"));
-		addItem(700, 395, "Images/Menus/Buttons/Options/options.png", "Images/Menus/Buttons/Options/options_selected.png", "OptionsMenu");
-		setItemScale(2,1.25f);
+		addItem(665, 375, "Images/Menus/Buttons/Options/options.png", "Images/Menus/Buttons/Options/options_selected.png", "OptionsMenu");
 		setItemSound(2, Menus::soundMgr->getSound("select menu item"));
 		if(GameEngine::isOnPlatform("ios"))
 		{
-			addItem(200, 400, "Images/Menus/Buttons/Bluetooth/Bluetooth.png", "Images/Menus/Buttons/Bluetooth/Bluetooth_selected.png", "BluetoothMenu");
+			addItem(665, 485, "Images/Menus/Buttons/Bluetooth/Bluetooth.png", "Images/Menus/Buttons/Bluetooth/Bluetooth_selected.png", "BluetoothMenu");
 			setItemSound(3, Menus::soundMgr->getSound("select menu item"));
 		}
 	}
@@ -148,15 +145,19 @@ namespace SmashBros
 			break;
 					
 			case 0:
-			Menus::description->setText("Play a variety of Smash modes with multiple players");
+			Menus::description->setText("Smash with friends or computer opponents");
 			break;
 					
 			case 1:
-			Menus::description->setText("Play this mode solo or challenge it coopertively");
+			Menus::description->setText("Practice your moves in Training");
 			break;
 					
 			case 2:
-			Menus::description->setText("Choose and save your own personal Smash settings");
+			Menus::description->setText("Customize controls, sound, and display");
+			break;
+
+			case 3:
+			Menus::description->setText("Connect nearby devices for a local battle");
 			break;
 		}
 	}
@@ -180,10 +181,9 @@ namespace SmashBros
 
 	void GroupMenu::Initialize()
 	{
-		addItem(280, 200, "Images/Menus/Buttons/Group/brawl.png", "Images/Menus/Buttons/Group/brawl_selected.png", "BrawlCharSelect");
+		addItem(245, 300, "Images/Menus/Buttons/Group/brawl.png", "Images/Menus/Buttons/Group/brawl_selected.png", "BrawlCharSelect");
 		setItemSound(0, Menus::soundMgr->getSound("select menu item"));
-		addItem(680, 220, "Images/Menus/Buttons/Group/rules.png", "Images/Menus/Buttons/Group/rules_selected.png", "RulesMenu");
-		setItemScale(1, 2);
+		addItem(655, 300, "Images/Menus/Buttons/Group/rules.png", "Images/Menus/Buttons/Group/rules_selected.png", "RulesMenu");
 		setItemSound(1, Menus::soundMgr->getSound("select menu item"));
 	}
 
@@ -241,8 +241,7 @@ namespace SmashBros
 
 	void SoloMenu::Initialize()
 	{
-		addItem(700, 380, "Images/Menus/Buttons/Solo/training.png", "Images/Menus/Buttons/Solo/training_selected.png", "TrainingCharSelect");
-		//setItemScale(0, 1.6f);
+		addItem(450, 310, "Images/Menus/Buttons/Solo/training.png", "Images/Menus/Buttons/Solo/training_selected.png", "TrainingCharSelect");
 		setItemSound(0, Menus::soundMgr->getSound("select menu item"));
 	}
 
@@ -724,17 +723,13 @@ namespace SmashBros
 
 	void OptionsMenu::Initialize()
 	{
-		addItem(140, 270, "Images/Menus/Buttons/Options/controls.png", "Images/Menus/Buttons/Options/controls_selected.png", "ControlOptions");
-		setItemScale(0, 1.6f);
+		addItem(245, 215, "Images/Menus/Buttons/Options/controls.png", "Images/Menus/Buttons/Options/controls_selected.png", "ControlOptions");
 		setItemSound(0, Menus::soundMgr->getSound("select menu item"));
-		addItem(346, 270, "Images/Menus/Buttons/Options/sound.png", "Images/Menus/Buttons/Options/sound_selected.png", "AudioOptions");
-		setItemScale(1, 1.6f);
+		addItem(655, 215, "Images/Menus/Buttons/Options/sound.png", "Images/Menus/Buttons/Options/sound_selected.png", "AudioOptions");
 		setItemSound(1, Menus::soundMgr->getSound("select menu item"));
-		addItem(554, 270, "Images/Menus/Buttons/Options/display.png", "Images/Menus/Buttons/Options/display_selected.png", "DisplayOptions");
-		setItemScale(2, 1.6f);
+		addItem(245, 415, "Images/Menus/Buttons/Options/display.png", "Images/Menus/Buttons/Options/display_selected.png", "DisplayOptions");
 		setItemSound(2, Menus::soundMgr->getSound("select menu item"));
-		addItem(760, 270, "Images/Menus/Buttons/Options/other.png", "Images/Menus/Buttons/Options/other_selected.png", "OtherOptions");
-		setItemScale(3, 1.6f);
+		addItem(655, 415, "Images/Menus/Buttons/Options/other.png", "Images/Menus/Buttons/Options/other_selected.png", "OtherOptions");
 		setItemSound(3, Menus::soundMgr->getSound("select menu item"));
 	}
 
@@ -804,11 +799,6 @@ namespace SmashBros
 		hapticFeedbackLabel->setScale(2);
 		hapticFeedbackToggle = new ToggleButton(390,220,true);
 		hapticFeedbackToggle->setScale(1.6f);
-
-		displayControlsLabel = new MenuBarSmall(200,280,"Display Controls");
-		displayControlsLabel->setScale(2);
-		displayControlsToggle = new ToggleButton(390,280,true);
-		displayControlsToggle->setScale(1.6f);
 		
 		button_a = new Actor(820, 450);
         button_a->addAnimation(new Animation("normal", 1, "Images/Game/Controls/button_a.png"));
@@ -907,7 +897,6 @@ namespace SmashBros
 	void ControlOptions::Initialize()
 	{
 		hapticFeedbackToggle->setToggle(Preferences::hasHapticFeedback());
-		displayControlsToggle->setToggle(Preferences::displayTouchControlsOn());
 	}
 	
 	void ControlOptions::LoadContent()
@@ -949,8 +938,6 @@ namespace SmashBros
 		
 		hapticFeedbackLabel->Update(gameTime);
 		hapticFeedbackToggle->Update(gameTime);
-		displayControlsLabel->Update(gameTime);
-		displayControlsToggle->Update(gameTime);
 		
 		joystickArea->Update(gameTime);
 		joystick->Update(gameTime);
@@ -1156,7 +1143,6 @@ namespace SmashBros
 		
 		Controls::setJoystickActive(joystickEnabled);
 		Preferences::setHapticFeedback(hapticFeedbackToggle->getToggle());
-		Preferences::setDisplayTouchControls(displayControlsToggle->getToggle());
 	}
 
 	void ControlOptions::Draw(Graphics2D&g, long gameTime)
@@ -1167,8 +1153,6 @@ namespace SmashBros
 		toggles->Draw(g, gameTime);
 		hapticFeedbackLabel->Draw(g, gameTime);
 		hapticFeedbackToggle->Draw(g, gameTime);
-		displayControlsLabel->Draw(g, gameTime);
-		displayControlsToggle->Draw(g, gameTime);
 		
 		button_a->Draw(g, gameTime);
 		button_b->Draw(g, gameTime);

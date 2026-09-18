@@ -1,18 +1,19 @@
 
 #include "Game.h"
+#include "GameEngine/Input/Gamepad.h"
 #include "SmashBros/Preferences.h"
 #include "SmashBros/Controls.h"
 #include "SmashBros/Menus/Menus.h"
 #include "SmashBros/Game/GameScreen.h"
-#include "SmashBros/AndroidBridge.h"
 
 namespace SmashBros
 {
 	Game::Game()
 	{
 		//Constructor
-		// Don't set a fixed size here - let it use the actual device resolution
-		// View::setSize(900,600);
+		View::setSize(900,600);
+		padCursorX=450;padCursorY=300;padCursorVisible=false;
+		padPointerDown=false;padWaitRelease=true;padCursorTime=0;
 		firstUpdate = true;
 		drawnOnce = false;
 	}
@@ -51,13 +52,10 @@ namespace SmashBros
 		SDL_FreeSurface(surface);*/
 
 		//Initialize things
-		// Enable scaling with 900x600 logical resolution
-		// View will be modified to stretch to fill screen without letterboxing
-		scaleToWindow(true, 900, 600);
+		scaleToWindow(true,900,600);
 
-	AssetManager::loadImage("Images/icon.png");
-	// No loading screen needed - we load directly to game or menus
-	// setLoadScreen("Images/loading.png");
+		AssetManager::loadImage("Images/icon.png");
+		setLoadScreen("Images/loading.png");
 		
 		Global::init();
 		
@@ -74,7 +72,7 @@ namespace SmashBros
 			setFPS(30);
 			setUpdatesPerFrame(2);
 		}
-		//setWindowTitle("Super Smash Bros.");
+		setWindowTitle("ISSB-R");
 	}
 	
 	void Game::LoadContent()
@@ -83,82 +81,11 @@ namespace SmashBros
 		Controls::loadControls();
 		Preferences::init();
 		Preferences::load();
-		// Apply settings chosen in WebView (game mode, stock, etc.)
-		Preferences::applyWebSettings();
-		
-		// Load touch controls setting from WebView preferences
-		bool touchEnabled = AndroidBridge::getTouchControlsSetting();
-		AndroidBridge::setTouchControlsEnabled(touchEnabled);
-		Console::WriteLine((String)"Touch controls: " + (touchEnabled ? "ON" : "OFF"));
 
-		// Add the game screen (always needed)
+		Menus::loadAssets();
+		Menus::loadMenus();
 		ScreenManager::Add(new GameScreen("Game"));
-		
-		// Check if we should skip C++ menus and go straight to game
-		if(AndroidBridge::shouldSkipMenus())
-		{
-			int p1Char = AndroidBridge::getP1Character();
-			int p2Char = AndroidBridge::getP2Character();
-			int selectedStage = AndroidBridge::getSelectedStage();
-			
-			Console::WriteLine((String)"WebView Launch - P1:" + p1Char + " P2:" + p2Char + " Stage:" + selectedStage);
-			
-			// Clamp character selections to valid range (1 to totalCharacters)
-			if(p1Char < 1 || p1Char > Global::totalCharacters) { 
-				Console::WriteLine("P1 invalid from WebView - defaulting to 1 (Mario)"); 
-				p1Char = 1; 
-			}
-			if(p2Char < 1 || p2Char > Global::totalCharacters) { 
-				Console::WriteLine("P2 invalid from WebView - defaulting to 2"); 
-				p2Char = 2; 
-			}
-			// Clamp stage selection to valid range (0 to totalStages-1)
-			if(selectedStage < 0 || selectedStage >= Global::totalStages) { 
-				Console::WriteLine("Stage invalid from WebView - defaulting to 0"); 
-				selectedStage = 0; 
-			}
-			
-			// Set up game with WebView menu selections
-			if(p1Char > 0 && p2Char > 0)
-			{
-				// Fix: selectedChar array is 0-indexed (P1 at index 0, P2 at index 1)
-				Global::selectedChar[0] = p1Char;
-				Global::selectedChar[1] = p2Char;
-				Global::charAmount = 2;
-				Global::selectedStage = selectedStage; // Use stage from WebView
-				Global::gameType = Global::TYPE_TRAINING; // Training mode
-				
-				// Set CPU flags: both players are human in training mode
-				Global::CPU[0] = false; // P1 is human
-				Global::CPU[1] = false; // P2 is human (training mode)
-				
-				Console::WriteLine("Starting fight directly - bypassing all C++ menus");
-				
-				// Load the game: create stage and players before transitioning
-				Global::LoadGame();
-				
-				// Clear the skip flag now that we've successfully loaded
-				AndroidBridge::clearCharacterSelections();
-				
-				// Go DIRECTLY to game screen - NO LOADING SCREEN, NO C++ MENUS
-				ScreenManager::GoToScreen("Game");
-			}
-			else
-			{
-			// If selections are invalid, send user back to NEW WebView character select
-			Console::WriteLine("ERROR: Invalid character selections - returning to WebView Character Select");
-			AndroidBridge::returnToCharacterSelect();
-			}
-		}
-		else
-		{
-			// Only load and show C++ menus if NOT launched from WebView (for debugging)
-			Console::WriteLine("No WebView launch - loading C++ menus");
-			Menus::loadAssets();
-			Menus::loadMenus();
-			ScreenManager::GoToScreen("TitleScreen");
-		}
-		
+		ScreenManager::GoToScreen("TitleScreen");
 		if(Preferences::debuglog)
 		{
 			Console::OutputToFile(true, "iSSB.log");
@@ -177,7 +104,6 @@ namespace SmashBros
 			if(Preferences::newVersion)
 			{
 				Preferences::newVersion = false;
-				Game::showMessage((String)"iSSB "+Preferences::version, Preferences::versionMessage);
 			}
 			firstUpdate = false;
 		}
@@ -185,12 +111,65 @@ namespace SmashBros
 		{
 			Exit();
 		}
+		Gamepad& pads=Gamepad::get();
+		String screen=ScreenManager::currentName();
+		if(!screen.equals(padScreen)) {
+			if(padPointerDown)controllerPointer(padCursorX,padCursorY,false);
+			padPointerDown=false;padWaitRelease=true;padScreen=screen;
+		}
+		unsigned int now=SDL_GetTicks();
+		float dt=padCursorTime ? (now-padCursorTime)/1000.0f : 0;
+		if(dt>0.05f)dt=0.05f;
+		padCursorTime=now;
+		if(!screen.equals("Game")) {
+			int slot=-1;
+			for(int i=0;i<4;i++)if(pads.connected(i)) {
+				if(slot<0)slot=i;
+				if(pads.axis(i,0)!=0 || pads.axis(i,1)!=0 || pads.button(i,SDL_CONTROLLER_BUTTON_A)
+					|| pads.button(i,SDL_CONTROLLER_BUTTON_B) || pads.button(i,SDL_CONTROLLER_BUTTON_DPAD_UP)
+					|| pads.button(i,SDL_CONTROLLER_BUTTON_DPAD_DOWN) || pads.button(i,SDL_CONTROLLER_BUTTON_DPAD_LEFT)
+					|| pads.button(i,SDL_CONTROLLER_BUTTON_DPAD_RIGHT)) {slot=i;break;}
+			}
+			if(slot>=0) {
+				float dx=pads.axis(slot,0),dy=pads.axis(slot,1);
+				if(pads.button(slot,SDL_CONTROLLER_BUTTON_DPAD_LEFT))dx=-1;
+				if(pads.button(slot,SDL_CONTROLLER_BUTTON_DPAD_RIGHT))dx=1;
+				if(pads.button(slot,SDL_CONTROLLER_BUTTON_DPAD_UP))dy=-1;
+				if(pads.button(slot,SDL_CONTROLLER_BUTTON_DPAD_DOWN))dy=1;
+				padCursorX=std::fmax(5.0f,std::fmin(895.0f,padCursorX+dx*500*dt));
+				padCursorY=std::fmax(5.0f,std::fmin(595.0f,padCursorY+dy*500*dt));
+				bool confirm=pads.button(slot,SDL_CONTROLLER_BUTTON_A);
+				if(!confirm)padWaitRelease=false;
+				bool down=confirm&&!padWaitRelease;
+				if(dx!=0 || dy!=0 || down || padPointerDown) {
+					padCursorVisible=true;
+					controllerPointer(padCursorX,padCursorY,down);
+				}
+				padPointerDown=down;
+				if(pads.button(slot,SDL_CONTROLLER_BUTTON_B)&&!pads.button(slot,SDL_CONTROLLER_BUTTON_B,true)&&Menus::button_back) {
+					if(padPointerDown)controllerPointer(padCursorX,padCursorY,false);
+					padPointerDown=false;padWaitRelease=true;
+					Menus::button_back->onRelease();
+				}
+			} else {
+				if(padPointerDown)controllerPointer(padCursorX,padCursorY,false);
+				padPointerDown=false;padCursorVisible=false;
+			}
+		} else padCursorVisible=false;
 		ScreenManager::Update(gameTime);
+		pads.finishUpdate();
 	}
 	
 	void Game::Draw(Graphics2D& g, long gameTime)
 	{
 		ScreenManager::Draw(g, gameTime);
+		if(padCursorVisible && !ScreenManager::currentName().equals("Game")) {
+			g.setColor(Color::BLACK);g.fillRect(padCursorX-8,padCursorY-8,16,16);
+			g.setColor(Color::WHITE);g.fillRect(padCursorX-5,padCursorY-5,10,10);
+			g.setColor(Color::BLACK);
+			g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::BOLD,13));
+			g.drawString("Stick / D-pad: cursor    A / Cross: select or hold to drag    B / Circle: back",145,35);
+		}
 		drawnOnce = true;
 	}
 }

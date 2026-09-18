@@ -16,6 +16,7 @@ namespace GameEngine
 
 	public:
 		static void Add(Screen*scr);
+		static String currentName();
 		static bool Remove(String s);
 		static bool GoToScreen(String s);
 		static void Update(long gameTime);

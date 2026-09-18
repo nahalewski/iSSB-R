@@ -70,6 +70,7 @@ namespace SmashBros
 		static void handleP2PData(byte*&data);
 		
 		static int**controls;
+		static bool actionPressed(byte player, byte action, bool previous = false);
 		static bool ControllerButtonStates[20];
 		static bool PrevControllerButtonStates[20];
 		static ControlHUD*touchControls;
@@ -135,4 +136,3 @@ namespace SmashBros
 		static void buttonZ(byte pNum, byte type);
 	};
 }
-

@@ -1,0 +1,272 @@
+[
+  {
+    "name": "stand",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-c042d1fd-47bb-4761-951a-279aa5e278d5.png",
+    "prompt": "Use case: style-transfer. Edit target: the attached Ichigo game sprite sheet. Create an HD remaster of this EXACT animation sheet as polished hand-drawn anime game sprites, smooth crisp ink outlines, carefully cel-shaded black shihakusho robes, spiky orange hair, white sash, and oversized Zangetsu sword. Preserve all FOUR frames, one column and four equal rows, in original top-to-bottom order. Preserve the exact pose of every frame, facing direction, silhouette, sword angle, character proportions, frame-relative position, empty padding, and subtle idle animation differences. Do not add or remove frames. Original canvas is 90x360 pixels, each cell 90x90. Render at 4x resolution, 360x1440 pixels with four 360x360 cells. Original character occupies lower portion of each cell; match it exactly. Transparent RGBA background, no ground, no shadow outside character, no labels, no grid, no borders, no checkerboard, no text. This is a production sprite sheet for a game, not a concept art presentation. Redraw details at HD resolution, do not merely enlarge pixel art."
+  },
+  {
+    "name": "walk",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-ad0b2026-ed60-436e-bdd5-b6e8c871a1c5.png",
+    "prompt": "Use case: style-transfer. Edit target image 1: original Ichigo walk animation. Image 2 is style reference ONLY: HD Ichigo idle. Remaster target into the same crisp hand-drawn anime HD cel-shaded art as image 2, orange spiky hair, black shihakusho robes, white sash and large Zangetsu. EXACTLY 4 distinct animation frames in one column, 4 equal rows, same top-to-bottom poses/order as TARGET. Carefully reproduce original silhouette, limb/sword positions, facing LEFT, motion streaks, sword trails, and cloth movement in EACH distinct frame. Preserve frame count, no repeated substitutes. Transparent RGBA background, no scenery/grid/text/borders. Separate complete figures without overlap or clipping, generous equal cell padding. Each frame is an independent game animation drawing. High definition smooth lines, no pixelation. Target cell aspect 96:90."
+  },
+  {
+    "name": "run",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-9bee4c20-b472-42e5-8c8b-0fdeee4719ac.png",
+    "prompt": "Use case: style-transfer. Edit target image 1: original Ichigo run animation. Image 2 is style reference ONLY: HD Ichigo idle. Remaster target into the same crisp hand-drawn anime HD cel-shaded art as image 2, orange spiky hair, black shihakusho robes, white sash and large Zangetsu. EXACTLY 2 distinct animation frames in one column, 2 equal rows, same top-to-bottom poses/order as TARGET. Carefully reproduce original silhouette, limb/sword positions, facing LEFT, motion streaks, sword trails, and cloth movement in EACH distinct frame. Preserve frame count, no repeated substitutes. Transparent RGBA background, no scenery/grid/text/borders. Separate complete figures without overlap or clipping, generous equal cell padding. Each frame is an independent game animation drawing. High definition smooth lines, no pixelation. Target cell aspect 1:1."
+  },
+  {
+    "name": "jump",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-593b55f8-9214-4ea7-830b-1963d15a186a.png",
+    "prompt": "Use case: style-transfer. Edit image 1 (Ichigo jump sprite sheet) into HD hand-drawn cel-shaded anime game art, matching image 2's orange hair, black robes and sword rendering. EXACTLY SIX full-body sprites in ONE vertical column, SIX separate equal-height rows, same top-to-bottom poses as image 1: takeoff then five ascending jump phases with varying sword/arm/sash placement. Reference 2 is STYLE ONLY; do not copy its idle pose or its four-frame count. Preserve left-facing direction and every frame's original distinct posture and sword orientation. Transparent RGBA background. No text, grid, borders, scenery. All six figures complete, no overlap, all six feet/swords inside their individual cells. High definition smooth ink lines, cloth folds, accurate hands, clean cel shading."
+  },
+  {
+    "name": "jump2",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-2e36046a-51cf-4840-a975-0b36265f4339.png",
+    "prompt": "Use case: style-transfer. Image 1 is EDIT TARGET, original Ichigo jump2 sprite sheet. Image 2 is STYLE ONLY. Remaster image 1 to clean HD hand-drawn cel-shaded anime sprites matching image 2. EXACTLY 6 separate full-body frames in ONE column and 6 equal-height rows. Match EACH original pose, rotation, sword position, limbs, robe and sash motion, and top-to-bottom ordering. a somersault: frame 1 rises, frame 2 pitches forward, frame 3 upside down, frame 4 curled spinning, frame 5 curled sideways, frame 6 upright falling. Match the original rotations!. Original facing direction must be preserved. Do not copy style-reference poses. Smooth clean linework, orange hair, black robes, white sash, oversized sword. Transparent RGBA background, no text/grid/scenery/shadows/borders. Complete figures with enough padding that no sword or limb crosses its row. Preserve exactly 6 frames."
+  },
+  {
+    "name": "land",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-49c9dc47-4a0f-44df-9e6f-f12d3e1436b8.png",
+    "prompt": "Edit this EXACT THREE-FRAME Ichigo landing animation into HD anime cel-shaded game sprites. This input is the pose authority. Precisely trace the posture and sword angle separately in EACH original frame. One column of THREE separate sprites top to bottom. Frame1 body tilted forward in midair knees tucked and sword held almost horizontal pointing LEFT across waist. Frame2 torso crouches facing left, low horizontal sword across waist, knees bend. Frame3 low crouching landing sword nearly horizontal with left-pointing blade, body compressed at bottom. Do NOT replace these with upright idle poses or a diagonal raised sword. Keep orange spiky hair, black kimono robes, white sash, large cleaver Zangetsu, same proportions, same positions and frame count. Crisp HD line art, detailed folds, smooth edges, clean cel shading. Transparent RGBA background, no text/grid/ground, no extra frames. Exactly 3 full figures, each separately contained in its own equal-height row."
+  },
+  {
+    "name": "fall",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-54058cd4-3143-40f4-a3f7-9cf503ecb37f.png",
+    "prompt": "Edit this exact Ichigo fall sprite into one HD hand-drawn cel-shaded anime game sprite. EXACTLY ONE complete full-body character, retain the original pose, silhouette, left-facing direction, sword/limb placement and costume. Airborne, leaning forward facing left, knees drawn back, sword slanting down-left in front, long sash streaming UP behind. Spiky orange hair, black shihakusho robes, white collar and sash, large Zangetsu sword. Precise clean outlines, detailed folds and hands, smooth edges. Transparent RGBA canvas. No ground, scenery, labels, grid, other frames or characters. All limbs, sword and sash fully visible. Match original pose faithfully rather than an idle stance."
+  },
+  {
+    "name": "hang",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-3249f0fd-0ffb-4025-b391-a6c9c374b520.png",
+    "prompt": "Edit this exact Ichigo hang sprite into one HD hand-drawn cel-shaded anime game sprite. EXACTLY ONE complete full-body character, retain the original pose, silhouette, left-facing direction, sword/limb placement and costume. Hanging by one arm fully extended overhead, torso upright, legs dangling, sword held low diagonally down-left in the other hand. Spiky orange hair, black shihakusho robes, white collar and sash, large Zangetsu sword. Precise clean outlines, detailed folds and hands, smooth edges. Transparent RGBA canvas. No ground, scenery, labels, grid, other frames or characters. All limbs, sword and sash fully visible. Match original pose faithfully rather than an idle stance."
+  },
+  {
+    "name": "crouch",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a0b75362-ed73-4544-bf8d-0422e9a1cd5b.png",
+    "prompt": "Create a high-resolution redraw of the attached game sprite, preserving its exact crouching pose, costume, facing direction and held prop. Smooth hand-drawn anime linework and cel shading. Exactly one complete sprite on a transparent RGBA background. No additional poses, figures, text or scenery."
+  },
+  {
+    "name": "grab",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-e463658d-efe0-4ede-bdc3-3403256ef563.png",
+    "prompt": "Use case: style-transfer. HD remaster of the attached THREE-frame Ichigo grab animation sprite sheet. EXACTLY THREE figures, ONE column, THREE equal rows, top-to-bottom matching original poses. Frame1: facing left, open free hand reaches forward to left at shoulder level, right hand holds sword behind body pointing right. Frame2: extended free hand reaches lower to left, sword still backward pointing right. Frame3: left-facing crouched holding posture with sword descending behind, as original. Preserve each pose, sword angle, limb placement and silhouette. Sharp clean anime ink outlines, cel-shaded black shihakusho robes, spiky orange hair, white collar and sash, detailed hands. Transparent RGBA background, no other person, no text, no grid or scenery. All three full-body frames separately within their cells with padding."
+  },
+  {
+    "name": "grabbed",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-dc8d87b2-a490-43c3-a8eb-08e1528cf586.png",
+    "prompt": "HD remaster of this exact single Ichigo game sprite. Preserve the one original pose: orange-haired anime swordsman facing left, torso slightly hunched forward, knees bent, free arm held forward/down as he recoils, sword behind him with the blade pointing down-right. Black shihakusho robes, white sash. Smooth ink lines, clean detailed cel shading, transparent RGBA background. Exactly ONE complete full-body sprite, no additional person, no text, no grid or environment. Keep original silhouette, prop orientation, pose and proportions."
+  },
+  {
+    "name": "hold",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-c97061a4-19ac-4792-90c4-91244827c897.png",
+    "prompt": "Remaster this EXACT single Ichigo game sprite into high-definition anime cel-shaded artwork. Match original pose: facing LEFT, free left arm extended forward with open hand at waist/chest level, right arm holding oversized sword diagonally down-left across the front of body, legs apart in a low stance, white cloth curling behind. Orange spiky hair, black shihakusho robes, white sash and collar. ONE full-body sprite only, transparent RGBA background, no second character, no grid, text or scenery. Faithfully preserve original silhouette and each hand/sword position; polished precise linework and folds, clean edges."
+  },
+  {
+    "name": "release",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a5e59a22-bd11-4c7b-82e5-008410e4c9fd.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo release animation sheet. EXACTLY 2 full-body frames in ONE column of 2 equal-height rows, preserve original order and each distinct pose. two airborne release poses; knees bent, body facing left, broad sword across front pointing down-left; white cloth streams upward then to right. Use original image as pose reference. Spiky orange hair, black shihakusho, white sash and collar, oversized sword. Crisp smooth hand-drawn anime ink outlines, detailed folds and clean cel shading. Transparent RGBA background, complete separate figures without overlap, no grid/text/scenery/extra people. Keep EXACTLY 2 frames."
+  },
+  {
+    "name": "toss",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-598d01ae-5c3f-4371-aae8-af1ba823af09.png",
+    "prompt": "Use case: style-transfer. HD redraw of original Ichigo toss game sprite sheet. EXACTLY 3 complete full-body sprites in ONE vertical column with 3 distinct rows, preserve original poses and order. Three sword recovery poses from source: standing sword up-left, crouching sword low-left, standing sword horizontal left. NO glow or lighting aura of any kind. Orange spiky hair, black shihakusho robes, white collar/sash, Zangetsu. Smooth crisp anime ink lines and clean flat cel shading. Actual alpha transparency everywhere outside character and held sword/cloth. NO glow, NO halo, NO gradients, NO colored/white/black background, NO floor, NO scenery, NO text/grid. Large empty transparent gutters separate all frames; figures occupy only middle 65% of each row. Exactly 3 frames."
+  },
+  {
+    "name": "toss_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-1177667b-4f48-44c2-966a-c8f4257c5e6d.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo toss_up animation sheet. EXACTLY 5 full-body frames in ONE column of 5 equal-height rows, preserve original order and each distinct pose. frame1 sword horizontal left across face, frame2 swings toward right with white arc while free arm raises overhead, frames3-5 hold upward-reaching free arm and sword pointing down-right; preserve gradual arm changes. Use original image as pose reference. Spiky orange hair, black shihakusho, white sash and collar, oversized sword. Crisp smooth hand-drawn anime ink outlines, detailed folds and clean cel shading. Transparent RGBA background, complete separate figures without overlap, no grid/text/scenery/extra people. Keep EXACTLY 5 frames."
+  },
+  {
+    "name": "toss_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-774898b6-f022-4541-8de3-35cf9100a990.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo toss_down animation sheet. EXACTLY 3 full-body frames in ONE column of 3 equal-height rows, preserve original order and each distinct pose. frame1 suspended body tilts with sword raised upper-left, frame2 straightens upright with sword down-left, frame3 pitches forward with sword extending behind to right. Use original image as pose reference. Spiky orange hair, black shihakusho, white sash and collar, oversized sword. Crisp smooth hand-drawn anime ink outlines, detailed folds and clean cel shading. Transparent RGBA background, complete separate figures without overlap, no grid/text/scenery/extra people. Keep EXACTLY 3 frames."
+  },
+  {
+    "name": "grab_attack",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-062ef42a-718a-48c9-8272-65d7c5fa7a0a.png",
+    "prompt": "HD game sprite remaster, use case style-transfer. Edit attached Ichigo grab_attack sheet. EXACTLY 3 full-body sprites in ONE column, 3 separate equal-height rows, same original frame order and distinct poses. Frame1 sword overhead with cyan-white curved arc, frame2 blade sweeps to left with cyan-white crescent, frame3 recovers sword down-right. Preserve original weapon visibility, do not introduce props absent from original. Crisp hand-drawn anime linework, smooth clean cel shading, orange hair, black robes and white sash/collar. Transparent RGBA background with NO glow, halo, floor, scenery, labels, grid or additional figures. No overlap or cropping between rows. Do not add or remove frames."
+  },
+  {
+    "name": "grab_attack_swing",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-2cd94157-a30a-42a8-bc34-5036cdd5669e.png",
+    "prompt": "HD game sprite remaster, use case style-transfer. Edit attached Ichigo grab_attack_swing sheet. EXACTLY 4 full-body sprites in ONE column, 4 separate equal-height rows, same original frame order and distinct poses. Four consecutive rotating body poses: torso faces left then turns away then faces front raising free hand then finishes low lunging with sword across body. Follow original. Preserve original weapon visibility, do not introduce props absent from original. Crisp hand-drawn anime linework, smooth clean cel shading, orange hair, black robes and white sash/collar. Transparent RGBA background with NO glow, halo, floor, scenery, labels, grid or additional figures. No overlap or cropping between rows. Do not add or remove frames."
+  },
+  {
+    "name": "melee_weapon",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-ef65ff23-ff0c-48cd-b77f-5de6f43b1280.png",
+    "prompt": "HD game sprite remaster, use case style-transfer. Edit attached Ichigo melee_weapon sheet. EXACTLY 6 full-body sprites in ONE column, 6 separate equal-height rows, same original frame order and distinct poses. Six distinct unarmed item-swing poses, no large sword! Trace original arm placements, torso leans and white wrapping position. Hands prepare over shoulder then swing across body. Preserve original weapon visibility, do not introduce props absent from original. Crisp hand-drawn anime linework, smooth clean cel shading, orange hair, black robes and white sash/collar. Transparent RGBA background with NO glow, halo, floor, scenery, labels, grid or additional figures. No overlap or cropping between rows. Do not add or remove frames."
+  },
+  {
+    "name": "melee_weapon_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-44732933-1273-4753-bda4-1ae4503b6cd6.png",
+    "prompt": "HD game sprite remaster, use case style-transfer. Edit attached Ichigo melee_weapon_up sheet. EXACTLY 5 full-body sprites in ONE column, 5 separate equal-height rows, same original frame order and distinct poses. Five distinct upward item-swing poses. Match small held item and original arm positions, raising hands then swinging overhead then recovering. Preserve original weapon visibility, do not introduce props absent from original. Crisp hand-drawn anime linework, smooth clean cel shading, orange hair, black robes and white sash/collar. Transparent RGBA background with NO glow, halo, floor, scenery, labels, grid or additional figures. No overlap or cropping between rows. Do not add or remove frames."
+  },
+  {
+    "name": "melee_weapon_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-e5ffef78-f2f9-4fde-9621-ac7af9b0b00d.png",
+    "prompt": "HD game sprite remaster, use case style-transfer. Edit attached Ichigo melee_weapon_down sheet. EXACTLY 3 full-body sprites in ONE column, 3 separate equal-height rows, same original frame order and distinct poses. Three unarmed/item down-swing poses: upper body leans back and arms raised, then torso curls downward, then leans forward arms lowered. Match original. Preserve original weapon visibility, do not introduce props absent from original. Crisp hand-drawn anime linework, smooth clean cel shading, orange hair, black robes and white sash/collar. Transparent RGBA background with NO glow, halo, floor, scenery, labels, grid or additional figures. No overlap or cropping between rows. Do not add or remove frames."
+  },
+  {
+    "name": "hurt_minor",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-3c969e08-0ec7-4d04-91d1-c69403046f55.png",
+    "prompt": "Use case: style-transfer. Redraw original Ichigo hurt_minor game animation at HD resolution. EXACTLY 1 complete character sprite, ONE column with 1 separate rows, same order as original. Body recoils backward with head bowed, sword behind shoulder and pointing down-left; match the original tilted posture, no wounds. Keep costume and props: orange hair, black kimono robes, white sash, large sword. Smooth precise anime ink lines and cel shading. Genuine transparent RGBA, no glow or background of any kind, no floor, labels, grid or extra characters. Leave clear transparent gaps between frames; no overlapping limbs across rows. Count MUST remain 1."
+  },
+  {
+    "name": "hurt_fly",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-ef46a501-0ac0-4103-8f51-ad0b6c8c0a9c.png",
+    "prompt": "Use case: style-transfer. Redraw original Ichigo hurt_fly game animation at HD resolution. EXACTLY 1 complete character sprite, ONE column with 1 separate rows, same order as original. Character is airborne nearly HORIZONTAL, head to RIGHT and feet to LEFT, face up, sword and cloth trail along body. Do not make upright. No wounds. Keep costume and props: orange hair, black kimono robes, white sash, large sword. Smooth precise anime ink lines and cel shading. Genuine transparent RGBA, no glow or background of any kind, no floor, labels, grid or extra characters. Leave clear transparent gaps between frames; no overlapping limbs across rows. Count MUST remain 1."
+  },
+  {
+    "name": "hurt_flip",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-6d3f0b18-6114-4734-a5a6-841ffda8bd4f.png",
+    "prompt": "Use case: style-transfer. Redraw original Ichigo hurt_flip game animation at HD resolution. EXACTLY 4 complete character sprites, ONE column with 4 separate rows, same order as original. Four rotated tumbling poses matching the exact original rotation sequence, with curled torso and sword around body. Preserve original head and feet orientation in every row, no wounds. Keep costume and props: orange hair, black kimono robes, white sash, large sword. Smooth precise anime ink lines and cel shading. Genuine transparent RGBA, no glow or background of any kind, no floor, labels, grid or extra characters. Leave clear transparent gaps between frames; no overlapping limbs across rows. Count MUST remain 4."
+  },
+  {
+    "name": "hurt_spin",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-fa23d4a6-5036-44b8-adf8-91a0c082fe63.png",
+    "prompt": "Use case: style-transfer. Redraw original Ichigo hurt_spin game animation at HD resolution. EXACTLY 4 complete character sprites, ONE column with 4 separate rows, same order as original. Four horizontally oriented airborne spinning frames, head RIGHT and feet LEFT in every row, different front/back views as original. Do not stand upright. No wounds. Keep costume and props: orange hair, black kimono robes, white sash, large sword. Smooth precise anime ink lines and cel shading. Genuine transparent RGBA, no glow or background of any kind, no floor, labels, grid or extra characters. Leave clear transparent gaps between frames; no overlapping limbs across rows. Count MUST remain 4."
+  },
+  {
+    "name": "hurt_spin_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-b334765f-de9d-4981-bd2c-e3dda43e1914.png",
+    "prompt": "Use case: style-transfer. Redraw original Ichigo hurt_spin_up game animation at HD resolution. EXACTLY 4 complete character sprites, ONE column with 4 separate rows, same order as original. Four vertically oriented upward spin frames, head at top feet below, rotating front/back views, sword low beside body. Match original rotations, no wounds. Keep costume and props: orange hair, black kimono robes, white sash, large sword. Smooth precise anime ink lines and cel shading. Genuine transparent RGBA, no glow or background of any kind, no floor, labels, grid or extra characters. Leave clear transparent gaps between frames; no overlapping limbs across rows. Count MUST remain 4."
+  },
+  {
+    "name": "standard_attack",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-59270335-9b74-49b9-b276-e43568835bbe.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack game sheet, use case style-transfer. EXACTLY 5 separate complete sprites in ONE vertical column, 5 rows, same sequence and orientations as original. Five poses: airborne sword raised above head, winding back overhead, powerful leftward slash with cyan-white crescent, horizontal followthrough with cyan trail, low recovery sword down-right. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack_finish",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-7df80d45-0617-49a5-9665-cbfd44c3eff5.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack_finish game sheet, use case style-transfer. EXACTLY 1 separate complete sprites in ONE vertical column, 1 rows, same sequence and orientations as original. Single recovery stance facing left with sword held low almost horizontally to the left. Match original. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack2",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-7fb22948-9ea5-4602-a2cf-61339bfd954e.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack2 game sheet, use case style-transfer. EXACTLY 6 separate complete sprites in ONE vertical column, 6 rows, same sequence and orientations as original. Six distinct phases of a horizontal sword combo. Preserve original raised preparation, leftward crescent, lowered recovery, backward right-pointing sword extension and recovery. Match every frame. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack3",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-d6c2f39b-61d0-4777-9735-39efa68be001.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack3 game sheet, use case style-transfer. EXACTLY 6 separate complete sprites in ONE vertical column, 6 rows, same sequence and orientations as original. Six sweeping sword phases with large cyan-white arcs: across left, raised overhead, high right-to-left crescent, low right followthrough, sword down-right, low recovery. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack_side",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-29679a3c-208c-4be2-a37d-0f42790a93e5.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack_side game sheet, use case style-transfer. EXACTLY 6 separate complete sprites in ONE vertical column, 6 rows, same sequence and orientations as original. Six phases from raised blade through leftward cyan-white crescent, low rightward sweeping trail, sword down-right, crouched recovery. Use original poses. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a182d759-c77b-4299-a2c5-088c6cb0598a.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack_up game sheet, use case style-transfer. EXACTLY 6 separate complete sprites in ONE vertical column, 6 rows, same sequence and orientations as original. Six overhead sword arc phases, changing cyan-white blade trails and bent torso as original. The source green is only a color-key background: remove it completely, output transparent alpha. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "standard_attack_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-6ee24323-9e5c-4dc0-9fc5-36081a2213d9.png",
+    "prompt": "HD remaster of attached Ichigo standard_attack_down game sheet, use case style-transfer. EXACTLY 6 separate complete sprites in ONE vertical column, 6 rows, same sequence and orientations as original. Six lower sword sweep poses, starting blade behind to upper right, cyan-white crescent down-left, upward recovery and blade extended right, then low ready stance. Match original. Faithful orange hair, black robes, white sash, large Zangetsu. Crisp smooth anime outlines, cel-shaded fabric and precise hands. Preserve each original distinct pose and drawn motion trails. Genuine transparent RGBA background, no ambient glows/halos, no green background, no scenery/grid/text, no extra characters. Clear transparent gaps between each whole frame. Do not add/remove frames."
+  },
+  {
+    "name": "air_attack",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-81e0a285-5d2f-4732-b9ae-1cdb54a9475e.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo air_attack sprite sheet. EXACTLY SIX full-body animation frames, ONE vertical column with SIX clearly separated rows, original sequence and poses. Six phases: relaxed airborne sword down-right; sword extended behind right; blue-white semicircle emerges below feet; energy fans wider below; energy flares up at sides; recovers crouched airborne. Sharp smooth hand-drawn anime lines, clean cel shading, spiky orange hair, black shihakusho and white sash, large sword. Preserve original limb positions, rotations, sword trails. Genuine transparent RGBA background, no ambient glow, floor, scenery, green fill, grid or text. Every figure and effect fully inside its row with a clear transparent gap; SIX frames only."
+  },
+  {
+    "name": "air_attack_side",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-2321d76b-d073-408a-825b-3067afa01438.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo air_attack_side sprite sheet. EXACTLY SIX full-body animation frames, ONE vertical column with SIX clearly separated rows, original sequence and poses. Six original horizontal sword combo phases in the air. Source green background is a color key and must become actual transparent alpha. Preserve poses, sword angles and trails. Sharp smooth hand-drawn anime lines, clean cel shading, spiky orange hair, black shihakusho and white sash, large sword. Preserve original limb positions, rotations, sword trails. Genuine transparent RGBA background, no ambient glow, floor, scenery, green fill, grid or text. Every figure and effect fully inside its row with a clear transparent gap; SIX frames only."
+  },
+  {
+    "name": "air_attack_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-6215137f-113d-499c-bad8-a5ec01a9b00a.png",
+    "prompt": "HD remaster of original Ichigo air_attack_up animation. EXACTLY SIX distinct frames in ONE vertical column. CRITICAL LAYOUT: six equally spaced rows on a TALL transparent canvas. Each entire character PLUS sword slash fits inside the MIDDLE 65% of its row. The top and bottom 17.5% of EACH ROW are completely empty transparent space. Leave LARGE full-width transparent gutters between rows: at least 100 pixels. No part of any sprite or motion trail touches another row, NO OVERLAP. Keep original six poses, frame order, costume, sword angle and cyan-white arcs. High-definition clean anime cel shading and sharp lines, orange hair, black robes, white sash. Background has actual alpha transparency, no glow, floor, scenery, grid or text. Six complete separate figures, preserve rotations from source. Sparse layout with generous gaps is mandatory."
+  },
+  {
+    "name": "air_attack_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-b4554603-0674-4ee6-b752-7f1d69a230ee.png",
+    "prompt": "HD remaster of original Ichigo air_attack_down animation. EXACTLY SIX distinct frames in ONE vertical column. CRITICAL LAYOUT: six equally spaced rows on a TALL transparent canvas. Each entire character PLUS sword slash fits inside the MIDDLE 65% of its row. The top and bottom 17.5% of EACH ROW are completely empty transparent space. Leave LARGE full-width transparent gutters between rows: at least 100 pixels. No part of any sprite or motion trail touches another row, NO OVERLAP. Keep original six poses, frame order, costume, sword angle and cyan-white arcs. High-definition clean anime cel shading and sharp lines, orange hair, black robes, white sash. Background has actual alpha transparency, no glow, floor, scenery, grid or text. Six complete separate figures, preserve rotations from source. Sparse layout with generous gaps is mandatory."
+  },
+  {
+    "name": "special_attack",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-87fc9a25-8008-447a-a4cb-6f072d2f5b1c.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_attack game animation. EXACTLY 6 complete frames in ONE COLUMN, same top-to-bottom order. Six airborne sword rotation phases: sword overhead, blade up-left, sword down-left, leaning forward blade right, pointing blade vertically downward, low recovery. Match original. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 6 frames and original poses."
+  },
+  {
+    "name": "special_attack_side",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-4d930df2-b6b4-4411-9697-cfc0a854fce9.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_attack_side game animation. EXACTLY 6 complete frames in ONE COLUMN, same top-to-bottom order. Six dash phases: idle with blade up-left, lean forward, horizontal speed-streak dash, midair recovery blade left, crouched landing, idle. Preserve speed streaks only in correct original frame. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 6 frames and original poses."
+  },
+  {
+    "name": "special_attack_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-ea05929e-391c-44d9-85be-6706122214c4.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_attack_up game animation. EXACTLY 10 complete frames in ONE COLUMN, same top-to-bottom order. TEN exact phases! Frame1 standing arm/sword fully overhead; frames2-5 raised empty hand as sword is thrown, no held sword; frames6-8 arm lowers and reaches up again; frame9 catches sword overhead angled left; frame10 sword horizontal across face. Follow all ten original poses. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 10 frames and original poses."
+  },
+  {
+    "name": "special_prep_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-acbf0102-0916-4459-a751-86871f746151.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_prep_down game animation. EXACTLY 2 complete frames in ONE COLUMN, same top-to-bottom order. Two prep poses, standing sword in front pointed diagonally down-right, then blade pointing vertically down while hands rise. Match original. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 2 frames and original poses."
+  },
+  {
+    "name": "special_drop_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-23359418-5c93-4862-8c38-270a20a433c9.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_drop_down game animation. EXACTLY 1 complete frames in ONE COLUMN, same top-to-bottom order. Single diving downward pose, both hands gripping sword above head/chest, long blade pointing straight DOWN in front, knees bent and sash streaming straight UP. Preserve original. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 1 frames and original poses."
+  },
+  {
+    "name": "special_attack_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a05d05f5-62ce-4b11-9f49-f392ba79d5d6.png",
+    "prompt": "Use case: style-transfer. HD redraw of attached Ichigo special_attack_down game animation. EXACTLY 4 complete frames in ONE COLUMN, same top-to-bottom order. Four landing recovery phases with sword vertical down then angled down-left then horizontal left. Match original distinct body and hand placement. Clean anime ink outlines and cel shading, orange spiky hair, black shihakusho, white sash/collar, accurate sword proportions. GENUINE TRANSPARENT RGBA. No glow/background/grid/text/floor. Keep each entire pose and effects in middle 65% of its row and leave large full-width transparent gaps between ALL rows. No touching frames, no cropping. Preserve 4 frames and original poses."
+  },
+  {
+    "name": "smash_charge",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-88295694-7d40-42f8-b855-c1652aad14ed.png",
+    "prompt": "Use case: style-transfer. HD hand-drawn anime remaster of this original Ichigo smash_charge animation. EXACTLY 4 full-body sprites in one column, 4 clearly separated rows. Four charging phases with sword pointing UP, arms overhead, growing cyan-white energy rings at feet in each successive frame. Match original body/sword positions and ring progression. Preserve original sequence, distinct poses and motion trails. Orange spiky hair, black robes, white sash/collar, Zangetsu sword. Smooth detailed cel shading and sharp ink outlines. Actual transparent RGBA, no background glow/halo, floor, scenery, text or grid. Each full figure INCLUDING effects occupies only middle 65% of its row; large full-width transparent gutters between ALL figures. No touching rows. Keep 4 frames."
+  },
+  {
+    "name": "smash_attack",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-08a931b6-8b95-41ff-89d3-b50e211aa12d.png",
+    "prompt": "Use case: style-transfer. HD hand-drawn anime remaster of this original Ichigo smash_attack animation. EXACTLY 6 full-body sprites in one column, 6 clearly separated rows. Six sword slam phases: blade raised overhead, windup, large cyan-white crescent to left, low rightward sweeping trail, crouched recovery, low leftward ready sword. Preserve original sequence, distinct poses and motion trails. Orange spiky hair, black robes, white sash/collar, Zangetsu sword. Smooth detailed cel shading and sharp ink outlines. Actual transparent RGBA, no background glow/halo, floor, scenery, text or grid. Each full figure INCLUDING effects occupies only middle 65% of its row; large full-width transparent gutters between ALL figures. No touching rows. Keep 6 frames."
+  },
+  {
+    "name": "smash_attack_up",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-a7503a6d-a139-4efc-b9ed-6e5d77495b42.png",
+    "prompt": "Use case: style-transfer. HD hand-drawn anime remaster of this original Ichigo smash_attack_up animation. EXACTLY 4 full-body sprites in one column, 4 clearly separated rows. Four large overhead sword sweep phases: leftward cyan-white crescent, high arch above body, crescent at right, recovery blade down-right. Preserve original sequence, distinct poses and motion trails. Orange spiky hair, black robes, white sash/collar, Zangetsu sword. Smooth detailed cel shading and sharp ink outlines. Actual transparent RGBA, no background glow/halo, floor, scenery, text or grid. Each full figure INCLUDING effects occupies only middle 65% of its row; large full-width transparent gutters between ALL figures. No touching rows. Keep 4 frames."
+  },
+  {
+    "name": "smash_attack_down",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-7b69f89d-2aaa-4c41-961f-5d69efbe8da3.png",
+    "prompt": "Use case: style-transfer. HD hand-drawn anime remaster of this original Ichigo smash_attack_down animation. EXACTLY 6 full-body sprites in one column, 6 clearly separated rows. Six horizontal sword combo phases: blade at shoulder pointing right, cyan-white starting arc, wide front crescent, recovery, blade extended right behind, recovery. Match original. Preserve original sequence, distinct poses and motion trails. Orange spiky hair, black robes, white sash/collar, Zangetsu sword. Smooth detailed cel shading and sharp ink outlines. Actual transparent RGBA, no background glow/halo, floor, scenery, text or grid. Each full figure INCLUDING effects occupies only middle 65% of its row; large full-width transparent gutters between ALL figures. No touching rows. Keep 6 frames."
+  },
+  {
+    "name": "finalsmash_stand",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-2a432aa0-c6cb-40da-82a4-248049a4a54c.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo finalsmash_stand game sheet. EXACTLY 4 complete frames in ONE vertical column, 4 rows, original order and poses. Bankai form in all FOUR frames: fitted long BLACK coat with RED inner lining/tails, slim BLACK katana held low pointing left. Four subtle idle poses, match original stance and coat shifts. Do not use the oversized white cleaver or white flowing sash of normal form. Crisp smooth ink lines, carefully cel-shaded cloth, orange hair, faithful distinct transformation costume. Actual transparent RGBA, no scenery, floor, grid, text or ambient halo. Keep each figure and its effects entirely within middle 65% of its row; LARGE clear full-width transparent gaps between rows. No frame touching/cropping. Exactly 4 frames."
+  },
+  {
+    "name": "finalsmash_run",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-e0d23e63-7ed0-4720-867b-b863663d1f5c.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo finalsmash_run game sheet. EXACTLY 8 complete frames in ONE vertical column, 8 rows, original order and poses. Bankai form in all EIGHT frames: long fitted BLACK coat with RED lining/tails and slim BLACK katana. Rapid horizontal leftward running/airborne lean; torso strongly leaning left, coat tails stream right. Eight subtle stride/tail variations from original. No white cleaver or long white sash. Crisp smooth ink lines, carefully cel-shaded cloth, orange hair, faithful distinct transformation costume. Actual transparent RGBA, no scenery, floor, grid, text or ambient halo. Keep each figure and its effects entirely within middle 65% of its row; LARGE clear full-width transparent gaps between rows. No frame touching/cropping. Exactly 8 frames."
+  },
+  {
+    "name": "finalsmash_shoot",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-e49d8898-bb96-42e1-99d8-ed0c930ee22a.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo finalsmash_shoot game sheet. EXACTLY 9 complete frames in ONE vertical column, 9 rows, original order and poses. Bankai form NINE phases: ready stance, two speed-streak flickers, ready, thin BLACK katana points up-left, raises overhead, reaches diagonally high-right, lowers sword, low recovery. Long fitted BLACK coat with RED lining/tails. Match each of NINE source poses. No huge white sword. Crisp smooth ink lines, carefully cel-shaded cloth, orange hair, faithful distinct transformation costume. Actual transparent RGBA, no scenery, floor, grid, text or ambient halo. Keep each figure and its effects entirely within middle 65% of its row; LARGE clear full-width transparent gaps between rows. No frame touching/cropping. Exactly 9 frames."
+  },
+  {
+    "name": "finalsmash_change",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-1a46d63a-d863-450c-bef1-d1a4ccec65f7.png",
+    "prompt": "Use case: style-transfer. HD anime remaster of attached Ichigo finalsmash_change game sheet. EXACTLY 6 complete frames in ONE vertical column, 6 rows, original order and poses. SIX transformation phases: frame1 normal black robes with white sash sword extends right; frame2 purple energy starts below; frame3 larger purple energy; frame4 character becomes white silhouette amid purple-white energy; frame5 intense white silhouette flash amid purple-white energy; frame6 transformed Bankai long fitted black coat with red lining and thin black katana held low. Match source precisely; do not add frames. Crisp smooth ink lines, carefully cel-shaded cloth, orange hair, faithful distinct transformation costume. Actual transparent RGBA, no scenery, floor, grid, text or ambient halo. Keep each figure and its effects entirely within middle 65% of its row; LARGE clear full-width transparent gaps between rows. No frame touching/cropping. Exactly 6 frames."
+  },
+  {
+    "name": "win",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-e3025043-b6c6-4216-91c9-3ee5fac981b5.png",
+    "prompt": "Use case: style-transfer. HD redraw of original Ichigo win game sprite sheet. EXACTLY 5 complete full-body sprites in ONE vertical column with 5 distinct rows, preserve original poses and order. Five victory poses: low stance with sword extending down-right, lift sword from left low position, sword diagonally up-left, sword vertically up, rest blade across shoulder pointing right. Use original sequence. White source background is matte and must be removed. Orange spiky hair, black shihakusho robes, white collar/sash, Zangetsu. Smooth crisp anime ink lines and clean flat cel shading. Actual alpha transparency everywhere outside character and held sword/cloth. NO glow, NO halo, NO gradients, NO colored/white/black background, NO floor, NO scenery, NO text/grid. Large empty transparent gutters separate all frames; figures occupy only middle 65% of each row. Exactly 5 frames."
+  },
+  {
+    "name": "win_hold",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-b8d4ddb3-270d-4603-94ba-a4486fc7e287.png",
+    "prompt": "Use case: style-transfer. HD redraw of original Ichigo win_hold game sprite sheet. EXACTLY 1 complete full-body sprites in ONE vertical column with 1 distinct rows, preserve original poses and order. One victory hold pose, standing with sword resting across shoulder pointing right, relaxed posture, white wrapping hanging to left; match original. Orange spiky hair, black shihakusho robes, white collar/sash, Zangetsu. Smooth crisp anime ink lines and clean flat cel shading. Actual alpha transparency everywhere outside character and held sword/cloth. NO glow, NO halo, NO gradients, NO colored/white/black background, NO floor, NO scenery, NO text/grid. Large empty transparent gutters separate all frames; figures occupy only middle 65% of each row. Exactly 1 frames."
+  },
+  {
+    "name": "lose",
+    "generated": "C:\\Users\\Ben\\.codex\\generated_images\\01a0b22b-5f70-7d51-8176-32c3f0551fe5\\exec-590c368d-2254-457e-838b-35128f612ac8.png",
+    "prompt": "Use case: style-transfer. HD redraw of original Ichigo lose game sprite sheet. EXACTLY 4 complete full-body sprites in ONE vertical column with 4 distinct rows, preserve original poses and order. Four quiet defeated/clapping poses from original: standing head slightly lowered, hands in front chest with subtle hand motion, sword down behind body pointing right. Match each original pose, no wounds. Orange spiky hair, black shihakusho robes, white collar/sash, Zangetsu. Smooth crisp anime ink lines and clean flat cel shading. Actual alpha transparency everywhere outside character and held sword/cloth. NO glow, NO halo, NO gradients, NO colored/white/black background, NO floor, NO scenery, NO text/grid. Large empty transparent gutters separate all frames; figures occupy only middle 65% of each row. Exactly 4 frames."
+  }
+]
