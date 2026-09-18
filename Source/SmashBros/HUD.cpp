@@ -1119,22 +1119,22 @@ namespace SmashBros
 		resumeButton->addAnimation(new Animation("normal", 1, "Images/Game/HUD/ResumeButton.png"));
 		resumeButton->changeAnimation("normal", FORWARD);
 		resumeButton->setRelativeToView(false);
-		resumeButton->setAlpha(0.2f);
-		resumeButton->setScale(1.6f);
+		resumeButton->setAlpha(0.0f);
+		resumeButton->setScale(1.0f);
 		
 		finishButton = new Actor((float)View::getScalingWidth()/2, (float)View::getScalingHeight()/2);
 		finishButton->addAnimation(new Animation("normal", 1, "Images/Game/HUD/FinishButton.png"));
 		finishButton->changeAnimation("normal", FORWARD);
 		finishButton->setRelativeToView(false);
-		finishButton->setAlpha(0.2f);
-		finishButton->setScale(1.6f);
+		finishButton->setAlpha(0.0f);
+		finishButton->setScale(1.0f);
 		
 		exitButton = new Actor(680, 440);
 		exitButton->addAnimation(new Animation("normal", 1, "Images/Game/HUD/ExitButton.png"));
 		exitButton->changeAnimation("normal", FORWARD);
 		exitButton->setRelativeToView(false);
-		exitButton->setAlpha(0.2f);
-		exitButton->setScale(1.6f);
+		exitButton->setAlpha(0.0f);
+		exitButton->setScale(1.0f);
 	}
 	
 	HUD::PauseMenu::~PauseMenu()
@@ -1167,6 +1167,18 @@ namespace SmashBros
 	{
 		if(Game::Suspended())
 		{
+			const float cx=View::getScalingWidth()/2.0f;
+			const float cy=View::getScalingHeight()/2.0f;
+			resumeButton->x=cx;resumeButton->y=cy-62;
+			finishButton->x=cx;finishButton->y=cy+22;
+			exitButton->x=cx;exitButton->y=cy+106;
+			Graphics2D overlay(g);
+			overlay.setAlpha(185);overlay.setColor(Color(9,12,20));
+			overlay.fillRect(0,0,(float)View::getScalingWidth(),(float)View::getScalingHeight());
+			overlay.setAlpha(255);overlay.setColor(Color::WHITE);
+			overlay.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::BOLD,30));
+			overlay.drawString("PAUSED",cx-180,cy-125);
+			overlay.setColor(Color(230,35,45));overlay.fillRect(cx-180,cy-112,360,4);
 			resumeButton->Update(gameTime);
 			if(resumeButton->isClicked() && !resumeButton->wasClicked())
 			{
