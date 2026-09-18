@@ -22,7 +22,7 @@ namespace SmashBros
 			a->addAnimation(new Animation(CharacterLoader::getName(i),1, CharacterLoader::getPreviewPath(i)));
 		}
 		a->changeAnimation(CharacterLoader::getName(Global::CHAR_MARIO),FORWARD);
-		a->setScale(2.0f);
+		a->setScale(1.0f);
 		a->setAlpha(1);
 	}
 	
@@ -228,6 +228,14 @@ namespace SmashBros
 
 	void CharSelectScreen::Draw(Graphics2D&g, long gameTime)
 	{
+		g.setColor(Color(238,239,242));g.fillRect(0,76,900,524);
+		g.setColor(Color(24,25,30));g.fillRect(0,76,900,45);
+		g.setColor(Color::WHITE);
+		g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::BOLD,26));
+		g.drawString("CHOOSE YOUR FIGHTER",28,108);
+		g.setColor(Color(55,57,65));
+		g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::PLAIN,15));
+		g.drawString("Drag a player token onto a fighter. Tap a player panel to change its type.",28,302);
 		Menus::button_back->Draw(g, gameTime);
 		charSelectArea->Draw(g,gameTime);
 		for(int i=0; i<charCards.size(); i++)
@@ -409,15 +417,15 @@ namespace SmashBros
 			cardAvailable[i-1]=false;
 			cardTypes[i-1] = (byte)type.get(i-1);
 			Actor*a = setUpCard(i,type.get(i-1));
-			a->setScale(1.65f);
+			a->setScale(1.0f);
 			Actor*a2 = new Actor(0,0);
-			TextActor*a3 = new TextActor(" ", AssetManager::getFont("Fonts/arial.ttf", Font::BOLD, 12), Color::WHITE);
+			TextActor*a3 = new TextActor(" ", AssetManager::getFont("Fonts/arial.ttf", Font::BOLD, 18), Color::WHITE);
 			a3->setAlignment(TextActor::ALIGN_CENTER);
-			addToGrid(a,100+(space/10),500,type.size(),1,space,0,i);
+			addToGrid(a,space/2,470,type.size(),1,space,0,i);
 			a2->x = a->x;
-			a2->y = a->y - 10;
-			a3->x = a->x - 5;
-			a3->y = a->y + 43;
+			a2->y = a->y;
+			a3->x = a->x;
+			a3->y = a->y + 75;
 			charCards.add(a);
 			charPreviews.add(a2);
 			charNames.add(a3);
@@ -433,10 +441,10 @@ namespace SmashBros
 		{
 			CharCoin*a = new CharCoin(this,i);
 			int space = View::getScalingWidth()/(num);
-			addToGrid(a,25+(space/10),500,num,1,space,0,i);
+			addToGrid(a,space/2-73,424,num,1,space,0,i);
 			coinPoints[i-1].x=(int)a->x;
 			coinPoints[i-1].y=(int)a->y;
-			a->setScale(1.4f);
+			a->setScale(1.0f);
 			charCoins.add(a);
 		}
 	}
@@ -444,7 +452,7 @@ namespace SmashBros
 	void CharSelectScreen::newCharIcon(int num, String anim)
 	{
 		CharIcon*a = new CharIcon(num, 0,0, new Animation("normal",1,anim));
-		addToGrid(a,70,115,9,5,95,65,charIcons.size()+1);
+		addToGrid(a,95,204,6,1,142,156,charIcons.size()+1);
 		if(charIcons.size()==0)
 		{
 			charSelectArea->x = a->x - (a->width/2);
@@ -460,7 +468,7 @@ namespace SmashBros
 		{
 			charSelectArea->height = (int)csH;
 		}
-		WireframeActor*a2 = new WireframeActor(a->x-20,a->y-20,40,40);
+		WireframeActor*a2 = new WireframeActor(a->x-60,a->y-66,120,132);
 		charIconPoints.add(a2);
 		charIcons.add(a);
 	}
@@ -795,7 +803,7 @@ namespace SmashBros
 	
 	CharSelectScreen::CharIcon::CharIcon(int num, float x1, float y1, Animation*anim) : Actor(x1,y1)
 	{
-		setScale(1.8f);
+		setScale(1.0f);
 		addAnimation(anim);
 		changeAnimation(anim->name, FORWARD);
 		this->num = num;
@@ -913,8 +921,8 @@ namespace SmashBros
 		Actor::Draw(g, gameTime);
 		if(Global::teamBattle)
 		{
-			teamFlag->x = x + 30;
-			teamFlag->y = y - 60;
+			teamFlag->x = x + 74;
+			teamFlag->y = y - 50;
 			teamFlag->Draw(g, gameTime);
 		}
 	}

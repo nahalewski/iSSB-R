@@ -437,14 +437,14 @@ namespace SmashBros
 		rules_bar->setScale(1.8f);
 		rules_bar_value = new TextActor(510,60,"02",AssetManager::getFont("Fonts/arial.ttf", Font::BOLD, 30),Color::BLACK);
 		rules_bar_value->setAlignment(TextActor::ALIGN_BOTTOMLEFT);
-		rules_bar_text = new TextActor(560,60,"",AssetManager::getFont("Fonts/arial.ttf", Font::BOLD, 26),Color::BLACK);
+		rules_bar_text = new TextActor(560,57,"",AssetManager::getFont("Fonts/arial.ttf", Font::BOLD, 20),Color::BLACK);
 		rules_bar_text->setAlignment(TextActor::ALIGN_BOTTOMLEFT);
 		
-		readyToFight = new ReadyToFightBar((float)View::getScalingWidth()/2, 380);
+		readyToFight = new ReadyToFightBar((float)View::getScalingWidth()/2, 337);
 		readyToFight->addAnimation(new Animation("normal",1,"Images/Menus/Buttons/Generic/readytofight.png"));
 		readyToFight->addAnimation(new Animation("hover",1,"Images/Menus/Buttons/Generic/readytofight_selected.png"));
 		readyToFight->changeAnimation("normal", FORWARD);
-		readyToFight->setScale(1.845f);
+		readyToFight->setScale(1.0f);
 		readyToFight->mouseOverUsesPixel(true);
 		
 		rules_arrows = new Arrows(530,22,530,72);
@@ -463,7 +463,7 @@ namespace SmashBros
 		rules_arrows->setScale(1.5f);
 		
 		teams_button = new TeamsButton(260,35);
-		teams_button->setScale(1.7f);
+		teams_button->setScale(1.0f);
 		
 		teams_button->addAnimation(new Animation("normal",1,"Images/Menus/Buttons/Group/freeforall.png"));
 		teams_button->addAnimation(new Animation("hover",1,"Images/Menus/Buttons/Group/freeforall_selected.png"));
@@ -582,7 +582,7 @@ namespace SmashBros
 			{
 				rules_bar_value->setText((String)"" + Global::stockAmount);
 			}
-			rules_bar_text->setText("- Man Survival Test!");
+			rules_bar_text->setText("STOCK BATTLE");
 			break;
 					
 			case Global::MODE_TIME_LIMIT:
@@ -600,7 +600,7 @@ namespace SmashBros
 			{
 				rules_bar_value->setText((String)"" + Global::timeLimit);
 			}
-			rules_bar_text->setText("- Minute Survival Match!");
+			rules_bar_text->setText("MINUTE TIMED BATTLE");
 			break;
 		}
 		rules_bar_value->Update(gameTime);
@@ -626,6 +626,8 @@ namespace SmashBros
 	
 	void BrawlCharSelect::Draw(Graphics2D&g, long gameTime)
 	{
+		g.setColor(Color::WHITE);
+		g.fillRect(0,0,900,76);
 		rules_bar->Draw(g, gameTime);
 		rules_bar_value->Draw(g, gameTime);
 		rules_bar_text->Draw(g, gameTime);
@@ -1554,13 +1556,13 @@ namespace SmashBros
 		trainingBanner = new Actor(260,35);
 		trainingBanner->addAnimation(new Animation("normal",1,"Images/Menus/Buttons/Solo/training_mode.png"));
 		trainingBanner->changeAnimation("normal",FORWARD);
-		trainingBanner->setScale(1.8f);
+		trainingBanner->setScale(1.0f);
 		
-		readyToFight = new ReadyToFightBar(450, 380);
+		readyToFight = new ReadyToFightBar(450, 337);
 		readyToFight->addAnimation(new Animation("normal",1,"Images/Menus/Buttons/Generic/readytofight.png"));
 		readyToFight->addAnimation(new Animation("hover",1,"Images/Menus/Buttons/Generic/readytofight_selected.png"));
 		readyToFight->changeAnimation("normal", FORWARD);
-		readyToFight->setScale(1.845f);
+		readyToFight->setScale(1.0f);
 	}
 	
 	void TrainingCharSelect::LoadContent()
@@ -1603,6 +1605,8 @@ namespace SmashBros
 
 	void TrainingCharSelect::Draw(Graphics2D&g, long gameTime)
 	{
+		g.setColor(Color::WHITE);
+		g.fillRect(0,0,900,76);
 		trainingBanner->Draw(g, gameTime);
 		CharSelectScreen::Draw(g, gameTime);
 		if(checkReadyToFight(2) && !coinsClicked())
