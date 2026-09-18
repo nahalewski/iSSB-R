@@ -3,20 +3,23 @@ plugins {
 }
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.2"
+	namespace 'com.brokenphysics.issb'
+	compileSdkVersion 36
+	ndkVersion '28.2.13676358'
 
 	defaultConfig {
 		applicationId "com.brokenphysics.issb"
-		minSdkVersion 16
-		targetSdkVersion 30
-		versionCode 1
-		versionName "1.0"
+		minSdkVersion 23
+		targetSdkVersion 35
+		versionCode 2026091801
+		versionName "ISSB-R 2.22.0"
+		ndk { abiFilters 'arm64-v8a' }
 
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 		externalNativeBuild {
 			cmake {
-				arguments "-DANDROID_APP_PLATFORM=android-16", "-DANDROID_STL=c++_static"
+				targets 'iSSBLib', 'SDL2', 'SDL2_image', 'SDL2_mixer', 'SDL2_ttf', 'hidapi'
+				arguments "-DANDROID_STL=c++_shared"
 				// abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
 				//abiFilters 'arm64-v8a'
 			}
@@ -25,7 +28,7 @@ android {
 
 	sourceSets {
 		main {
-			java.srcDirs += "../../../External/SDL/SDL/android-project/app/src/main/java"
+			java.srcDirs += "$buildDir/generated/sdl-java"
 			assets.srcDirs += "../../../Assets"
 		}
 	}
@@ -39,7 +42,7 @@ android {
 	externalNativeBuild {
 		cmake {
 			path "src/main/cpp/CMakeLists.txt"
-			version "3.10.2"
+			version "3.22.1"
 		}
 	}
 	compileOptions {
@@ -60,3 +63,19 @@ dependencies {
 afterEvaluate {
 	android.sourceSets.main.assets.srcDirs.each{println it}
 }
+
+// Keep the pinned SDL sources unchanged while adapting its Android glue to
+// current receiver and PendingIntent requirements.
+tasks.register('prepareSDLJava', Sync) {
+	from '../../../External/SDL/SDL/android-project/app/src/main/java'
+	into "$buildDir/generated/sdl-java"
+	filter { String line ->
+		line = line.replace('mContext.registerReceiver(mUsbBroadcast, filter);',
+			'if (Build.VERSION.SDK_INT >= 33) mContext.registerReceiver(mUsbBroadcast, filter, Context.RECEIVER_NOT_EXPORTED); else mContext.registerReceiver(mUsbBroadcast, filter);')
+		line = line.replace('mContext.registerReceiver(mBluetoothBroadcast, filter);',
+			'if (Build.VERSION.SDK_INT >= 33) mContext.registerReceiver(mBluetoothBroadcast, filter, Context.RECEIVER_EXPORTED); else mContext.registerReceiver(mBluetoothBroadcast, filter);')
+		line.replace('new Intent(HIDDeviceManager.ACTION_USB_PERMISSION), 0)',
+			'new Intent(HIDDeviceManager.ACTION_USB_PERMISSION).setPackage(mContext.getPackageName()), PendingIntent.FLAG_UPDATE_CURRENT | (Build.VERSION.SDK_INT >= 31 ? PendingIntent.FLAG_MUTABLE : 0))')
+	}
+}
+tasks.named('preBuild').configure { dependsOn 'prepareSDLJava' }

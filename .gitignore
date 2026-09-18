@@ -69,6 +69,7 @@ build/
 # Android Studio
 .idea
 .gradle
+.cxx/
 local.properties
 *.iml
 buck-out/

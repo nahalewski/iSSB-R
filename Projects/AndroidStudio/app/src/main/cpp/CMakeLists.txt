@@ -12,7 +12,11 @@ option(SUPPORT_OGG "Support loading OGG Vorbis music via Tremor" ON)
 # Add Dependency Directories
 set(ISSB_EXTERNAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../../../../External")
 add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL" "${CMAKE_BINARY_DIR}/SDL2")
+target_compile_options(SDL2 PRIVATE -Wno-error=declaration-after-statement
+        -include "${CMAKE_CURRENT_SOURCE_DIR}/sdl-android-compat.h")
 add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_image" "${CMAKE_BINARY_DIR}/SDL2_image")
+# zlib 1.2.11 exports an optional gz_intmax symbol absent in modern builds.
+target_link_options(zlib PRIVATE "-Wl,--undefined-version")
 add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_mixer" "${CMAKE_BINARY_DIR}/SDL2_mixer")
 #add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_ttf/external/freetype-2.9.1" "${CMAKE_BINARY_DIR}/freetype")
 add_subdirectory("${ISSB_EXTERNAL_DIR}/SDL/SDL_ttf" "${CMAKE_BINARY_DIR}/SDL2_ttf")
