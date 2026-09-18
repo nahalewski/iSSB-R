@@ -1,0 +1,13 @@
+# Battle display and HD artwork
+
+Battles expand the 900x600 logical canvas to the device/window aspect ratio with uniform scaling, including foldable and desktop windows. Menus keep their existing layout. Controls are anchored to the bottom corners and the HUD follows resizes. Fixed stage backgrounds cover the viewport without stretching. Android immersive mode hides system bars, with swipe access retained, using the [Android system-bars API](https://developer.android.com/develop/ui/views/layout/immersive).
+
+Connected SDL game controllers hide touch controls and the pause icon. A connection releases held touch actions before controller input is processed. Disconnecting restores touch controls while preserving the user's touch preference. Start/Options still pauses and resumes.
+
+The five playable maps have newly generated HD backdrops and main structures: Battlefield, Final Destination, Hillside Battleground, Hyrule Temple and Corneria. Smaller auxiliary platform/foreground textures remain original. Main structures use 2x textures with original logical dimensions and alpha masks; Final Destination retains its six-frame sheet. All 26 touch-control PNGs are freshly rendered at 4x with clean circular buttons and joystick states.
+
+Built-in imagegen produced the environment artwork. Exact prompts and project-local source paths are in `generation.json`. `generated/` contains the saved source artwork; an extra fractal background is retained as an unused design candidate. `Build-Assets.ps1` aligns generated silhouettes to original bounds and builds runtime textures. `originals/` preserves inputs for reproducible rebuilding and validation. `Import-Art.ps1` documents the initial import and needs the task's external `stage-inputs.json` only if repeating that import; ordinary rebuilds do not.
+
+Run `Validate-Assets.ps1` to check all HD dimensions and compare the five stage collision masks and silhouettes pixel by pixel. Android Gradle `assembleDebug --offline` validates the native and Java changes. Device installation does not constitute a complete physical controller hot-plug test.
+
+Razer Edge 5G device check: observed a running Battlefield match on the built-in 2400x1080 screen, with full-screen background coverage and HD touch buttons. After the Kishi V2 Pro appeared as Android game controller 1, observed a running match with touch controls and pause icon hidden. This test also exposed the original Battlefield collision sprite painting over the HD stage; that sprite is now hidden through `Actor::setVisible` without altering its collision behavior. Physical controller disconnect/reconnect restoration has not yet been verified.

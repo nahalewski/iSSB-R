@@ -31,6 +31,7 @@ namespace GameEngine
 		
 		static void setSize(int w, int h);
 		static void setScaleSize(int w, int h);
+		static void fitDeviceAspect();
 		
 		static int getWidth();
 		static int getHeight();

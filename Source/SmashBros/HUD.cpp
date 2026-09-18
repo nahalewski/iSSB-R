@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Controls.h"
 #include "P2PDataManager.h"
+#include "../GameEngine/Input/Gamepad.h"
 
 namespace SmashBros
 {
@@ -178,6 +179,15 @@ namespace SmashBros
 	
 	void HUD::Update(long gameTime)
 	{
+		const float w=View::getScalingWidth(), h=View::getScalingHeight();
+		ReadyGo->x=w/2; ReadyGo->y=h/2;
+		FinishGame->x=w/2; FinishGame->y=h/2;
+		if(currentTime!=null)currentTime->x=w/2;
+		for(int i=0;i<charPanels.size();i++)
+		{
+			charPanels.get(i)->x=260+(w-520)*(i+1)/(charPanels.size()+1);
+			charPanels.get(i)->y=h-100;
+		}
 		if(firstUpdate)
 		{
 			startGameTime = Global::getWorldTime() + 1000;
@@ -1137,6 +1147,7 @@ namespace SmashBros
 	
 	void HUD::PauseMenu::Update(long gameTime)
 	{
+		if(GameEngine::Gamepad::get().anyConnected())return;
 		pauseButton->Update(gameTime);
 		if(!Controls::controlsDown())
 		{
@@ -1204,7 +1215,7 @@ namespace SmashBros
 		}
 		else
 		{
-			pauseButton->Draw(g, gameTime);
+			if(!GameEngine::Gamepad::get().anyConnected())pauseButton->Draw(g, gameTime);
 		}
 	}
 }

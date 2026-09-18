@@ -31,7 +31,7 @@ namespace SmashBros
 		loadForeground();
 		loadGround();
 		
-		setBackground("Images/Game/Stages/HyruleTemple/bg.png");
+		setBackground("Images/Game/Stages/HyruleTemple/bg_hd.png");
 		setBackgroundScale(1.0);
 		setBackgroundType(BG_FIXED);
 		

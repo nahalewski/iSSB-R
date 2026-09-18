@@ -1,0 +1,61 @@
+{
+    "backgrounds":  [
+                        {
+                            "name":  "BattlefieldBrawl",
+                            "prompt":  "HD blue sky with distant floating islands and waterfalls; no foreground platforms or characters.",
+                            "path":  "generated/BattlefieldBrawl-background.png"
+                        },
+                        {
+                            "name":  "FinalDestinationBrawl",
+                            "prompt":  "Use case: stylized-concept. HD background texture for a side-view platform fighting game. A dramatic cosmic arena backdrop: deep indigo space, brilliant blue and violet nebula, distant stars and a subtle glowing horizon. Polished hand-painted environment art. Landscape 16:9. No foreground ground, no playable platforms, no characters, no lettering. 2048 pixels wide or higher.",
+                            "path":  "generated/FinalDestinationBrawl-background.png"
+                        },
+                        {
+                            "name":  "HillsideBattleground",
+                            "prompt":  "Use case: stylized-concept. HD background texture for a side-view platform fighting game. A sunlit green hillside landscape, rolling emerald hills, distant mountains and soft blue sky, vivid stylized videogame scenery. Polished hand-painted environment art. Landscape 16:9. No foreground ground, no playable platforms, no characters, no lettering. 2048 pixels wide or higher.",
+                            "path":  "generated/HillsideBattleground-background.png"
+                        },
+                        {
+                            "name":  "HyruleTemple",
+                            "prompt":  "Use case: stylized-concept. HD background texture for a side-view platform fighting game. A fantasy sky kingdom backdrop with distant ancient stone towers, mountainous valleys and layered clouds in warm afternoon light. Polished hand-painted environment art. Landscape 16:9. No foreground ground, no playable platforms, no characters, no lettering. 2048 pixels wide or higher.",
+                            "path":  "generated/HyruleTemple-background.png"
+                        },
+                        {
+                            "name":  "Corneria",
+                            "prompt":  "Use case: stylized-concept. HD background texture for a side-view platform fighting game. A futuristic coastal planet with a blue ocean, mountainous islands, distant sci-fi city skyline and bright clear sky. Polished hand-painted environment art. Landscape 16:9. No foreground ground, no playable platforms, no characters, no lettering. 2048 pixels wide or higher.",
+                            "path":  "generated/Corneria-background.png"
+                        },
+                        {
+                            "name":  "TestStage",
+                            "prompt":  "Use case: stylized-concept. HD background texture for a side-view platform fighting game. An abstract luminous fractal space backdrop, swirling teal violet and deep blue geometry, clean visual depth. Polished hand-painted environment art. Landscape 16:9. No foreground ground, no playable platforms, no characters, no lettering. 2048 pixels wide or higher.",
+                            "path":  "generated/TestStage-background.png"
+                        }
+                    ],
+    "structures":  [
+                       {
+                           "name":  "BattlefieldBrawl/mainstage.png",
+                           "prompt":  "Edit target: the attached game stage texture. Upgrade ONLY its rendering to polished HD videogame environment artwork with crisp material detail, smooth edges, stone/metal/grass textures as appropriate. CRITICAL: retain exact composition, all platform top edges, silhouettes, object positions and outer canvas margins. Do not add or remove structures or platforms. Preserve transparency and existing solid background colors where present. If a sprite sheet, retain exactly the same number and arrangement of frames, with identical geometry in each. Output at 2x the input resolution or higher, same aspect ratio. No text, no UI.",
+                           "path":  "generated/BattlefieldBrawl-mainstage.png"
+                       },
+                       {
+                           "name":  "FinalDestinationBrawl/mainstage.png",
+                           "prompt":  "Edit target: the attached game stage texture. Upgrade ONLY its rendering to polished HD videogame environment artwork with crisp material detail, smooth edges, stone/metal/grass textures as appropriate. CRITICAL: retain exact composition, all platform top edges, silhouettes, object positions and outer canvas margins. Do not add or remove structures or platforms. Preserve transparency and existing solid background colors where present. If a sprite sheet, retain exactly the same number and arrangement of frames, with identical geometry in each. Output at 2x the input resolution or higher, same aspect ratio. No text, no UI.",
+                           "path":  "generated/FinalDestinationBrawl-mainstage.png"
+                       },
+                       {
+                           "name":  "HillsideBattleground/mainstage.png",
+                           "prompt":  "Edit target: the attached game stage texture. Upgrade ONLY its rendering to polished HD videogame environment artwork with crisp material detail, smooth edges, stone/metal/grass textures as appropriate. CRITICAL: retain exact composition, all platform top edges, silhouettes, object positions and outer canvas margins. Do not add or remove structures or platforms. Preserve transparency and existing solid background colors where present. If a sprite sheet, retain exactly the same number and arrangement of frames, with identical geometry in each. Output at 2x the input resolution or higher, same aspect ratio. No text, no UI.",
+                           "path":  "generated/HillsideBattleground-mainstage.png"
+                       },
+                       {
+                           "name":  "HyruleTemple/mainstage.png",
+                           "prompt":  "Edit target: the attached game stage texture. Upgrade ONLY its rendering to polished HD videogame environment artwork with crisp material detail, smooth edges, stone/metal/grass textures as appropriate. CRITICAL: retain exact composition, all platform top edges, silhouettes, object positions and outer canvas margins. Do not add or remove structures or platforms. Preserve transparency and existing solid background colors where present. If a sprite sheet, retain exactly the same number and arrangement of frames, with identical geometry in each. Output at 2x the input resolution or higher, same aspect ratio. No text, no UI.",
+                           "path":  "generated/HyruleTemple-mainstage.png"
+                       },
+                       {
+                           "name":  "Corneria/plat.png",
+                           "prompt":  "Edit target: the attached game stage texture. Upgrade ONLY its rendering to polished HD videogame environment artwork with crisp material detail, smooth edges, stone/metal/grass textures as appropriate. CRITICAL: retain exact composition, all platform top edges, silhouettes, object positions and outer canvas margins. Do not add or remove structures or platforms. Preserve transparency and existing solid background colors where present. If a sprite sheet, retain exactly the same number and arrangement of frames, with identical geometry in each. Output at 2x the input resolution or higher, same aspect ratio. No text, no UI.",
+                           "path":  "generated/Corneria-plat.png"
+                       }
+                   ]
+}

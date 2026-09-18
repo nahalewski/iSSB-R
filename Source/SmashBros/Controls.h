@@ -75,6 +75,7 @@ namespace SmashBros
 		static bool PrevControllerButtonStates[20];
 		static ControlHUD*touchControls;
 		static bool touchEnabled;
+		static bool controllerHidesTouch;
 		static bool joystickEnabled;
 		static byte touchPlayer;
 		

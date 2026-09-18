@@ -15,6 +15,7 @@ namespace SmashBros
 	bool Controls::PrevControllerButtonStates[20];
 	Controls::ControlHUD*Controls::touchControls = null;
 	bool Controls::touchEnabled = true;
+	bool Controls::controllerHidesTouch = false;
 	bool Controls::joystickEnabled = true;
 	byte Controls::touchPlayer = 1;
 	const float Controls::ControlHUD::farDist = 12100;
@@ -159,6 +160,17 @@ namespace SmashBros
 	
 	void Controls::ControlHUD::Update(long gameTime)
 	{
+		const float w = View::getScalingWidth(), h = View::getScalingHeight();
+		button_a->x=w-85; button_a->y=h-150;
+		button_b->x=w-195; button_b->y=h-75;
+		button_x->x=w-85; button_x->y=h-260;
+		button_z->x=w-100; button_z->y=65;
+		joystick->x=150; joystick->y=h-150;
+		arrow_up->x=150; arrow_up->y=h-225;
+		arrow_down->x=150; arrow_down->y=h-75;
+		arrow_left->x=75; arrow_left->y=h-150;
+		arrow_right->x=225; arrow_right->y=h-150;
+		joystickArea->width=(int)(w/2); joystickArea->height=(int)h;
 		joystickArea->Update(gameTime);
 		joystick->Update(gameTime);
 		button_a->Update(gameTime);
@@ -2005,7 +2017,7 @@ namespace SmashBros
 			
 			if(joystickEnabled)
 			{
-				if(touchControls->joystickDown)
+				if(touchControls->joystickDown[touchPlayer])
 				{
 					touchControls->js_release(touchPlayer);
 				}
@@ -2115,6 +2127,7 @@ namespace SmashBros
 	{
 		for(int player=1;player<=4;player++)for(int action=0;action<8;action++)
 			if(GameEngine::Gamepad::get().action(player,action))return true;
+		if(controllerHidesTouch || !touchEnabled)return false;
 		if(joystickEnabled)
 		{
 			if(touchControls->joystickDown[touchPlayer])
@@ -2312,13 +2325,22 @@ namespace SmashBros
 	
 	void Controls::Update(long gameTime)
 	{
+		const bool hide = GameEngine::Gamepad::get().anyConnected();
+		if(hide && !controllerHidesTouch && touchEnabled)
+		{
+			// Release touch input before processing controller edges; retain the user's setting.
+			enableTouchControls(false);
+			touchEnabled = true;
+		}
+		controllerHidesTouch = hide;
 		CheckKeysDown();
 		CheckKeysUp();
-		touchControls->Update(gameTime);
+		if(!hide)touchControls->Update(gameTime);
 	}
 	
 	void Controls::Draw(Graphics2D&g, long gameTime)
 	{
+		if(!touchEnabled || GameEngine::Gamepad::get().anyConnected())return;
 		touchControls->Draw(g, gameTime);
 	}
 

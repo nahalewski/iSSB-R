@@ -45,6 +45,14 @@ namespace GameEngine
 	{
 		return windowWidth;
 	}
+
+	void View::fitDeviceAspect()
+	{
+		if(windowWidth<=0 || windowHeight<=0)return;
+		const float aspect = (float)windowWidth/windowHeight;
+		if(aspect>=1.5f)setScaleSize((int)std::round(600*aspect),600);
+		else setScaleSize(900,(int)std::round(900/aspect));
+	}
 	
 	int View::getHeight()
 	{

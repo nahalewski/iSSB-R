@@ -29,7 +29,7 @@ namespace SmashBros
 		loadHangPoints();
 		loadGround();
 		
-		setBackground("Images/Game/Stages/Corneria/bg.png");
+		setBackground("Images/Game/Stages/Corneria/bg_hd.png");
 		setBackgroundScale(1.45);
 		setBackgroundType(BG_FIXED);
 		

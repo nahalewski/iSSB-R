@@ -28,7 +28,7 @@ namespace SmashBros
 		loadHangPoints();
 		loadGround();
 		
-		setBackground("Images/Game/Stages/HillsideBattleground/bg.png");
+		setBackground("Images/Game/Stages/HillsideBattleground/bg_hd.png");
 		setBackgroundScale(1.45);
 		setBackgroundType(BG_FIXED);
 		

@@ -30,6 +30,7 @@ namespace SmashBros
 	
 	void GameScreen::LoadContent()
 	{
+		View::fitDeviceAspect();
 		Global::createHUD();
 		Game::showBackground(false);
 		Camera::Update();
@@ -43,11 +44,13 @@ namespace SmashBros
 	
 	void GameScreen::UnloadContent()
 	{
+		View::setScaleSize(900,600);
 		MusicManager::stop();
 	}
 	
 	void GameScreen::Update(long gameTime)
 	{
+		View::fitDeviceAspect();
 		if(P2PDataManager::isEnabled() && P2PDataManager::isServer())
 		{
 			P2PDataManager::updateGame(gameTime);

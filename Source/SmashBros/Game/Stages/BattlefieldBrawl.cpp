@@ -24,7 +24,7 @@ namespace SmashBros
 		loadPlatforms();
 		loadHangPoints();
 		
-		setBackground("Images/Game/Stages/BattlefieldBrawl/bg.jpg");
+		setBackground("Images/Game/Stages/BattlefieldBrawl/bg_hd.png");
 		setBackgroundScale(1.45);
 		setBackgroundType(BG_FIXED);
 		
@@ -76,6 +76,8 @@ namespace SmashBros
 		plat->addAnimation(new Animation("normal",1,"Images/Game/Stages/BattlefieldBrawl/main_plat.png"));
 		plat->changeAnimation("normal", FORWARD);
 		plat->setVisible(false);
+		// Platform::setVisible only controls debug wires; hide the collision sprite too.
+		plat->Actor::setVisible(false);
 		addPlatform(plat);
 		
 		plat = new Platform(Platform::TYPE_GOTHROUGH, -46, -74, 92, 10);

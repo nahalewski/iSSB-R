@@ -59,6 +59,7 @@ public:
  bool button(int slot,SDL_GameControllerButton b,bool prev=false) const { return slot>=0&&slot<4&&(prev?oldButtons[slot][b]:buttons[slot][b]); }
  bool any(SDL_GameControllerButton b) const { for(int i=0;i<4;i++)if(buttons[i][b])return true;return false; }
  bool connected(int slot) const { return slot>=0&&slot<4&&devices[slot]; }
+ bool anyConnected() const { for(int i=0;i<4;i++)if(connected(i))return true;return false; }
  float axis(int slot,int axis) const { return axes[slot][axis]; }
 };
 }

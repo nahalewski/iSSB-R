@@ -252,8 +252,14 @@ namespace SmashBros
 				break;
 				
 				case BG_FIXED:
-				background->drawFrame(null, g, 0, View::x, View::y, View::x + (float)View::getScalingWidth() + 1, View::y + (float)View::getScalingHeight() + 1);
-				//background->drawFrame(null, g, 0, View::x, View::y, (float)View::getScalingWidth(), (float)View::getScalingHeight());
+				{
+					const float vw=View::getScalingWidth(), vh=View::getScalingHeight();
+					const float iw=background->getWidth(), ih=background->getHeight();
+					if(iw<=0 || ih<=0)break;
+					const float scale=std::max(vw/iw,vh/ih);
+					const float left=View::x+(vw-iw*scale)/2, top=View::y+(vh-ih*scale)/2;
+					background->drawFrame(null,g,0,left,top,left+iw*scale+1,top+ih*scale+1);
+				}
 				break;
 			}
 		}

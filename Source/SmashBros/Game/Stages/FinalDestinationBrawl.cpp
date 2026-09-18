@@ -25,7 +25,7 @@ namespace SmashBros
 		loadPlatforms();
 		loadHangPoints();
 		
-		setBackground("Images/Game/Stages/FinalDestinationBrawl/bg.png");
+		setBackground("Images/Game/Stages/FinalDestinationBrawl/bg_hd.png");
 		setBackgroundScale(1.6);
 		setBackgroundType(BG_FIXED);
 		
