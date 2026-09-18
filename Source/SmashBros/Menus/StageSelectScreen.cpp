@@ -19,7 +19,7 @@ namespace SmashBros
 
 	void StageSelectScreen::StageIcon::onMouseEnter()
 	{
-		setColor(Color::YELLOW);
+		setColor(Color::WHITE);
 	}
 
 	void StageSelectScreen::StageIcon::onMouseLeave()
@@ -37,9 +37,9 @@ namespace SmashBros
 
 	StageSelectScreen::StageSelectScreen(const String&name) : Screen(name)
 	{
-		stageGrid = new ActorGrid(80,145, 5, 8);
-		stageGrid->setSpacing(105, 100);
-		stageGrid->setScale(1.5f);
+		stageGrid = new ActorGrid(170,215, 2, 3);
+		stageGrid->setSpacing(280, 210);
+		stageGrid->setScale(1.0f);
 		for(int i=0; i<=Global::totalStages; i++)
 		{
 			StageIcon*a = new StageIcon(this, 0,0, i);
@@ -55,8 +55,8 @@ namespace SmashBros
 		loadScreen = new Actor(450,300);
 		loadScreen->addAnimation(new Animation("normal",1,"Images/loading.png"));
 		loadScreen->changeAnimation("normal", FORWARD);
-		loadScreen->setAlpha(0.5f);
-		loadScreen->setScale(1.876f);
+		loadScreen->setAlpha(0.0f);
+		loadScreen->setScale(1.0f);
 		
 		queueLoad = 0;
 		drawnOnce = false;
@@ -145,6 +145,7 @@ namespace SmashBros
 	
 	void StageSelectScreen::Update(long gameTime)
 	{
+		if(queueLoad>0 && !drawnOnce)return;
 		if(drawnOnce)
 		{
 			if(queueLoad==1)
@@ -165,7 +166,26 @@ namespace SmashBros
 
 	void StageSelectScreen::Draw(Graphics2D&g, long gameTime)
 	{
+		g.setColor(Color(243,244,246));g.fillRect(0,0,900,600);
+		g.setColor(Color(22,24,30));g.fillRect(145,14,715,62);
+		g.setColor(Color::WHITE);
+		g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::BOLD,28));
+		g.drawString("CHOOSE YOUR STAGE",165,56);
 		stageGrid->Draw(g, gameTime);
+		int hovered=stageGrid->getHoveredIndex();
+		if(hovered>=0)
+		{
+			Actor* tile=stageGrid->get(hovered);
+			g.setColor(Color(230,35,45));
+			float left=tile->x-tile->width/2-3, top=tile->y-tile->height/2-3;
+			g.fillRect(left,top,tile->width+6,4);
+			g.fillRect(left,top+tile->height+2,tile->width+6,4);
+			g.fillRect(left,top,4,tile->height+6);
+			g.fillRect(left+tile->width+2,top,4,tile->height+6);
+		}
+		g.setColor(Color(55,57,65));
+		g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::PLAIN,17));
+		g.drawString("Choose an arena to begin the battle.",40,562);
 		Menus::button_back->Draw(g, gameTime);
 		if(queueLoad>0)
 		{

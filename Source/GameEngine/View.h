@@ -20,6 +20,9 @@ namespace GameEngine
 		static int scaleHeight;
 		
 		static float multScale;
+		static float scaleX;
+		static float scaleY;
+		static bool fillWindow;
 		static float letterBoxW;
 		static float letterBoxH;
 		
@@ -32,6 +35,8 @@ namespace GameEngine
 		static void setSize(int w, int h);
 		static void setScaleSize(int w, int h);
 		static void fitDeviceAspect();
+		// Fit fixed menu coordinates to both window axes; input uses the same transform.
+		static void setFillWindow(bool enabled);
 		
 		static int getWidth();
 		static int getHeight();

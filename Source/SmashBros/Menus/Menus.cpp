@@ -186,7 +186,7 @@ namespace SmashBros
 
 	void Menus::loadAssets()
 	{
-		Game::setLoadBar(0, 588, 900, 12, Color::RED);
+		Game::setLoadBar(210, 474, 480, 6, Color(230,35,45));
 		
 		//Creating Music List
 		MusicManager::addSong("Main Theme", "Music/Smash Bros Brawl/Main Theme.ogg");

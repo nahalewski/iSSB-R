@@ -30,6 +30,7 @@ namespace SmashBros
 	
 	void GameScreen::LoadContent()
 	{
+		View::setFillWindow(false);
 		View::fitDeviceAspect();
 		Global::createHUD();
 		Game::showBackground(false);
@@ -45,6 +46,7 @@ namespace SmashBros
 	void GameScreen::UnloadContent()
 	{
 		View::setScaleSize(900,600);
+		View::setFillWindow(true);
 		MusicManager::stop();
 	}
 	

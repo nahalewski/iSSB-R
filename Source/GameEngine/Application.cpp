@@ -496,11 +496,15 @@ namespace GameEngine
 
 	void Application::redrawLoadScreen() {
 		if(showLoad) {
-			SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+			SDL_SetRenderDrawColor(renderer, 243,244,246,255);
 			SDL_RenderClear(renderer);
-			graphics->drawImage(loadImage,0,0,(float)View::getScalingWidth(),(float)View::getScalingHeight(),0,0,loadImage->getWidth(),loadImage->getHeight());
-			graphics->setColor(loadbarColor);
-			graphics->fillRect(loadbarDim[0], loadbarDim[1], (float)((float)(loadCurrent/loadTotal)*loadbarDim[2]), loadbarDim[3]);
+			Graphics2D loadingGraphics(*graphics);
+			loadingGraphics.setScale(1,1);loadingGraphics.setTranslation(0,0);
+			const float scaleX=View::getWidth()/900.0f, scaleY=View::getHeight()/600.0f;
+			loadingGraphics.drawImage(loadImage,0,0,(float)View::getWidth(),(float)View::getHeight(),0,0,loadImage->getWidth(),loadImage->getHeight());
+			const float progress=loadTotal>0?std::max(0.0f,std::min(1.0f,loadCurrent/loadTotal)):0.0f;
+			loadingGraphics.setColor(loadbarColor);
+			loadingGraphics.fillRect(loadbarDim[0]*scaleX,loadbarDim[1]*scaleY,progress*loadbarDim[2]*scaleX,loadbarDim[3]*scaleY);
 			SDL_RenderPresent(renderer);
 		}
 		else {
@@ -601,8 +605,8 @@ namespace GameEngine
     {
         static bool held=false;
         const long id=-2147483000L;
-        float px=x*View::multScale+View::letterBoxW;
-        float py=y*View::multScale+View::letterBoxH;
+        float px=x*View::scaleX+View::letterBoxW;
+        float py=y*View::scaleY+View::letterBoxH;
         if(hasMultitouch()) {
             if(down && !held)addTouchPoint(id,px,py);
             else if(down)updateTouchPoint(id,px,py);
@@ -686,7 +690,7 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((currentMouseX/View::multScale) - View::letterBoxW*(1/View::multScale));
+			return (int)((currentMouseX/View::scaleX) - View::letterBoxW*(1/View::scaleX));
 		}
 		else
 		{
@@ -698,7 +702,7 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((prevMouseX/View::multScale) - View::letterBoxW*(1/View::multScale));
+			return (int)((prevMouseX/View::scaleX) - View::letterBoxW*(1/View::scaleX));
 		}
 		else
 		{
@@ -710,7 +714,7 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((currentMouseY/View::multScale) - View::letterBoxH*(1/View::multScale));
+			return (int)((currentMouseY/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 		}
 		else
 		{
@@ -722,7 +726,7 @@ namespace GameEngine
 	{
 		if(scalescreen)
 		{
-			return (int)((prevMouseY/View::multScale) - View::letterBoxH*(1/View::multScale));
+			return (int)((prevMouseY/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 		}
 		else
 		{
@@ -739,7 +743,7 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->x/View::multScale) - View::letterBoxW*(1/View::multScale));
+			return (int)((point->x/View::scaleX) - View::letterBoxW*(1/View::scaleX));
 		}
 		else
 		{
@@ -756,7 +760,7 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->x/View::multScale) - View::letterBoxW*(1/View::multScale));
+			return (int)((point->x/View::scaleX) - View::letterBoxW*(1/View::scaleX));
 		}
 		else
 		{
@@ -773,7 +777,7 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->y/View::multScale) - View::letterBoxH*(1/View::multScale));
+			return (int)((point->y/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 		}
 		else
 		{
@@ -790,7 +794,7 @@ namespace GameEngine
 		}
 		else if(scalescreen)
 		{
-			return (int)((point->y/View::multScale) - View::letterBoxH*(1/View::multScale));
+			return (int)((point->y/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 		}
 		else
 		{
@@ -831,8 +835,8 @@ namespace GameEngine
 			for(int i=0; i<currentTouchPoints.size(); i++)
 			{
 				TouchPoint point = currentTouchPoints.get(i);
-				point.x = (float)((point.x/View::multScale) - View::letterBoxW*(1/View::multScale));
-				point.y = (float)((point.y/View::multScale) - View::letterBoxH*(1/View::multScale));
+				point.x = (float)((point.x/View::scaleX) - View::letterBoxW*(1/View::scaleX));
+				point.y = (float)((point.y/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 				points.add(point);
 			}
 			return points;
@@ -853,8 +857,8 @@ namespace GameEngine
 			for(int i=0; i<prevTouchPoints.size(); i++)
 			{
 				TouchPoint point = prevTouchPoints.get(i);
-				point.x = (float)((point.x/View::multScale) - View::letterBoxW*(1/View::multScale));
-				point.y = (float)((point.y/View::multScale) - View::letterBoxH*(1/View::multScale));
+				point.x = (float)((point.x/View::scaleX) - View::letterBoxW*(1/View::scaleX));
+				point.y = (float)((point.y/View::scaleY) - View::letterBoxH*(1/View::scaleY));
 				points.add(point);
 			}
 			return points;

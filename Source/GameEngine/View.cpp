@@ -22,6 +22,9 @@ namespace GameEngine
 	int View::scaleHeight = 320;
 	
 	float View::multScale = 1;
+	float View::scaleX = 1;
+	float View::scaleY = 1;
+	bool View::fillWindow = false;
 	float View::letterBoxW = 0;
 	float View::letterBoxH = 0;
 
@@ -39,6 +42,11 @@ namespace GameEngine
 	{
 		scaleWidth=w;
 		scaleHeight=h;
+	}
+
+	void View::setFillWindow(bool enabled)
+	{
+		fillWindow = enabled;
 	}
 	
 	int View::getWidth()
@@ -85,15 +93,17 @@ namespace GameEngine
 				multScale = ratY;
 			}
 		}
-		g.scale(Zoom*multScale,Zoom*multScale);
+		scaleX = Application::scalescreen && fillWindow ? (float)windowWidth/scaleWidth : multScale;
+		scaleY = Application::scalescreen && fillWindow ? (float)windowHeight/scaleHeight : multScale;
+		g.scale(Zoom*scaleX,Zoom*scaleY);
 		float difX;
 		float difY;
 		if(Application::scalescreen)
 		{
-			difX = (float)((windowWidth - (windowWidth*Zoom))+(windowWidth - (scaleWidth*multScale)))/(float)(2*Zoom*multScale);
-			difY = (float)((windowHeight - (windowHeight*Zoom))+(windowHeight - (scaleHeight*multScale)))/(float)(2*Zoom*multScale);
-			letterBoxW = (float)std::abs((windowWidth - (scaleWidth*multScale))/2);
-			letterBoxH = (float)std::abs((windowHeight - (scaleHeight*multScale))/2);
+			difX = ((windowWidth - windowWidth*Zoom)+(windowWidth - scaleWidth*scaleX))/(2*Zoom*scaleX);
+			difY = ((windowHeight - windowHeight*Zoom)+(windowHeight - scaleHeight*scaleY))/(2*Zoom*scaleY);
+			letterBoxW = fillWindow ? 0 : (float)std::abs((windowWidth - scaleWidth*scaleX)/2);
+			letterBoxH = fillWindow ? 0 : (float)std::abs((windowHeight - scaleHeight*scaleY)/2);
 		}
 		else
 		{

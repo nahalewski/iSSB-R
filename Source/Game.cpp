@@ -53,9 +53,11 @@ namespace SmashBros
 
 		//Initialize things
 		scaleToWindow(true,900,600);
+		View::setFillWindow(true);
 
 		AssetManager::loadImage("Images/icon.png");
 		setLoadScreen("Images/loading.png");
+		setLoadBar(210,474,480,6,Color(230,35,45));
 		
 		Global::init();
 		
@@ -168,7 +170,8 @@ namespace SmashBros
 			g.setColor(Color::WHITE);g.fillRect(padCursorX-5,padCursorY-5,10,10);
 			g.setColor(Color::BLACK);
 			g.setFont(AssetManager::getFont("Fonts/arial.ttf",Font::BOLD,13));
-			bool selecting = ScreenManager::currentName().equals("BrawlCharSelect") || ScreenManager::currentName().equals("TrainingCharSelect");
+			bool selecting = ScreenManager::currentName().equals("BrawlCharSelect") || ScreenManager::currentName().equals("TrainingCharSelect")
+				|| ScreenManager::currentName().equals("BrawlStageSelect") || ScreenManager::currentName().equals("TrainingStageSelect");
 			g.drawString("Stick / D-pad: cursor    A / Cross: select or hold to drag    B / Circle: back",selecting?28:145,selecting?590:35);
 		}
 		drawnOnce = true;
